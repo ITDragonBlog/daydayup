@@ -24,7 +24,6 @@
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>1.3.2</commons-io.version>
 		<commons-net.version>3.3</commons-net.version>
-		<pagehelper.version>3.4.2-fix</pagehelper.version>
 		<jsqlparser.version>0.9.1</jsqlparser.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
 		<jedis.version>2.7.2</jedis.version>
@@ -82,11 +81,6 @@
 			<groupId>com.github.miemiedev</groupId>
 			<artifactId>mybatis-paginator</artifactId>
 			<version>${mybatis.paginator.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
-			<version>${pagehelper.version}</version>
 		</dependency>
 		<!-- MySql -->
 		<dependency>

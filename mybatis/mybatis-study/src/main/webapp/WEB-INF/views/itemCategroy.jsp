@@ -45,6 +45,7 @@
 	</div>
 	<hr />
 	http://www.jeasyui.net/demo/573.html
-
+	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a> 
+	<input type="hidden" name="cid" style="width: 280px;"></input>
 </body>
 </html>

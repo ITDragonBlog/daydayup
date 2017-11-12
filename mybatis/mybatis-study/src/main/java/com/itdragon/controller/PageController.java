@@ -12,7 +12,6 @@ public class PageController {
 	 */
 	@RequestMapping("/tree")
 	public String showIndex() {
-		System.out.println("-------------^^^^");
 		return "itemCategroy";
 	}
 	
