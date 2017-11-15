@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itdragon.mapper.PersonMapper">
+	<!-- CRUD 操作 -->
+	<!-- 
+		基础知识： 
+		select 查询数据
+		insert 插入数据
+		delete 删除数据
+		update 更新数据
+		namespace 命名空间
+		id 方法名, 命名空间  + 方法名 = 唯一方法
+		parameterType 传入参数类型
+		resultType 返回值类型  
+		resultMap 以键值对的类型返回结果
+		
+		参数传值：#{xxx}
+		parameterType 如果不是实体类，对应的参数名可以自定义。如 #{id} 也可以是 #{xxxx}
+		如果是实体类，对应的参数名必须是实体类属性名。为了避免错误，尽量全部都用属性名。
+		
+		扩展知识：
+		resultType 的值是 com.itdragon.pojo.Person 全类名，但为了方便，可以考虑使用别名 
+		resultMap 为了避免类似 lastName 和 last_name 冲突，导致查询的 last_name 会是 null 问题，可以设置键值关系
+	 -->
+	<select id="getPersonById" parameterType="int" resultType="com.itdragon.pojo.Person">
+		select * from person where id=#{id}
+	</select>
+
+	<!-- 解决字段名与实体类属性名不相同的冲突问题第一种办法（不推荐） -->
+	<select id="getPersonByIdOne" parameterType="int" resultType="com.itdragon.pojo.Person">
+		select id, email, last_name lastName from person where id=#{id}
+	</select>
+
+	<select id="getPersonByIdTwo" parameterType="int" resultMap="getPersonMap">
+		select * from person where id=#{id}
+	</select>
+	<!-- 使用 resultMap 设置冲突字段名和实体类属性名对应关系，（推荐） -->
+	<resultMap type="Person" id="getPersonMap">
+		<result property="lastName" column="last_name" />
+	</resultMap>
+
+	<!-- parameterType 中直接使用了 Person 是因为在 SqlMapConfig.xml 文件中设置了别名 -->
+	<insert id="createPerson" parameterType="Person">
+		insert into person(email, last_name) values(#{email}, #{lastName})
+	</insert>
+
+	<delete id="deletePersonById" parameterType="int">
+		delete from person where id=#{id}
+	</delete>
+
+	<update id="updatePersonById" parameterType="Person">
+		update person set email=#{email}, last_name=#{lastName} where id=#{id}
+	</update>
+
+	<select id="getAllperson" resultType="Person">
+		select * from person
+	</select>
+	
+	<!-- 动态SQL与模糊查询 -->
+	<!-- 
+		需求：通过模糊查询邮箱和指定id范围查询数据
+		动态SQL：
+			if：判断语句  <if test=''></if> 
+			where：去掉多余的 and 和 or 
+				<where><if test=''>AND xxx</if></where>
+			set：去掉多余的 ","
+				<set><if test=''>xxx , </if></set>
+			trim： 代替 where , set
+				if + where == <trim prefix="WHERE" prefixOverrides="AND |OR "></trim>
+				if + set == <trim prefix="SET" suffixOverrides=","></trim>
+			choose： (when, otherwise) 类似java的switch case default
+				<choose><when test="">xxx</when><otherwise>xxx</otherwise></choose>
+			foreach：类似java的加强for循环
+				<foreach collection="array" item="xxx"  open="(" separator="," close=")"></foreach>
+		说明：mybatis 提供了自动生成的逆向工程的工具，这里只需要了解即可，虽然是很重要的知识点
+		学习博客：http://limingnihao.iteye.com/blog/782190
+	-->
+	 
+	<select id="getPersonLikeKey" parameterType="Person" resultMap="getPersonMap">
+		select * from person where 
+		<if test='email != "%null%"'>
+			 email like #{email} and 
+		</if>
+		id > #{id}
+	</select>
+	
+	<!-- 调用存储过程 -->
+	<!-- 
+		通过id，获取大于该id的数量
+		CALL jpa.get_person_count(1, @person_count);
+		注意：需关闭二级缓存
+		Caching stored procedures with OUT params is not supported.  Please configure useCache=false in ...
+	 -->
+	<select id="getPersonCountGtId" parameterMap="getPersonCountMap" statementType="CALLABLE">
+		CALL jpa.get_person_count(?,?)
+	</select>
+	
+	<parameterMap type="java.util.Map" id="getPersonCountMap">
+		<parameter property="personId" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="personCount" mode="OUT" jdbcType="INTEGER"/>
+	</parameterMap>
+	
+	<!-- 开启二级缓存 -->
+	<!-- 
+		eviction="FIFO"  		回收策略为先进先出
+		flushInterval="60000" 	自动刷新时间60s
+		size="512"				最多缓存512个引用对象
+		readOnly="true"			只读
+	-->
+	<!-- <cache 
+		eviction="FIFO" 
+		flushInterval="60000"
+		size="1024"	
+		readOnly="true"/>	 -->
+</mapper>

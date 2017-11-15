@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 标签必须按顺序写,否则会提示错误：The content of element type "configuration" must match "(properties?,settings?,...)". -->  
+	
+	<!-- 引入配置文件 -->
+	<properties resource="db.properties" />
+	
+	<!-- 配置实体类的别名 -->
+	<typeAliases>
+		<!-- 给指定包取别名，别名为实体类对应的简单类名，如 com.itdragon.pojo.Person 的别名就是 Person -->
+		<package name="com.itdragon.pojo" />
+	</typeAliases>
+	
+	<!-- 配置数据库链接 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 注册映射文件 -->
+	<mappers>
+		<mapper resource="com/itdragon/mapper/PersonMapper.xml" />
+		<mapper resource="com/itdragon/mapper/ClassroomMapper.xml" />
+	</mappers>
+	
+</configuration>

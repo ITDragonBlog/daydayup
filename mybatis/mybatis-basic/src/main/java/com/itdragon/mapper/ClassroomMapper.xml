@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itdragon.mapper.ClassroomMapper">
+	<!-- 关联表查询 -->
+	<!-- 
+		基础知识：
+		association：用于一对一的关联查询
+			property：对象的属性名
+			javaType：对象的类型
+			column：对应数据表中外键
+			select：使用另外一个查询的封装结果
+		collection：用于一对多的关联查询
+			ofType：指定集合对象的类型
+		扩展知识： 
+	-->
+	
+	<!-- 
+		需求：通过 id 查询 classroom, 并打印 teacher 信息
+		嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
+		第一步：先查询 classroom SELECT * FROM classroom WHERE id=?;
+		第二步：再查询 teacher SELECT * FROM teacher WHERE id=classroom.id //classroom 是第一步的查询结果
+		说明：嵌套查询的方法，虽然好理解，当时不建议
+	-->
+	<select id="getClassroomById" parameterType="int" resultMap="getClassroomMap">
+		SELECT * FROM classroom WHERE id=#{id}
+	</select>
+	
+	<select id="getTeacherById" parameterType="int" resultType="Teacher">
+		SELECT * FROM teacher WHERE id=#{id}
+	</select>
+	
+	<resultMap type="Classroom" id="getClassroomMap">
+		<association property="teacher" column="teacher_id" select="getTeacherById">
+		<!-- 如果 teacher 存在属性字段和字段冲突，需要在这里设置 -->
+		</association>
+	</resultMap>
+	
+	<!-- 
+		需求：通过 id 查询 classroom, 并打印 teacher 信息
+		嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集,封装联表查询的数据(去除重复的数据)
+		select * from classroom, teacher where classroom.teacher_id=teacher.id and classroom.id=?
+	-->
+	<select id="getClassroom2ById" parameterType="int" resultMap="getClassroom2Map">
+		SELECT * FROM classroom c, teacher WHERE c.teacher_id = teacher.id AND c.id = #{id}
+	</select>
+	<resultMap type="Classroom" id="getClassroom2Map">
+		<id property="id" column="id"/>
+		<result property="room" column="room"/>
+		<association property="teacher" javaType="Teacher">
+			<id property="id" column="id"/>
+			<result property="subject" column="subject"/>
+		</association>
+	</resultMap>
+	
+	<!-- 
+		需求：通过 id 查询 classroom, 并打印 teacher 和 student 信息
+		嵌套查询：通过执行另外一个SQL映射语句来返回预期的复杂类型
+		第一步：先查询 classroom SELECT * FROM classroom WHERE id=?;
+		第二步：再查询 teacher SELECT * FROM teacher WHERE id=classroom.id //classroom 是第一步的查询结果
+		第三步：再查询 student SELECT * FROM student WHERE id=classroom.id //classroom 是第一步的查询结果
+	-->
+	<select id="getClassroom3ById" resultMap="getClassroom3Map">
+		SELECT * FROM classroom WHERE id=#{id}
+	</select>
+	<!-- getTeacherById 上面有了，就不重复写了 -->
+	<select id="getStudentById" parameterType="int" resultType="Student">
+		SELECT * FROM student WHERE class_id=#{id}
+	</select>
+	
+	<resultMap type="Classroom" id="getClassroom3Map">
+		<association property="teacher" column="teacher_id" select="getTeacherById"></association>
+		<collection property="students" column="student_id" select="getStudentById"></collection>
+	</resultMap>
+	
+	<!-- 
+		需求：通过 id 查询 classroom, 并打印 teacher 和 student 信息
+	 	嵌套结果：使用嵌套结果映射来处理重复的联合结果的子集,封装联表查询的数据(去除重复的数据)
+		SELECT * FROM classroom c, teacher t,student s WHERE c.teacher_id=t.id AND c.id=s.class_id AND c.id=?
+	 -->
+	<select id="getClassroom4ById" parameterType="int" resultMap="getClassroom4Map">
+		SELECT * FROM classroom c, teacher t, student s WHERE c.teacher_id=t.id AND c.student_id=s.class_id AND c.id=#{id}
+	</select>
+	
+	<resultMap type="Classroom" id="getClassroom4Map">
+		<id property="id" column="id"/>
+		<result property="room" column="room"/>
+		<association property="teacher" javaType="Teacher">
+			<id property="id" column="id"/>
+			<result property="subject" column="subject"/>
+		</association>
+		<collection property="students" ofType="Student">
+			<!-- 
+				存在问题
+				如果两表联查，主表和明细表的主键都是id的话，明细表的多条只能查询出来第一条。
+				<id property="id" column="s_id"/>
+				解决方法：https://www.cnblogs.com/junge/p/5145881.html
+			-->
+			<result property="name" column="name"/>
+		</collection>
+	</resultMap>
+	
+</mapper>
