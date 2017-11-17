@@ -1,5 +1,7 @@
 # Nginx 安装部署
 
+> 这里有最简单的安装步骤，很参见的疑难杂症
+
 ## 理想流程
 
 ```
@@ -17,13 +19,14 @@ drwxr-xr-x 9 1001 1001   4096 Nov 14 14:26 nginx-1.13.6
 [root@itdragon sbin]# ./nginx
 [root@itdragon sbin]# ifconfig
 ```
-第一步：下载Nginx压缩包
-第二步：解压
-第三步：配置，编译，安装，启动
-第四步：查看ip地址
-第五步：浏览器访问：ip：port
-若出现如下图片则说明安装成功。
+第一步：下载Nginx压缩包  
+第二步：解压  
+第三步：配置，编译，安装，启动  
+第四步：查看ip地址  
+第五步：浏览器访问：ip：port  
+若出现如下图片则说明安装成功。  
 ![Nginx欢迎页面](http://img.blog.csdn.net/20171117101936334?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMTk1NTg3MDU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+  
 但是，Nginx是调皮的，它不会让我们如此顺利
 
 ## 常见问题
