@@ -15,6 +15,8 @@ EasyUI 的树菜单， 通过Mybatis 获取数据，初始化树菜单。（未�
 Mybatis 的基础入门代码，包含了基础的crud，动态sql语句，级联查询，调用存储过程，一二级缓存等知识。  
 博客地址：http://blog.csdn.net/qq_19558705/article/details/78513215
 
+***
+
 ## Nginx
 Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上传，图片批量上传，图片回显的功能。  
 博客地址：http://blog.csdn.net/qq_19558705/article/details/78570799
