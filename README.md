@@ -18,7 +18,7 @@ Mybatis 的基础入门代码，包含了基础的crud，动态sql语句，级�
 ***
 
 ## Nginx
-Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上传，图片批量上传，图片回显的功能。  
+Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上传，图片批量上传，图片回显的功能。    
 博客地址：http://blog.csdn.net/qq_19558705/article/details/78570799
 
 
