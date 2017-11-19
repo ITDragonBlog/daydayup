@@ -1,7 +1,7 @@
 # daydayup
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。
 
-## select2
+## Select2
 select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里介绍了它的初始化，动态加载数据，取值，设置默认值等方法。  
 博客地址：http://blog.csdn.net/qq_19558705/article/details/49978731
 ***
