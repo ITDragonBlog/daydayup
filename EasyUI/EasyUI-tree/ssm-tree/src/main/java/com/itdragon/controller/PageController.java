@@ -12,7 +12,7 @@ public class PageController {
 	 */
 	@RequestMapping("/")
 	public String showIndex() {
-		return "index";
+		return "tree";
 	}
 	
 	@RequestMapping("/{page}")
