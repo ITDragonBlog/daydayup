@@ -7,7 +7,8 @@ select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里�
 ***
 
 ## EasyUI Tree
-EasyUI 的树菜单， 通过Mybatis 获取数据，初始化树菜单。（半完成）[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/EasyUI/EasyUI-tree)    
+EasyUI 的树菜单， Spring,SpringMVC,Mybatis框架整合实现同步加载，异步加载，单选，多选等功能[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/EasyUI/EasyUI-tree)      
+博客地址：http://blog.csdn.net/qq_19558705/article/details/78583888
 
 ***
 
