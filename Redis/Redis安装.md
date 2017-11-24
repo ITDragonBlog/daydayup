@@ -34,9 +34,9 @@ redis 编译依赖 gcc 环境
 [root@itdragon bin]# ps -aux | grep redis
 ```
 第一次启动步骤：
-第一步：为了方便管理，将解压后的redis.conf 拷贝一份到 /usr/local/redis-4/bin/ 目录下  
+第一步：为了方便管理，将解压后的redis.conf 拷贝一份到 /usr/local/redis-4/bin/ 目录下，切勿直接操作原文件，避免修改失败可以还原配置    
 第二步：修改 redis.conf 文件，将 daemonize no 改成 daemonize yes 。表示开启守护进程  
-第三步：启动 redis 服务。前两步设置好后，就不用再设置了    
+第三步：启动 redis 服务。前两步设置好后，就不用再设置  
 第四步：检查是否启动成功。若打印类似如下信息，则表示启动成功。127.0.0.1 是默认的IP地址，也可以在 redis.conf 文件中修改  
 ```
 root      5347  0.0  0.7 143920  7604 ?        Ssl  10:39   0:00 ./redis-server 127.0.0.1:6379
