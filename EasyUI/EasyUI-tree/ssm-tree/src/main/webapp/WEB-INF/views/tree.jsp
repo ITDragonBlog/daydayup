@@ -62,8 +62,8 @@
         </span>
         <hr/>
         <span>
-        	<h3>创建异步树多选菜单</h3>
-        	<a href="javascript:void(0)" class="easyui-linkbutton selectMoreCategory">创建异步树多选菜单</a>
+        	<h3>创建同步树多选菜单</h3>
+        	<a href="javascript:void(0)" class="easyui-linkbutton selectMoreCategory">创建同步树多选菜单</a>
         	<input type="hidden" name="categoryIds" style="width: 280px;"></input>
         	<br/>
         	<h4>注意</h4>
