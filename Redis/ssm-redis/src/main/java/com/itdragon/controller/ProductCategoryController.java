@@ -39,16 +39,12 @@ public class ProductCategoryController {
 	@RequestMapping("/category/update")
 	@ResponseBody
 	public ResponseResult updateCategoryList(@RequestParam("categoryId") Long categoryId, @RequestParam("name") String name) {
-		System.out.println(categoryId);
-		System.out.println(name);
 		return categoryService.updateCategoryList(categoryId, name);
 	}
 	
 	@RequestMapping("/category/delete")
 	@ResponseBody
 	public ResponseResult deleteCategoryList(@RequestParam("parentId") Long parentId, @RequestParam("categoryId") Long categoryId) {
-		System.out.println(categoryId);
-		System.out.println(parentId);
 		return categoryService.deleteCategoryList(parentId, categoryId);
 	}
 

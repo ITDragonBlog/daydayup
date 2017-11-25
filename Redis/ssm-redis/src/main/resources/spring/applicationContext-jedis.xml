@@ -40,7 +40,6 @@
 	</bean>
 	<bean id="jedisClient" class="com.itdragon.common.utils.JedisClientSingle"/>
 	
-	
 	<!-- jedis集群版配置 -->
 	<!-- <bean id="redisClient" class="redis.clients.jedis.JedisCluster">
 		<constructor-arg name="nodes">

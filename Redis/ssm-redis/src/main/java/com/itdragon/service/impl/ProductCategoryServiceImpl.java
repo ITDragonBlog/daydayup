@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -96,11 +97,17 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		categoryMapper.updateByPrimaryKey(productCategoryParent);
 		// 清理redis缓存
 		try {
+			System.out.println("clean cache");
 			jedisClientSingle.hdel(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ResponseResult.success(productCategory);
+		ProductCategoryExample example = new ProductCategoryExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andParentIdEqualTo(parentId);
+		criteria.andNameEqualTo(name);
+		List<ProductCategory> productCategories = categoryMapper.selectByExample(example);
+		return CollectionUtils.isEmpty(productCategories)? null : ResponseResult.success(productCategories.get(0));
 	}
 
 	@Override
