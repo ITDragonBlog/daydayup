@@ -3,6 +3,7 @@ package com.itdragon.redis;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Test;
 
 import redis.clients.jedis.Jedis;
@@ -16,7 +17,7 @@ public class TestJedisOperate {
 	/**
 	 * jedis 的语法和 redis 的语法几乎一致，比较常用的有Hash，String，List
 	 */
-	@Test
+	/*@Test
 	public void jedisSignle() {
 		Jedis jedis = new Jedis(HOST, PORT);
 		System.out.println("================== String 类型  =================");
@@ -50,11 +51,13 @@ public class TestJedisOperate {
 		jedis.zadd("userScore", scoreMembers);
 		System.out.println("Set 类型 zadd , zrange 操作 : " + jedis.zrange("userScore", 0, -1));
 		jedis.close();
-	}
+	}*/
 	
 	@Test
 	public void testJedisPool() {
-		JedisPool pool = new JedisPool(HOST, PORT);
+//		JedisPool pool = new JedisPool(HOST, PORT);
+		GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+		JedisPool pool = new JedisPool(poolConfig, HOST, PORT, 100000);
 		Jedis jedis = pool.getResource();
 		System.out.println("通过连接池获取 key 为 account 的值 : " + jedis.get("account"));
 		jedis.close();
