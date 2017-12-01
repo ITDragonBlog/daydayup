@@ -1,12 +1,15 @@
 package com.itdragon.redis;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import org.junit.Test;
 
+import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPool;
 
 public class TestJedisOperate {
@@ -63,6 +66,29 @@ public class TestJedisOperate {
 		System.out.println("通过连接池获取 key 为 account 的值 : " + jedis.get("account"));
 		jedis.close();
 		pool.close();
+	}
+	
+	/**
+	 * 集群版测试
+	 * 若提示以下类似的错误：
+	 * java.lang.NumberFormatException: For input string: "6002@16002"
+	 * 若安装的redis 版本大于4，则可能是jedis 的版本低了。选择 2.9.0
+	 * 因为 cluster nodes 打印的信息中，4版本之前的是没有 @16002 tcp端口信息
+	 * 0968ef8f5ca96681da4abaaf4ca556c2e6dd0242 112.74.83.71:6002@16002 master - 0 1512035804722 3 connected 10923-16383
+	 */
+	@Test
+	public void testJedisCluster() throws IOException {
+		HashSet<HostAndPort> nodes = new HashSet<>();
+		nodes.add(new HostAndPort(HOST, 6000));
+		nodes.add(new HostAndPort(HOST, 6001));
+		nodes.add(new HostAndPort(HOST, 6002));
+		nodes.add(new HostAndPort(HOST, 6003));
+		nodes.add(new HostAndPort(HOST, 6004));
+		nodes.add(new HostAndPort(HOST, 6005));
+		JedisCluster cluster = new JedisCluster(nodes);
+		cluster.set("cluster-key", "cluster-value");
+		System.out.println("集群测试 ： " + cluster.get("cluster-key"));
+		cluster.close();
 	}
 
 }

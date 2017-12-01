@@ -33,17 +33,17 @@
 		<property name="blockWhenExhausted" value="false" />
 	</bean>	
 	<!-- jedis客户端单机版 -->
-	<!-- 
+	
 	<bean id="redisClient" class="redis.clients.jedis.JedisPool">
 		<constructor-arg name="host" value="${redis.host}" />
 		<constructor-arg name="port" value="${redis.ip}" />
 		<constructor-arg name="poolConfig" ref="jedisPoolConfig" />
 	</bean>
 	<bean id="jedisClient" class="com.itdragon.common.utils.JedisClientSingle"/>
-	 -->
+	
 	
 	<!-- jedis集群版配置 -->
-	
+	<!-- 
 	<bean id="redisClient" class="redis.clients.jedis.JedisCluster">
 		<constructor-arg name="nodes">
 			<set>
@@ -73,8 +73,8 @@
 				</bean>
 			</set>
 		</constructor-arg>
-		<!-- <constructor-arg name="poolConfig" ref="jedisPoolConfig" /> -->
+		<constructor-arg name="poolConfig" ref="jedisPoolConfig" />
 	</bean>
 	<bean id="jedisClientCluster" class="com.itdragon.common.utils.JedisClientCluster"></bean>
-	
+	 -->
 </beans>
