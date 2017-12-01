@@ -7,18 +7,18 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.itdragon.common.pojo.EUTreeNode;
 import com.itdragon.common.pojo.ResponseResult;
-import com.itdragon.common.utils.JedisClientSingle;
 import com.itdragon.common.utils.JsonUtils;
 import com.itdragon.mapper.ProductCategoryMapper;
 import com.itdragon.pojo.ProductCategory;
 import com.itdragon.pojo.ProductCategoryExample;
 import com.itdragon.pojo.ProductCategoryExample.Criteria;
+import com.itdragon.service.JedisClient;
 import com.itdragon.service.ProductCategoryService;
 
 @Service
@@ -28,7 +28,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	private ProductCategoryMapper categoryMapper;
 	
 	@Autowired
-	private JedisClientSingle jedisClientSingle;
+	private JedisClient jedisClient;
 	
 	@Value("${CATEGROY_ID_CACHE_REDIS_KEY}")
 	private String CATEGROY_ID_CACHE_REDIS_KEY;
@@ -39,7 +39,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		List<EUTreeNode> resultList = new ArrayList<>();
 		// 从redis缓存中取内容
 		try {
-			String cacheDatas = jedisClientSingle.hget(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString());
+			String cacheDatas = jedisClient.hget(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString());
 			if (StringUtils.isNotBlank(cacheDatas)) {
 				List<ProductCategory> categories = JsonUtils.jsonToList(cacheDatas, ProductCategory.class);
 				for (ProductCategory category : categories) {
@@ -72,7 +72,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		System.out.println("No redis cache Time : " + (System.currentTimeMillis() - startTime));
 		// 向redis缓存中添加内容
 		try {
-			jedisClientSingle.hset(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString(), JsonUtils.objectToJson(productCategories));
+			jedisClient.hset(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString(), JsonUtils.objectToJson(productCategories));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -98,7 +98,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 		// 清理redis缓存
 		try {
 			System.out.println("clean cache");
-			jedisClientSingle.hdel(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString());
+			jedisClient.hdel(CATEGROY_ID_CACHE_REDIS_KEY, parentId.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
