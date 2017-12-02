@@ -24,8 +24,10 @@ Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上�
 
 ***
 ## Redis
-Redis 的安装，五大基础类型，常用命令，配置文件详解，持久化RDB和AOF，主从复制，集群搭建，Jedis（目前博客更新到主从复制，当前阶段是高可用集群，尽量这周末能把Redis写完，下一周开始Solr教程） [点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Redis)   
+Redis 的安装，五大基础类型，常用命令，配置文件详解，持久化RDB和AOF，主从复制，集群搭建，Jedis [点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Redis)     
 系列博客：http://www.cnblogs.com/itdragon/category/1122427.html
+
+## Solr
 
 未完待续.....
 
