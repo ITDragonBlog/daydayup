@@ -1,0 +1,112 @@
+﻿
+        body
+        {
+            font-family: Arial, Verdana, 宋体;
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            color: #666;
+            background: #fff;
+        }
+            div, img, ul, ol, li, dl, dt, dd
+        {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+         .clearfix
+        {
+            zoom: 1;
+        }
+        .clearfix:after
+        {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        * html .clearfix
+        {
+            height: 1%;
+        }
+        ul, li
+        {
+            list-style: none;
+        }
+        .clr
+        {
+            clear: both;
+        }
+        a
+        {
+            color: #120C0D;
+            text-decoration: none;
+        }
+        .j_box
+        {
+        	    position: relative;
+            width: 208px;
+            height: 561px;
+            padding: 0;
+            z-index: 2;
+            border: 1px solid #ddd;
+        }
+        .j_logo
+        {
+        	font-family: \5fae\8f6f\96c5\9ed1;
+font-weight: normal;
+height: 31px;
+padding-left: 8px;
+background: #F7F7F7;
+line-height: 31px;
+font-size:14px;
+        }
+         
+        .j_boxcontent
+        {
+        	
+        }
+        
+        .clearfix
+        {
+            zoom: 1;
+        }
+        .clearfix:after
+        {
+            content: ".";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+        * html .clearfix
+        {
+            height: 1%;
+        }
+        .j_skulist
+        {
+            float: left;
+            overflow: hidden;
+            position: absolute;
+        }
+        .j_skulist a{color:#666;}
+        .j_skulist a:hover
+        {
+        	
+        	color: #E4393C;
+  text-decoration: underline;
+        }
+    
+        .j_skulist ul
+        {
+            float: left;
+            top:1px;
+            
+        }
+        .j_skulist li
+        {
+            overflow: hidden;
+            margin: 3px 1px 1px 0;
+                height:172px;
+        }

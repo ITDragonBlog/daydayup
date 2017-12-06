@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<!-- 配置SolrServer对象 -->
+	<!-- 单机版 -->
+	<bean id="httpSolrClient" class="org.apache.solr.client.solrj.impl.HttpSolrClient">
+	    <constructor-arg name="builder" value="${SOLR.SERVER.URL}"/>
+	</bean>
+	
+	<!-- 集群版 -->
+	<!-- 
+	<bean id="cloudSolrServer" class="org.apache.solr.client.solrj.impl.CloudSolrServer">
+		<constructor-arg name="zkHost" value="192.168.25.154:2181,192.168.25.154:2182,192.168.25.154:2183"></constructor-arg>
+		<property name="defaultCollection" value="collection2"></property>
+	</bean>
+	 -->
+	 
+	 <bean id="solrSearchDaoImpl" class="com.itdragon.solr.service.impl.SolrSearchDaoImpl" />
+</beans>
