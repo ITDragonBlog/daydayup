@@ -28,18 +28,19 @@ public class SolrJTest {
 	
 	private final static String BASE_SOLR_URL = "http://localhost:8080/solr/new_core";
 	
+	// solrJ 基础用法
 	@Test
 	public void queryDocumentBasic() throws Exception {
 		// 创建连接
 		HttpSolrClient solrClient = new HttpSolrClient.Builder(BASE_SOLR_URL).build();
-		/*
+		/* 不推荐
 		Map<String, String> queryParamMap = new HashMap<String, String>();
 		// 封装查询参数
 		queryParamMap.put("q", "*:*");
         // 添加到SolrParams对象
         MapSolrParams query = new MapSolrParams(queryParamMap);
         */
-		//设置查询条件
+		// 设置查询条件
         SolrQuery query = new SolrQuery();
 		query.setQuery("*:*");
         // 执行查询
@@ -52,12 +53,13 @@ public class SolrJTest {
 		}
 	}
 	
+	// solrJ 的复杂查询
 	@Test
 	public void queryDocument() throws Exception {
 		// 创建连接
 		HttpSolrClient solrClient = new HttpSolrClient.Builder(BASE_SOLR_URL).build();
 		SolrQuery query = new SolrQuery();
-		//设置查询条件
+		// 设置查询条件
 		query.setQuery("product_name:街头原木电话亭");
 		// 设置分页信息
 		query.setStart(0);
@@ -82,7 +84,6 @@ public class SolrJTest {
 		Map<String, Map<String, List<String>>> highlighting = response.getHighlighting();
 		for (SolrDocument doc : documents) {
 			System.out.println(doc.get("id"));
-
 			List<String> hightDocs = highlighting.get(doc.get("id")).get("product_name");
 			if (hightDocs != null)
 				System.out.println("高亮显示的商品名称：" + hightDocs.get(0));
@@ -92,6 +93,7 @@ public class SolrJTest {
 		}
 	}
 	
+	// 添加索引
 	@Test
 	public void addDocuments() throws SolrServerException, IOException {
 		HttpSolrClient solrClient = new HttpSolrClient.Builder(BASE_SOLR_URL).withConnectionTimeout(10000)
@@ -106,11 +108,8 @@ public class SolrJTest {
 		solrClient.commit();
 		
 		SolrQuery query = new SolrQuery();
-		//设置查询条件
 		query.setQuery("id:add-001");
-        // 执行查询返回QueryResponse
         QueryResponse response = solrClient.query(query);
-        // 获取doc文档
         SolrDocumentList documents = response.getResults();
 		System.out.println("共查询到记录：" + documents.getNumFound());
 		for (SolrDocument solrDocument : documents) {
@@ -121,6 +120,7 @@ public class SolrJTest {
 	
 	// 更新的逻辑：先通过id将直接的数据删掉，然后再创建，所以update 和 create 是同一代码
 	
+	// 删除/批量删除索引
 	@Test
 	public void deleteDocument() throws SolrServerException, IOException {
 		HttpSolrClient solrClient = new HttpSolrClient.Builder(BASE_SOLR_URL).build();

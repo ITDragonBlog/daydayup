@@ -11,7 +11,6 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.itdragon.mapper.pojo.Product;
 import com.itdragon.mapper.pojo.SearchProductResult;
@@ -27,6 +26,7 @@ public class SolrSearchDaoImpl implements SolrSearchDao {
 		// 返回值对象
 		SearchProductResult result = new SearchProductResult();
 		// 根据查询条件查询索引库
+		System.out.println("solr Query : " + query);
 		QueryResponse queryResponse = httpSolrClient.query(query);
 		// 获取查询结果
 		SolrDocumentList solrDocumentList = queryResponse.getResults();

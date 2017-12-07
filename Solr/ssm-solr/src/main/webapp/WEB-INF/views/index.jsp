@@ -6,29 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta content="utf-8" http-equiv="charset">
-<link rel="stylesheet" type="text/css" href="<c:url value='/resource'/>/base.css" media="all">
-<link rel="stylesheet" type="text/css" href="<c:url value='/resource'/>/plist20131112.css" media="all">
-<%-- <link rel="stylesheet" type="text/css" href="<c:url value='/resource'/>/list-page-20141009.css" media="all"> --%>
-<%-- <link rel="stylesheet" type="text/css" href="<c:url value='/resource'/>/pop_compare.css" media="all"> --%>
-<link rel="shortcut icon" type="image/ico" href="favicon.ico">
-<script type="text/javascript" src="<c:url value='/resource'/>/jquery-1.2.6.pack.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="/resource/favicon.ico">
+<link rel="stylesheet" type="text/css" href="/resource/base.css" media="all">
+<link rel="stylesheet" type="text/css" href="/resource/plist20131112.css" media="all">
+<script type="text/javascript" src="/resource/jquery-1.2.6.pack.js"></script>
 <script type="text/javascript">
+	// 关键字查询
 	function query() {
 		//执行关键词查询时清空过滤条件
 		document.getElementById("catalog_name").value="";
 		document.getElementById("price").value="";
 		document.getElementById("page").value="";
-		//执行查询
 		queryList();
 	}
+	// 表单提交
 	function queryList() {
-		//提交表单
 		document.getElementById("actionForm").submit();
 	}
+	// 特殊值查询
 	function filter(key, value) {
 		document.getElementById(key).value=value;
 		queryList();
 	}
+	// 排序
 	function sort() {
 		var s = document.getElementById("sort").value;
 		if (s != "1") {
@@ -39,6 +39,7 @@
 		document.getElementById("sort").value = s;
 		queryList();
 	}
+	// 翻页
 	function changePage(p) {
 		var curpage = Number(document.getElementById("page").value);
 		curpage = curpage + p;
@@ -73,16 +74,16 @@
 		<div id="search-2013">
 			<div class="i-search ld">
 				<ul id="shelper" class="hide"></ul>
-				<form id="actionForm" action="list.action" method="POST">
+				<form id="actionForm" action="/query" method="POST">
 				<div class="form">
-					<input type="text" class="text" accesskey="s" name="queryString" id="key" value="${queryString }"
+					<input type="text" class="text" accesskey="s" name="queryString" id="key" value="${queryString}"
 						autocomplete="off" onkeydown="javascript:if(event.keyCode==13) {query()}">
 					<input type="button" value="搜索" class="button" onclick="query()">
 				</div>
-				<input type="hidden" name="catalog_name" id="catalog_name" value="${catalog_name }"/> 
-				<input type="hidden" name="price" id="price" value="${price }"/> 
-				<input type="hidden" name="page" id="page" value="${result.curPage }"/> 
-				<input type="hidden" name="sort" id="sort" value="${sort }"/> 
+				<input type="hidden" name="catalog_name" id="catalog_name" value="${catalog_name}"/> 
+				<input type="hidden" name="price" id="price" value="${price}"/> 
+				<input type="hidden" name="page" id="page" value="${result.curPage}"/> 
+				<input type="hidden" name="sort" id="sort" value="${sort}"/> 
 				</form>
 			</div>
 			<div id="hotwords"></div>
@@ -110,18 +111,16 @@
 </div>
 <div class="w">
 	<div class="breadcrumb">
-		<strong><a href="#">服饰内衣</a></strong><span>&nbsp;&gt;&nbsp;<a
-			href="#">女装</a>&nbsp;&gt;&nbsp;<a href="#">T恤</a></span>
+		<strong><a href="#">服饰内衣</a></strong><span>&nbsp;&gt;&nbsp;<a href="#">女装</a>&nbsp;&gt;&nbsp;<a href="#">T恤</a></span>
 	</div>
 </div>
 <div class="w main">
 <div class="right-extra">
 <div id="select" clstag="thirdtype|keycount|thirdtype|select" class="m">
 	<div class="mt">
-		<h1>
-			T恤 -<strong>&nbsp;商品筛选</strong>
-		</h1>
+		<h1>T恤 -<strong>&nbsp;商品筛选</strong></h1>
 	</div>
+	<!-- 类目查询和价格区间查询 -->
 	<div class="mc attrs">
 		<div data-id="100001" class="brand-attr">
 			<div class="attr">
@@ -129,21 +128,11 @@
 				<div class="a-values">
 					<div class="v-tabs">
 						<div class="tabcon">
-							<div>
-								<a href="javascript:filter('catalog_name', '幽默杂货')" >幽默杂货</a>
-							</div>
-							<div>
-								<a href="javascript:filter('catalog_name', '时尚卫浴')">时尚卫浴</a>
-							</div>
-							<div>
-								<a href="javascript:filter('catalog_name', '另类文体')">另类文体</a>
-							</div>
-							<div>
-								<a href="javascript:filter('catalog_name', '创意相架')">创意相架</a>
-							</div>
-							<div>
-								<a href="javascript:filter('catalog_name', '巧妙收纳')">巧妙收纳</a>
-							</div>
+							<div><a href="javascript:filter('catalog_name', '幽默杂货')" >幽默杂货</a></div>
+							<div><a href="javascript:filter('catalog_name', '时尚卫浴')">时尚卫浴</a></div>
+							<div><a href="javascript:filter('catalog_name', '另类文体')">另类文体</a></div>
+							<div><a href="javascript:filter('catalog_name', '创意相架')">创意相架</a></div>
+							<div><a href="javascript:filter('catalog_name', '巧妙收纳')">巧妙收纳</a></div>
 						</div>
 					</div>
 				</div>
@@ -166,14 +155,13 @@
 		</div>
 	</div>
 </div>
+<!-- 价格排序，分页 -->
 <div id="filter">
 	<div class="cls"></div>
 	<div class="fore1">
 		<dl class="order">
 			<dt>排序：</dt>
-			<dd>
-				<a href="javascript:sort()">价格</a><b></b>
-			</dd>
+			<dd><a href="javascript:sort()">价格</a><b></b></dd>
 		</dl>
 		<dl class="activity">
 			<dd></dd>
@@ -190,22 +178,22 @@
 		<span class="clr"></span>
 	</div>
 </div>
-<!--商品列表开始-->
+<!--核心代码，商品列表开始-->
 <div id="plist" class="m plist-n7 plist-n8 prebuy">
 	<ul class="list-h">
 		<c:forEach var="item" items="${result.productList }">
-		<li pid="${item.pid }">
+		<li pid="${item.id }">
 			<div class="lh-wrap">
 				<div class="p-img">
 					<a target="_blank" href="#">
-						<img width="220" height="282" class="err-product" src="/images/${item.picture}">
+						<img width="220" height="282" class="err-product" src="/images/${item.p_picture}">
 					</a>
 				</div>
 				<div class="p-name">
-					<a target="_blank" href="#">${item.name }</a>
+					<a target="_blank" href="#">${item.p_name }</a>
 				</div>
 				<div class="p-price">
-					<strong>￥<fmt:formatNumber value="${item.price}" maxFractionDigits="2"/></strong><span id="p1269191543"></span>
+					<strong>￥<fmt:formatNumber value="${item.p_price}" maxFractionDigits="2"/></strong><span id="p1269191543"></span>
 				</div>
 			</div>
 		</li>
@@ -215,39 +203,25 @@
 <!--商品列表结束-->
 </div>
 <div class="left">
-	<div id="sortlist" clstag="thirdtype|keycount|thirdtype|sortlist"
-		class="m">
+	<div id="sortlist" clstag="thirdtype|keycount|thirdtype|sortlist" class="m">
 		<div class="mt">
 			<h2>服饰内衣</h2>
 		</div>
 		<div class="mc">
 			<div class="item current">
-				<h3>
-					<b></b>女装
-				</h3>
+				<h3><b></b>女装</h3>
 			</div>
 			<div class="item">
-				<h3>
-					<b></b>男装
-				</h3>
+				<h3><b></b>男装</h3>
 			</div>
 			<div class="item">
-				<h3>
-					<b></b>内衣
-				</h3>
+				<h3><b></b>内衣</h3>
 			</div>
 			<div class="item">
-				<h3>
-					<b></b>服饰配件
-				</h3>
+				<h3><b></b>服饰配件</h3>
 			</div>
 		</div>
 	</div>
-</div>
-
-<span class="clr"></span>
-<div id="Collect_Tip" class="Tip360 w260"></div>
-
 </div>
 </body>
 </html>
