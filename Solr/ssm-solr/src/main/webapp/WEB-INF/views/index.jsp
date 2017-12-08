@@ -128,7 +128,7 @@
 				<div class="a-values">
 					<div class="v-tabs">
 						<div class="tabcon">
-							<div><a href="javascript:filter('catalog_name', '幽默杂货')" >幽默杂货</a></div>
+							<div><a href="javascript:filter('catalog_name', '幽默杂货')">幽默杂货</a></div>
 							<div><a href="javascript:filter('catalog_name', '时尚卫浴')">时尚卫浴</a></div>
 							<div><a href="javascript:filter('catalog_name', '另类文体')">另类文体</a></div>
 							<div><a href="javascript:filter('catalog_name', '创意相架')">创意相架</a></div>
@@ -186,14 +186,14 @@
 			<div class="lh-wrap">
 				<div class="p-img">
 					<a target="_blank" href="#">
-						<img width="220" height="282" class="err-product" src="/images/${item.p_picture}">
+						<img width="220" height="282" class="err-product" src="/images/${item.picture}">
 					</a>
 				</div>
 				<div class="p-name">
-					<a target="_blank" href="#">${item.p_name }</a>
+					<a target="_blank" href="#">${item.name }</a>
 				</div>
 				<div class="p-price">
-					<strong>￥<fmt:formatNumber value="${item.p_price}" maxFractionDigits="2"/></strong><span id="p1269191543"></span>
+					<strong>￥<fmt:formatNumber value="${item.price}" maxFractionDigits="2"/></strong>
 				</div>
 			</div>
 		</li>

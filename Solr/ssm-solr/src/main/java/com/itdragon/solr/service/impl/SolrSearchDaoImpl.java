@@ -43,10 +43,10 @@ public class SolrSearchDaoImpl implements SolrSearchDao {
 			// 获取高亮显示的集合
 			List<String> hightNames = highlighting.get(solrDocument.get("id")).get("product_name");
 			String pName = CollectionUtils.isNotEmpty(hightNames)? hightNames.get(0) : (String) solrDocument.get("product_name");
-			product.setP_name(pName);
-			product.setP_picture((String) solrDocument.get("product_picture"));
-			product.setP_price((float) solrDocument.get("product_price"));
-			product.setP_catalog_name((String) solrDocument.get("product_category_name"));
+			product.setName(pName);
+			product.setPicture((String) solrDocument.get("product_picture"));
+			product.setPrice((float) solrDocument.get("product_price"));
+			product.setCatalog_name((String) solrDocument.get("product_category_name"));
 			products.add(product);
 		}
 		result.setProductList(products);

@@ -24,6 +24,15 @@ public class SolrJTest {
 	 * Solr4 ： SolrServer solrServer = new HttpSolrServer("http://localhost:8080/solr");  
 	 * Solr5 ：HttpSolrClient solrClient = new HttpSolrClient("http://localhost:8080/solr/new_core");
 	 * Solr7 ：HttpSolrClient solrClient = new HttpSolrClient.Builder("http://localhost:8080/solr/new_core").build();
+	 * 
+	 * SolrQuery
+	 * q : setQuery
+	 * fq : addFilterQuery
+	 * sort : setSort
+	 * start : setStart(0);
+	 * rows : setRows(10);
+	 * fl : setFields
+	 * 
 	 */
 	
 	private final static String BASE_SOLR_URL = "http://localhost:8080/solr/new_core";
@@ -135,6 +144,4 @@ public class SolrJTest {
 		solrClient.commit();
 	}
 	
-	
-
 }
