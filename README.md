@@ -28,7 +28,8 @@ Redis 的安装，五大基础类型，常用命令，配置文件详解，持�
 系列博客：http://www.cnblogs.com/itdragon/category/1122427.html
 
 ## Solr
-Solr7 的安装部署，Solrj的使用，Solr集群搭建
+Solr7 安装部署，管理界面介绍，Solrj 复杂查询，高亮显示，Solr集群搭建。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Solr)  
+系列博客：http://www.cnblogs.com/itdragon/category/1123240.html
 
 未完待续.....
 
