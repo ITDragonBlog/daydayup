@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itdragon.repository.UserRepository;
+import com.itdragon.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	@RequestMapping("findAll")
 	@ResponseBody
 	public String findAll() {
-		return userRepository.findAll().toString();
+		return userService.findAll().toString();
 	}
 
 }
