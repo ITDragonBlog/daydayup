@@ -32,21 +32,4 @@ public class UserController {
 		return "redirect:/login";
 	}
 	
-	@RequestMapping("findAll")
-	@ResponseBody
-	public String findAll() {
-		User user = new User();
-		user.setAccount("itdragon");
-		user.setUserName("ITDragonBlog");
-		user.setEmail("itdragon@163.com");
-		user.setIphone("12345677890");
-		user.setPlainPassword("987654321");
-		user.setPlatform("weixin");
-		user.setCreatedDate(ItdragonUtils.getCurrentDateTime());
-		user.setUpdatedDate(ItdragonUtils.getCurrentDateTime());
-		ItdragonUtils.entryptPassword(user);
-		userService.registerUser(user);
-		return userService.findAll().toString();
-	}
-
 }

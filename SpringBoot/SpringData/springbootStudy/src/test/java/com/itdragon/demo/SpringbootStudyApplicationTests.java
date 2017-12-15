@@ -1,5 +1,7 @@
 package com.itdragon.demo;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.itdragon.StartApplication;
 import com.itdragon.common.ItdragonUtils;
 import com.itdragon.pojo.User;
+import com.itdragon.repository.UserRepository;
 import com.itdragon.service.UserService;
 
 /**
  * 待修改
- * @RunWith	//这是JUnit的注解，通过这个注解让SpringJUnit4ClassRunner这个类提供Spring测试上下文。
- * @SpringBootTest	//这是Spring Boot注解，为了进行集成测试，需要通过这个注解加载和配置Spring应用上下 
+ * @RunWith	它是一个运行器
+ * @RunWith(SpringRunner.class) 表示让测试运行于Spring测试环境，不用启动spring容器即可使用Spring环境
+ * @SpringBootTest(classes=StartApplication.class)  表示将	StartApplication.class纳入到测试环境中，若不加这个则提示bean找不到。
  * 
  * @author itdragon
  *
@@ -25,25 +29,48 @@ public class SpringbootStudyApplicationTests {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Test
 	public void contextLoads() {
-		
 	}
 	
 	@Test
 	public void registerUser() {
 		User user = new User();
-		user.setAccount("itdragon");
+		user.setAccount("lxlcyy13");
 		user.setUserName("ITDragonBlog");
-		user.setEmail("itdragon@163.com");
+		user.setEmail("itdragon@qq.com");
 		user.setIphone("12345677890");
 		user.setPlainPassword("987654321");
-		user.setPlatform("weixin");
+		user.setPlatform("qq");
 		user.setCreatedDate(ItdragonUtils.getCurrentDateTime());
 		user.setUpdatedDate(ItdragonUtils.getCurrentDateTime());
 		ItdragonUtils.entryptPassword(user);
 		userService.registerUser(user);
 	}
-
+	
+	@Test
+	public void findByEmailEndingWithAndCreatedDateLessThan() {
+		List<User> users = userRepository.findByEmailEndingWithAndCreatedDateLessThan("qq.com", ItdragonUtils.getCurrentDateTime());
+		System.out.println(users.toString());
+	}
+	
+	@Test
+	public void getActiveUserCount() {
+		long activeUserCount = userRepository.getActiveUserCount("weixin", ItdragonUtils.getCurrentDateTime());
+		System.out.println(activeUserCount);
+	}
+	
+	@Test
+	public void findByEmailAndIhpneLike() {
+		List<User> users = userRepository.findByEmailAndIhpneLike("163.com", "6666");
+		System.out.println(users.toString());
+	}
+	
+	public void updateUserEmail() {
+		
+	}
+	
 }

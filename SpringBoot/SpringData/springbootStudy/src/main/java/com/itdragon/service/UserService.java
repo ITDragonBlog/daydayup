@@ -47,7 +47,7 @@ public class UserService {
         Sort sort = new Sort(Direction.ASC, SortType.valueOf(sortType).getValue());
         return new PageRequest(pageNumber - 1, pagzSize, sort);
     }  
-      
+    
     /** 
      * 创建动态查询条件组合. 
      */  
@@ -69,5 +69,13 @@ public class UserService {
     	// 注册成功后选择发送邮件激活。现在一般都是短信验证码
     	return ItdragonResult.build(200, "");
     }
-
+    
+    public ItdragonResult editUserEmail(String email) {
+    	// 通过Session 获取用户信息, 这里假装从Session中获取了用户的id，后面讲解SOA面向服务架构中的单点登录系统时，修改此处代码 FIXME
+    	long id = 1L;
+    	// 添加一些验证，比如短信验证
+    	userRepository.updateUserEmail(id, email);
+    	return ItdragonResult.ok();
+    }
+    
 }
