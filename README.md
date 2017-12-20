@@ -1,5 +1,5 @@
 # daydayup
-> 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。
+> 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
 ## Select2
 select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里介绍了它的初始化，动态加载数据，取值，设置默认值等方法。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/JQuery-select2/select2-4.0.0)    
@@ -19,8 +19,8 @@ Mybatis 的基础入门代码，包含了基础的crud，动态sql语句，级�
 ***
 
 ## Nginx
-Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上传，图片批量上传，图片回显的功能。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Nginx)        
-博客地址：http://blog.csdn.net/qq_19558705/article/details/78570799
+Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上传，图片批量上传，图片回显的功能。Nginx 反向代理，负载均衡，配置虚拟主机。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Nginx)  
+系列博客：http://www.cnblogs.com/itdragon/category/1127533.html
 
 ***
 ## Redis
@@ -32,11 +32,12 @@ Solr7 安装部署，管理界面介绍，Solrj 复杂查询，高亮显示，So
 系列博客：http://www.cnblogs.com/itdragon/category/1123240.html
 
 ## SpringBoot
-基于SpringBoot的SpringData教程，[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/SpringBoot)  
+基于SpringBoot的SpringData教程，SSO单点登录系统(准备中......)[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/SpringBoot)  
 系列博客：http://www.cnblogs.com/itdragon/category/1101617.html
 
 未完待续.....
 
+博客园地址：http://www.cnblogs.com/itdragon/  
 CSDN 博客地址：http://blog.csdn.net/qq_19558705  
 segmentfault：https://segmentfault.com/blog/itdragon  
-博客园地址：http://www.cnblogs.com/itdragon/  
+
