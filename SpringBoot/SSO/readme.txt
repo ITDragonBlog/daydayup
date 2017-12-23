@@ -1,3 +1,2 @@
-itdragon-common : 公共项目
-springbootStudy : 单点登录系统SSO
-ssm-tree : 用于测试单点登录系统的其他服务
+测试思路：
+开启itdragon-sso服务，再开启两个itdragon-service-test-sso服务。点击“ITDragon”按钮进入权限页面。
