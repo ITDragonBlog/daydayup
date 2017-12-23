@@ -1,4 +1,4 @@
-package com.itdragon.common.utils;
+package com.itdragon.utils;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,9 +19,12 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import com.sun.tools.internal.xjc.model.SymbolSpace;
+
 public class HttpClientUtil {
 	
 	public static String doGet(String url) {							// 无参数get请求
+		System.out.println("url : " + url);
 		return doGet(url, null);
 	}
 
