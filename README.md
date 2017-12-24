@@ -32,7 +32,7 @@ Solr7 安装部署，管理界面介绍，Solrj 复杂查询，高亮显示，So
 系列博客：http://www.cnblogs.com/itdragon/category/1123240.html
 
 ## SpringBoot
-基于SpringBoot的SpringData教程，SSO单点登录系统(准备中......)[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/SpringBoot)  
+基于SpringBoot的SpringData教程，SSO单点登录系统[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/SpringBoot)  
 系列博客：http://www.cnblogs.com/itdragon/category/1101617.html
 
 未完待续.....
