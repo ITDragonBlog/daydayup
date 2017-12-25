@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.itdragon</groupId>
-	<artifactId>springbootStudy</artifactId>
+	<artifactId>itdragon-sso</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<name>springbootStudy</name>
-	<description>Demo project for Spring Boot</description>
+	<description>单点登录系统SSO</description>
 
 	<!-- 
 		添加 spring boot的父级依赖，它是SpringBoot项目的标志
@@ -29,18 +29,15 @@
 	</properties>
 
 	<dependencies>
-		<!-- 添加web依赖 ，包含spring和springmvc等-->
-		<dependency>
+		<dependency>	<!-- 添加web依赖 ，包含spring和springmvc等-->
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- 添加对jpa的支持，包含spring-data和Hibernate -->
-		<dependency>
+		<dependency>	<!-- 添加对jpa的支持，包含spring-data和Hibernate -->
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        <!-- mysql连接的jar包 -->
-        <dependency>
+        <dependency>	<!-- mysql连接的jar包 -->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
@@ -54,34 +51,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- 因为SpringBoot内嵌的tomcat不支持jsp页面，同时SpringBoot也不推荐用jsp -->
-		<dependency>
+		<dependency>	<!-- 因为SpringBoot内嵌的tomcat不支持jsp页面，同时SpringBoot也不推荐用jsp -->
            <groupId>org.apache.tomcat.embed</groupId>
            <artifactId>tomcat-embed-jasper</artifactId>
            <scope>provided</scope>
-       </dependency>
-        <!-- jsp标签库 -->
-        <dependency>
+        </dependency>
+        <dependency>	<!-- jsp标签库 -->
            <groupId>javax.servlet</groupId>
            <artifactId>jstl</artifactId>
-       </dependency>
-       
+        </dependency>
 		<dependency>	<!-- httpclient The managed version is 4.5.3 The artifact is managed in org.springframework.boot:spring-boot-dependencies:1.5.9.RELEASE-->
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
-		
 		<dependency>	<!-- redis java client version is 2.9.0  -->
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
 		<plugins>
-			<!-- SpringBoot 编译插件 -->
-			<plugin>
+			<plugin>	<!-- SpringBoot 编译插件 -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>

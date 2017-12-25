@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.itdragon.common.pojo.User;
+import com.itdragon.pojo.User;
 
 /**
  * 核心知识：SpringData Repository 接口

@@ -2,15 +2,15 @@ package com.itdragon.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.itdragon.common.pojo.ItdragonResult;
+
+import com.itdragon.pojo.ItdragonResult;
 import com.itdragon.service.UserService;
 
 @Controller
@@ -20,12 +20,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/{page}")
-	public String showpage(@PathVariable String page) {
-		return page;
-	}
-	
-	//用户登录
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
 	public ItdragonResult userLogin(String username, String password,
@@ -39,9 +33,15 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping(value="/logout/{token}")
+	public String logout(@PathVariable String token) {
+		userService.logout(token); // 思路是从Redis中删除key，实际情况请和业务逻辑结合
+		return "index";
+	}
+	
 	@RequestMapping("/token/{token}")
 	@ResponseBody
-	public Object getUserByToken(@PathVariable String token, String callback) {
+	public Object getUserByToken(@PathVariable String token) {
 		ItdragonResult result = null;
 		try {
 			result = userService.queryUserByToken(token);
@@ -49,13 +49,6 @@ public class UserController {
 			e.printStackTrace();
 			result = ItdragonResult.build(500, "");
 		}
-		if (StringUtils.isEmpty(callback)) {	//判断是否为jsonp调用
-			return result;
-		} else {
-			MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(result);
-			mappingJacksonValue.setJsonpFunction(callback);
-			return mappingJacksonValue;
-		}
-		
+		return result;
 	}
 }

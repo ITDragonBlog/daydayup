@@ -16,11 +16,11 @@ import org.springframework.context.annotation.Scope;
 /**
  * @Configuration 	作用于类上，相当于一个xml配置文件
  * @Bean 			作用于方法上，相当于xml配置中的<bean>
- * @PropertySource	可以指定读取的配置文件
- * @Value			注解获取配置文件的值
+ * @PropertySource	指定读取的配置文件,ignoreResourceNotFound=true 文件不存在是忽略
+ * @Value			获取配置文件的值
  */
 @Configuration
-@PropertySource(value = "classpath:httpclient.properties")
+@PropertySource(value = "classpath:httpclient.properties", ignoreResourceNotFound=true)
 public class HttpclientSpringConfig {
 
     @Value("${http.maxTotal}")
