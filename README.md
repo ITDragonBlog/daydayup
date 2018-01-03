@@ -1,6 +1,10 @@
 # daydayup
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
+## MySQL
+MySQL 索引优化分析
+系列博客：http://www.cnblogs.com/itdragon/category/1141776.html
+
 ## Select2
 select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里介绍了它的初始化，动态加载数据，取值，设置默认值等方法。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/JQuery-select2/select2-4.0.0)    
 博客地址：http://blog.csdn.net/qq_19558705/article/details/49978731
