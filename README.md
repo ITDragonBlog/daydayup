@@ -2,7 +2,7 @@
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
 ## MySQL
-MySQL 索引优化分析
+MySQL 索引优化分析，行锁和表锁机制。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/MySQL)  
 系列博客：http://www.cnblogs.com/itdragon/category/1141776.html
 
 ## Select2
