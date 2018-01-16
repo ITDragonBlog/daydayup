@@ -1,6 +1,10 @@
 package com.itdragon.queue;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
@@ -13,7 +17,6 @@ public class ITDragonQueue {
 	 * 长度是需要定义的，
 	 * 可以指定先进先出或者先进后出，
 	 * 是一个有界队列。
-	 * @throws Exception
 	 */
 	@Test
 	public void ITDragonArrayBlockingQueue() throws Exception {  
@@ -28,9 +31,48 @@ public class ITDragonQueue {
         System.out.println(array.peek() + " \t还剩元素 : " + array);   // 从头部取出元素，执行peek 不移除元素
     }
 	
+	/**
+	 * LinkedBlockingQueue：基于列表的阻塞队列，在内部维护了一个数据缓冲队列（该队列由一个链表构成）。
+	 * 其内部实现采用读写分离锁，能高效的处理并发数据，生产者和消费者操作的完全并行运行
+	 * 可以不指定长度，
+	 * 是一个无界队列。
+	 */
 	@Test
 	public void ITDragonLinkedBlockingQueue() throws Exception {
-		
+		LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+		queue.offer("1.无界队列");
+		queue.add("2.语法和ArrayBlockingQueue差不多");
+		queue.put("3.实现采用读写分离");
+		List<String> list = new ArrayList<String>();
+		System.out.println("返回截取的长度 : " + queue.drainTo(list, 2));
+		System.out.println("list : " + list);
+	}
+	
+	/**
+	 * SynchronousQueue：没有缓冲的队列，生存者生产的数据直接会被消费者获取并消费。
+	 */
+	@Test
+	public void ITDragonSynchronousQueue() throws Exception {
+		final SynchronousQueue<String> queue = new SynchronousQueue<String>();
+		Thread thread1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					System.out.println("take , 在没有取到值之前一直处理阻塞  : " + queue.take());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		thread1.start();
+		Thread.sleep(2000);
+		Thread thread2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				queue.add("进值!!!");
+			}
+		});
+		thread2.start();	
 	}
 
 }
