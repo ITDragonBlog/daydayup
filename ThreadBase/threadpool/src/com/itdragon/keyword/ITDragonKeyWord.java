@@ -2,6 +2,7 @@ package com.itdragon.keyword;
 
 import org.junit.Test;
 
+
 public class ITDragonKeyWord {
 	
 	private Integer count = 5;
@@ -28,5 +29,46 @@ public class ITDragonKeyWord {
 			thread.start();
 		}
 	}
+	
+	public synchronized void synchronizedMethod(){
+		try {
+			System.out.println("同步 : " + Thread.currentThread().getName());
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public synchronized void asynchronizedMethod(){
+		System.out.println("异步 : " + Thread.currentThread().getName());
+	}
 
+	@Test
+	public void main2() {
+		
+		final ITDragonKeyWord mo = new ITDragonKeyWord();
+		
+		/**
+		 * 分析：
+		 * t1线程先持有object对象的Lock锁，t2线程可以以异步的方式调用对象中的非synchronized修饰的方法
+		 * t1线程先持有object对象的Lock锁，t2线程如果在这个时候调用对象中的同步（synchronized）方法则需等待，也就是同步
+		 */
+		Thread t1 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mo.synchronizedMethod();
+			}
+		},"t1");
+		
+		Thread t2 = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				mo.asynchronizedMethod();
+			}
+		},"t2");
+		
+		t1.start();
+		t2.start();
+		
+	}
 }
