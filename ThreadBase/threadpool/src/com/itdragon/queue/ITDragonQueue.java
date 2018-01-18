@@ -3,12 +3,21 @@ package com.itdragon.queue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 
+/**
+ * 阻塞队列
+ * ArrayBlockingQueue		：有界
+ * LinkedBlockingQueue		：无界
+ * SynchronousQueue			：无内存直接用
+ * 非阻塞队列
+ * ConcurrentLinkedQueue	：高性能
+ */
 public class ITDragonQueue {
 	
 	/**
@@ -75,4 +84,19 @@ public class ITDragonQueue {
 		thread2.start();	
 	}
 
+	/**
+	 * ConcurrentLinkedQueue：是一个适合高并发场景下的队列，通过无锁的方式，实现了高并发状态下的高性能，性能好于BlockingQueue。
+	 * 它是一个基于链接节点的无界限线程安全队列。该队列的元素遵循先进先出的原则。头是最先加入的，尾是最后加入的，不允许null元素。
+	 * 无阻塞队列，没有 put 和 take 方法
+	 */
+	@Test
+	public void ITDragonConcurrentLinkedQueue() throws Exception {
+        ConcurrentLinkedQueue<String> queue = new ConcurrentLinkedQueue<String>();  
+        queue.offer("1.高性能无阻塞");
+		queue.add("2.无界队列");
+		System.out.println(queue);
+        System.out.println(queue.poll() + " \t  : " + queue);   // 从头部取出元素，并从队列里删除，执行poll 后 元素减少一个
+        System.out.println(queue.peek() + " \t  : " + queue);   // 从头部取出元素，执行peek 不移除元素
+	}
+	
 }
