@@ -1,35 +1,35 @@
 package com.itdragon.keyword;
 
 /**
- * synchronized ¹Ø¼ü×Ö£¬¿ÉÒÔĞŞÊÎ·½·¨£¬Ò²¿ÉÒÔĞŞÊÎ´úÂë¿é¡£½¨Òé²ÉÓÃºóÕß£¬Í¨¹ı¼õĞ¡ËøµÄÁ£¶È£¬ÒÔÌá¸ßÏµÍ³ĞÔÄÜ¡£
- * synchronized ¹Ø¼ü×Ö£¬Èç¹ûÒÔ×Ö·û´®×÷ÎªËø£¬Çë×¢ÒâString³£Á¿³ØµÄ»º´æ¹¦ÄÜºÍ×Ö·û´®¸Ä±äºóËøÊÇ·ñµÄÇé¿ö¡£
- * synchronized ËøÖØÈë£¬
- * synchronized Í¬Òì²½£¬
- * synchronized ÀàËø£¬ÓÃstatic + synchronized ĞŞÊÎÔò±íÊ¾¶ÔÕû¸öÀà½øĞĞ¼ÓËø
+ * synchronized å…³é”®å­—ï¼Œå¯ä»¥ä¿®é¥°æ–¹æ³•ï¼Œä¹Ÿå¯ä»¥ä¿®é¥°ä»£ç å—ã€‚å»ºè®®é‡‡ç”¨åè€…ï¼Œé€šè¿‡å‡å°é”çš„ç²’åº¦ï¼Œä»¥æé«˜ç³»ç»Ÿæ€§èƒ½ã€‚
+ * synchronized å…³é”®å­—ï¼Œå¦‚æœä»¥å­—ç¬¦ä¸²ä½œä¸ºé”ï¼Œè¯·æ³¨æ„Stringå¸¸é‡æ± çš„ç¼“å­˜åŠŸèƒ½å’Œå­—ç¬¦ä¸²æ”¹å˜åé”æ˜¯å¦çš„æƒ…å†µã€‚
+ * synchronized é”é‡å…¥ï¼Œå½“ä¸€ä¸ªçº¿ç¨‹å¾—åˆ°äº†ä¸€ä¸ªå¯¹è±¡çš„é”åï¼Œå†æ¬¡è¯·æ±‚æ­¤å¯¹è±¡æ—¶æ˜¯å¯ä»¥å†æ¬¡å¾—åˆ°è¯¥å¯¹è±¡çš„é”ã€‚
+ * synchronized åŒå¼‚æ­¥ï¼Œ
+ * synchronized ç±»é”ï¼Œç”¨static + synchronized ä¿®é¥°åˆ™è¡¨ç¤ºå¯¹æ•´ä¸ªç±»è¿›è¡ŒåŠ é”
  */
 public class ITDragonSynchronized {
 	
-    private void thisLock () {  // ¶ÔÏóËø  
+    private void thisLock () {  // å¯¹è±¡é”  
         synchronized (this) {  
-            System.out.println("this ¶ÔÏóËø!");  
+            System.out.println("this å¯¹è±¡é”!");  
         }  
     }  
       
-    private void classLock () {  // ÀàËø  
+    private void classLock () {  // ç±»é”  
         synchronized (ITDragonSynchronized.class) {  
-            System.out.println("class ÀàËø!");  
+            System.out.println("class ç±»é”!");  
         }  
     }  
       
     private Object lock = new Object();  
-    private void objectLock () {  // ÈÎºÎ¶ÔÏóËø  
+    private void objectLock () {  // ä»»ä½•å¯¹è±¡é”  
         synchronized (lock) {  
-            System.out.println("object ÈÎºÎ¶ÔÏóËø!");  
+            System.out.println("object ä»»ä½•å¯¹è±¡é”!");  
         }  
     }  
       
-    private void stringLock () {  // ×Ö·û´®Ëø£¬×¢ÒâString³£Á¿³ØµÄ»º´æ¹¦ÄÜ  
-        synchronized ("string") { // ÓÃ new String("string")  t4 ºÍ t5 Í¬Ê±½øÈë¡£ÓÃstring t4Íê³Éºó£¬t5ÔÚ¿ªÊ¼
+    private void stringLock () {  // å­—ç¬¦ä¸²é”ï¼Œæ³¨æ„Stringå¸¸é‡æ± çš„ç¼“å­˜åŠŸèƒ½  
+        synchronized ("string") { // ç”¨ new String("string")  t4 å’Œ t5 åŒæ—¶è¿›å…¥ã€‚ç”¨string t4å®Œæˆåï¼Œt5åœ¨å¼€å§‹
             try {  
                 for(int i = 0; i < 3; i++) {  
                     System.out.println("thread : " + Thread.currentThread().getName() + " stringLock !");  
@@ -41,7 +41,7 @@ public class ITDragonSynchronized {
         }  
     }  
       
-    private String strLock = "lock";  // ×Ö·û´®Ëø¸Ä±ä  
+    private String strLock = "lock";  // å­—ç¬¦ä¸²é”æ”¹å˜  
     private void changeStrLock () {  
         synchronized (strLock) {  
             try {  
@@ -55,7 +55,7 @@ public class ITDragonSynchronized {
         }  
     }  
     
-    private synchronized void method1() {  // ËøÖØÈë
+    private synchronized void method1() {  // é”é‡å…¥
         System.out.println("^^^^^^^^^^^^^^^^^^^^ method1");  
         method2();  
     }  
@@ -76,12 +76,12 @@ public class ITDragonSynchronized {
         }  
     }  
       
-    // Èô´Î·½·¨Ò²¼ÓÉÏÁË synchronized£¬¾Í±ØĞëµÈ´ıt1Ïß³ÌÖ´ĞĞÍêºó£¬t2²ÅÄÜµ÷ÓÃ  £¬Á½¸ösynchronized¿éÖ®¼ä¾ßÓĞ»¥³âĞÔ£¬synchronized¿é»ñµÃµÄÊÇÒ»¸ö¶ÔÏóËø£¬»»¾ä»°Ëµ£¬synchronized¿éËø¶¨µÄÊÇÕû¸ö¶ÔÏó
+    // è‹¥æ¬¡æ–¹æ³•ä¹ŸåŠ ä¸Šäº† synchronizedï¼Œå°±å¿…é¡»ç­‰å¾…t1çº¿ç¨‹æ‰§è¡Œå®Œåï¼Œt2æ‰èƒ½è°ƒç”¨  ï¼Œä¸¤ä¸ªsynchronizedå—ä¹‹é—´å…·æœ‰äº’æ–¥æ€§ï¼Œsynchronizedå—è·å¾—çš„æ˜¯ä¸€ä¸ªå¯¹è±¡é”ï¼Œæ¢å¥è¯è¯´ï¼Œsynchronizedå—é”å®šçš„æ˜¯æ•´ä¸ªå¯¹è±¡
     private void asyncMethod() {  
         System.out.println(Thread.currentThread().getName() + " asynchronized method!");  
     } 
       
-    // ÀàËø£ºstatic + synchronized ĞŞÊÎÔò±íÊ¾ÀàËø£¬´òÓ¡µÄ½á¹ûÊÇ thread1 Ïß³ÌÏÈÖ´ĞĞÍê£¬È»ºóÔÚÖ´ĞĞthread2Ïß³Ì¡£ÈôÃ»ÓĞ±»static ĞŞÊÎ£¬Ôòthread1 ºÍ thread2 ¼¸ºõÍ¬Ê±Ö´ĞĞ£¬Í¬Ê±½áÊø
+    // ç±»é”ï¼šstatic + synchronized ä¿®é¥°åˆ™è¡¨ç¤ºç±»é”ï¼Œæ‰“å°çš„ç»“æœæ˜¯ thread1 çº¿ç¨‹å…ˆæ‰§è¡Œå®Œï¼Œç„¶ååœ¨æ‰§è¡Œthread2çº¿ç¨‹ã€‚è‹¥æ²¡æœ‰è¢«static ä¿®é¥°ï¼Œåˆ™thread1 å’Œ thread2 å‡ ä¹åŒæ—¶æ‰§è¡Œï¼ŒåŒæ—¶ç»“æŸ
 	private synchronized void classLock(String args) {
 		System.out.println(args + "start......");
 		try {
@@ -94,7 +94,7 @@ public class ITDragonSynchronized {
 	
     public static void main(String[] args) throws Exception {  
         final ITDragonSynchronized itDragonSynchronized = new ITDragonSynchronized();  
-        System.out.println("------------------------- synchronized ´úÂë¿é¼ÓËø -------------------------");
+        System.out.println("------------------------- synchronized ä»£ç å—åŠ é” -------------------------");
         Thread thread1 = new Thread(new Runnable() {  
             @Override  
             public void run() {  
@@ -117,8 +117,8 @@ public class ITDragonSynchronized {
         thread2.start();  
         thread3.start();  
         Thread.sleep(2000);
-        System.out.println("------------------------- synchronized ×Ö·û´®¼ÓËø -------------------------");
-        // Èç¹û×Ö·û´®Ëø£¬ÓÃnew String("string") t4£¬t5Ïß³ÌÊÇ¿ÉÒÔ»ñÈ¡ËøµÄ£¬Èç¹ûÖ±½ÓÊ¹ÓÃ"string" £¬ÈôËø²»ÊÍ·Å£¬t5Ïß³ÌÒ»Ö±´¦ÀíµÈ´ıÖĞ  
+        System.out.println("------------------------- synchronized å­—ç¬¦ä¸²åŠ é” -------------------------");
+        // å¦‚æœå­—ç¬¦ä¸²é”ï¼Œç”¨new String("string") t4ï¼Œt5çº¿ç¨‹æ˜¯å¯ä»¥è·å–é”çš„ï¼Œå¦‚æœç›´æ¥ä½¿ç”¨"string" ï¼Œè‹¥é”ä¸é‡Šæ”¾ï¼Œt5çº¿ç¨‹ä¸€ç›´å¤„ç†ç­‰å¾…ä¸­  
         Thread thread4 = new Thread(new Runnable() {  
             @Override  
             public void run() {  
@@ -135,8 +135,8 @@ public class ITDragonSynchronized {
         thread5.start();  
           
         Thread.sleep(3000);
-        System.out.println("------------------------- synchronized ×Ö·û´®±äËø -------------------------");
-        // ×Ö·û´®±äÁË£¬ËøÒ²»á¸Ä±ä£¬µ¼ÖÂt7Ïß³ÌÔÚt6Ïß³ÌÎ´½áÊøºó±ä¿ªÊ¼Ö´ĞĞ,µ«Ò»¸ö¶ÔÏóµÄÊôĞÔ±äÁË£¬²»Ó°ÏìÕâ¸ö¶ÔÏóµÄËø¡£  
+        System.out.println("------------------------- synchronized å­—ç¬¦ä¸²å˜é” -------------------------");
+        // å­—ç¬¦ä¸²å˜äº†ï¼Œé”ä¹Ÿä¼šæ”¹å˜ï¼Œå¯¼è‡´t7çº¿ç¨‹åœ¨t6çº¿ç¨‹æœªç»“æŸåå˜å¼€å§‹æ‰§è¡Œ,ä½†ä¸€ä¸ªå¯¹è±¡çš„å±æ€§å˜äº†ï¼Œä¸å½±å“è¿™ä¸ªå¯¹è±¡çš„é”ã€‚  
         Thread thread6 = new Thread(new Runnable() {  
             @Override  
             public void run() {  
@@ -153,7 +153,7 @@ public class ITDragonSynchronized {
         thread7.start(); 
         
         Thread.sleep(2000);
-        System.out.println("------------------------- synchronized ËøÖØÈë -------------------------");
+        System.out.println("------------------------- synchronized é”é‡å…¥ -------------------------");
         Thread thread8 = new Thread(new Runnable() {  
             @Override  
             public void run() {  
@@ -171,7 +171,7 @@ public class ITDragonSynchronized {
         thread9.start(); 
         
         Thread.sleep(2000);
-        System.out.println("------------------------- synchronized Í¬²½Òì²½ -------------------------");
+        System.out.println("------------------------- synchronized åŒæ­¥å¼‚æ­¥ -------------------------");
         Thread thread10 = new Thread(new Runnable() {  
             @Override  
             public void run() {  
@@ -188,7 +188,7 @@ public class ITDragonSynchronized {
         thread11.start(); 
         
         Thread.sleep(2000);
-        System.out.println("------------------------- synchronized Í¬²½Òì²½ -------------------------");
+        System.out.println("------------------------- synchronized åŒæ­¥å¼‚æ­¥ -------------------------");
         ITDragonSynchronized classLock1 = new ITDragonSynchronized();
         ITDragonSynchronized classLock2 = new ITDragonSynchronized();
 		Thread thread12 = new Thread(new Runnable() {
@@ -207,7 +207,7 @@ public class ITDragonSynchronized {
 		thread13.start();
     }  
     
-    // ÓĞ¸¸×Ó¼Ì³Ğ¹ØÏµµÄÀà£¬Èç¹û¶¼Ê¹ÓÃÁËsynchronized ¹Ø¼ü×Ö£¬Ò²ÊÇÏß³Ì°²È«µÄ¡£  
+    // æœ‰çˆ¶å­ç»§æ‰¿å…³ç³»çš„ç±»ï¼Œå¦‚æœéƒ½ä½¿ç”¨äº†synchronized å…³é”®å­—ï¼Œä¹Ÿæ˜¯çº¿ç¨‹å®‰å…¨çš„ã€‚  
     static class FatherClass {  
         public synchronized void fatherMethod(){  
             System.out.println("#################### fatherMethod");  
