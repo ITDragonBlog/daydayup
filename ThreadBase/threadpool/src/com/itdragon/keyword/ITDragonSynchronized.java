@@ -4,7 +4,7 @@ package com.itdragon.keyword;
  * synchronized 关键字，可以修饰方法，也可以修饰代码块。建议采用后者，通过减小锁的粒度，以提高系统性能。
  * synchronized 关键字，如果以字符串作为锁，请注意String常量池的缓存功能和字符串改变后锁是否的情况。
  * synchronized 锁重入，当一个线程得到了一个对象的锁后，再次请求此对象时是可以再次得到该对象的锁。
- * synchronized 同异步，
+ * synchronized 同异步，一个线程获得锁后，另外一个线程可以执行非synchronized修饰的方法，这是异步。若另外一个线程执行任何synchronized修饰的方法则需要等待，这是同步
  * synchronized 类锁，用static + synchronized 修饰则表示对整个类进行加锁
  */
 public class ITDragonSynchronized {
