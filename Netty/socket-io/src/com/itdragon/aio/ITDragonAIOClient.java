@@ -20,8 +20,8 @@ public class ITDragonAIOClient implements Runnable{
     }  
       
     /**
-     * 如果没有client.finishConnect();这句等待完成socket连接，可能会报异常：java.nio.channels.NotYetConnectedException 
-     * 异步的才不会管你有没有连接成功，都会执行下面的代码。这里需要人为的干预
+     * 可能会报异常：java.nio.channels.NotYetConnectedException 
+     * 因为异步请求不会管你有没有连接成功，都会继续执行
      */
     public void write(String request){  
         try {  

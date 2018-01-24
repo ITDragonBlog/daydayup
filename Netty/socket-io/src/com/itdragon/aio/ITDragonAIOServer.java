@@ -31,7 +31,7 @@ public class ITDragonAIOServer {
             // 4.进行绑定  
             asynServerSocketChannel.bind(new InetSocketAddress(port));  
             System.out.println("server start , port : " + port);  
-            // 5.进行阻塞  
+            // 5.等待客户端请求  
             asynServerSocketChannel.accept(this, new ITDragonAIOServerHandler());  
             // 一直阻塞 不让服务器停止，真实环境是在tomcat下运行，所以不需要这行代码  
             Thread.sleep(Integer.MAX_VALUE);  
