@@ -16,6 +16,7 @@ import io.netty.util.ReferenceCountUtil;
  * step2 覆盖chanelRead()事件处理方法 ，每当服务器从客户端收到新的数据时，该方法会在收到消息时被调用。
  * step3 释放ByteBuffer，ByteBuf是一个引用计数对象，这个对象必须显示地调用release()方法来释放 
  * step4 异常处理，即当Netty由于IO错误或者处理器在处理事件时抛出的异常时。在大部分情况下，捕获的异常应该被记录下来并且把关联的channel给关闭掉。 
+ * ChannelHandlerContext : ChannelPipeline并不是直接管理ChannelHandler，而是通过ChannelHandlerContext来间接管理
  */  
 public class ITDragonServerHandler extends ChannelHandlerAdapter{  
 	
