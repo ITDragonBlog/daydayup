@@ -47,10 +47,10 @@ public class ITDragonServer {
         EventLoopGroup workerGroup = new NioEventLoopGroup(); 	// 用于处理进来的连接
         try {  
             ServerBootstrap serverbootstrap = new ServerBootstrap(); 	// 启动NIO服务的辅助启动类
-            serverbootstrap.group(bossGroup, workerGroup) 			// 分别设置bossGroup, workerGroup 顺序不能反
-            .channel(NioServerSocketChannel.class) 				// Channel的创建工厂，启动服务时会通过反射的方式来创建一个NioServerSocketChannel对象
-            .handler(new LoggingHandler(LogLevel.INFO))			// handler在初始化时就会执行，可以设置打印日志级别
-            .childHandler(new ChannelInitializer<SocketChannel>() {  // childHandler会在客户端成功connect后才执行，这里实例化ChannelInitializer
+            serverbootstrap.group(bossGroup, workerGroup) 				// 分别设置bossGroup, workerGroup 顺序不能反
+            .channel(NioServerSocketChannel.class) 						// Channel的创建工厂，启动服务时会通过反射的方式来创建一个NioServerSocketChannel对象
+            .handler(new LoggingHandler(LogLevel.INFO))					// handler在初始化时就会执行，可以设置打印日志级别
+            .childHandler(new ChannelInitializer<SocketChannel>() {  	// childHandler会在客户端成功connect后才执行，这里实例化ChannelInitializer
                 @Override  
                 protected void initChannel(SocketChannel socketChannel) throws Exception { 	// initChannel方法执行后删除实例ChannelInitializer，添加以下内容
                     ByteBuf delimiter = Unpooled.copiedBuffer(DELIMITER.getBytes());  		// 获取特殊分隔符的ByteBuffer

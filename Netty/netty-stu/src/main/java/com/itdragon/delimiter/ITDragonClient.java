@@ -20,10 +20,10 @@ public class ITDragonClient {
     private static final String DELIMITER = "_$"; // 拆包分隔符  
       
     public static void main(String[] args) {  
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup();  
+        NioEventLoopGroup group = new NioEventLoopGroup();  
         try {  
             Bootstrap bootstrap = new Bootstrap();  
-            bootstrap.group(workerGroup)  
+            bootstrap.group(group)  
             .channel(NioSocketChannel.class)  
             .handler(new ChannelInitializer<SocketChannel>() {  // 设置AbstractBootstrap类里面的 handler属性
                 @Override  
@@ -38,7 +38,7 @@ public class ITDragonClient {
                     socketChannel.pipeline().addLast(new ITDragonClientHandler());  
                 }  
             })  
-            .option(ChannelOption.SO_KEEPALIVE, true);  
+            .option(ChannelOption.SO_KEEPALIVE, true); 
               
             ChannelFuture future = bootstrap.connect(HOST, PORT).sync(); // 建立连接  
             future.channel().writeAndFlush(Unpooled.copiedBuffer(("1+1"+DELIMITER).getBytes()));  
@@ -48,7 +48,7 @@ public class ITDragonClient {
         } catch (Exception e) {  
             e.printStackTrace();  
         } finally {  
-            workerGroup.shutdownGracefully();  
+        	group.shutdownGracefully();  
         }  
     }  
   

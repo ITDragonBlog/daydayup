@@ -1,13 +1,12 @@
 package com.itdragon.delimiter;
 
-import io.netty.buffer.ByteBuf;  
-import io.netty.channel.ChannelHandlerAdapter;  
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.handler.codec.string.StringDecoder;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;  
   
-public class ITDragonClientHandler extends ChannelHandlerAdapter{  
+public class ITDragonClientHandler extends ChannelInboundHandlerAdapter{  
           
+	@Override 
     public void channelRead(ChannelHandlerContext chc, Object msg) {  
         try {  
         	/* 设置字符串形式的解码 new StringDecoder() 后可以直接使用

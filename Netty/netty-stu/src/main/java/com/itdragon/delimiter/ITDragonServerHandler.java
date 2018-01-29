@@ -2,23 +2,22 @@ package com.itdragon.delimiter;
 
 import com.itdragon.utils.ITDragonUtil;
 
-import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;  
   
 /** 
  * DISCARD协议 ：丢弃协议，只接收数据，不做任何处理。 
  * ECHO服务：响应式协议，返回数据。 
  * 实现步骤： 
- * step1 继承 ChannelHandlerAdapter，它已经实现了ChannelHandler接口，简化了开发。
+ * step1 继承 ChannelInboundHandlerAdapter，它已经实现了ChannelHandler接口，简化了开发。
  * step2 覆盖chanelRead()事件处理方法 ，每当服务器从客户端收到新的数据时，该方法会在收到消息时被调用。
  * step3 释放ByteBuffer，ByteBuf是一个引用计数对象，这个对象必须显示地调用release()方法来释放 
  * step4 异常处理，即当Netty由于IO错误或者处理器在处理事件时抛出的异常时。在大部分情况下，捕获的异常应该被记录下来并且把关联的channel给关闭掉。 
  * ChannelHandlerContext : ChannelPipeline并不是直接管理ChannelHandler，而是通过ChannelHandlerContext来间接管理
  */  
-public class ITDragonServerHandler extends ChannelHandlerAdapter{  
+public class ITDragonServerHandler extends ChannelInboundHandlerAdapter{  
 	
 	private static final String DELIMITER = "_$"; // 拆包分隔符  
       

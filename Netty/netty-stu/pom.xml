@@ -9,7 +9,7 @@
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>5.0.0.Alpha2</version>
+			<version>4.1.20.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.marshalling</groupId>
