@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class ITDragonRespData implements Serializable {  
   
-    private Long id;  
+	private static final long serialVersionUID = 1L;
+	private Long id;  
     private String name;  
     private String responseMsg;  
   

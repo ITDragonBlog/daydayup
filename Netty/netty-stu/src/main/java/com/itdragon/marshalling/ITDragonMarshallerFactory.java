@@ -11,9 +11,9 @@ import org.jboss.marshalling.Marshalling;
 import org.jboss.marshalling.MarshallingConfiguration; 
 
 public final class ITDragonMarshallerFactory {
-	private static final String NAME = "serial"; // 指定值，不可随意修改  
-    private static final int VERSION = 5;  
-    private static final int MAX_OBJECT_SIZE = 1024 * 1024 * 1;  
+	private static final String NAME = "serial"; // serial表示创建的是 Java序列化工厂对象.由jboss-marshalling-serial提供 
+    private static final Integer VERSION = 5;  
+    private static final Integer MAX_OBJECT_SIZE = 1024 * 1024 * 1; // 单个对象最大长度 
       
     /** 
      * 创建Jboss Marshalling 解码器MarshallingDecoder 
