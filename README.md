@@ -2,12 +2,14 @@
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
 ## Netty
-Netty 服务启动流程分析，拆包粘包，编解码技术，数据通信，心跳监测，BIO，NIO，AIO区别，参见面试题。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Netty)  
+Netty 服务启动流程分析，拆包粘包，编解码技术，数据通信，心跳监测，BIO，NIO，AIO区别，参见面试题。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Netty)    
 系列博客：http://www.cnblogs.com/itdragon/category/1153257.html
+***
 
 ## MySQL
 MySQL 索引优化分析，行锁和表锁机制。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/MySQL)  
 系列博客：http://www.cnblogs.com/itdragon/category/1141776.html
+***
 
 ## Select2
 select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里介绍了它的初始化，动态加载数据，取值，设置默认值等方法。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/JQuery-select2/select2-4.0.0)    
@@ -34,14 +36,17 @@ Nginx 的安装，Vsftpd 的安装。以及Nginx 结合 Vsftpd 实现图片上�
 ## Redis
 Redis 的安装，五大基础类型，常用命令，配置文件详解，持久化RDB和AOF，主从复制，集群搭建，Jedis [点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Redis)     
 系列博客：http://www.cnblogs.com/itdragon/category/1122427.html
+***
 
 ## Solr
 Solr7 安装部署，管理界面介绍，Solrj 复杂查询，高亮显示，Solr集群搭建(烧脑中.....)。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Solr)  
 系列博客：http://www.cnblogs.com/itdragon/category/1123240.html
+***
 
 ## SpringBoot
 基于SpringBoot的SpringData教程，SSO单点登录系统[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/SpringBoot)  
 系列博客：http://www.cnblogs.com/itdragon/category/1101617.html
+***
 
 未完待续.....
 
