@@ -11,19 +11,12 @@ MySQL 索引优化分析，行锁和表锁机制。[点击进入...](https://git
 系列博客：http://www.cnblogs.com/itdragon/category/1141776.html
 ***
 
-## Select2
-select2 是可以让下拉框 单选，多选，搜索的jquery 插件。这里介绍了它的初始化，动态加载数据，取值，设置默认值等方法。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/JQuery-select2/select2-4.0.0)    
-博客地址：http://blog.csdn.net/qq_19558705/article/details/49978731
-***
-
-## EasyUI Tree
-EasyUI 的树菜单， Spring,SpringMVC,Mybatis框架整合实现同步加载，异步加载，单选，多选等功能[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/EasyUI/EasyUI-tree)      
-博客地址：http://blog.csdn.net/qq_19558705/article/details/78583888
-
+## ITDragon
+有零碎知识： [Select2](http://blog.csdn.net/qq_19558705/article/details/49978731), [EasyUI](http://blog.csdn.net/qq_19558705/article/details/78583888) 。[点击进入...](https://github.com/ITDragonBlog/daydayup/ITDragon)   
 ***
 
 ## Mybatis
-Mybatis 的基础入门代码，包含了基础的crud，动态sql语句，级联查询，调用存储过程，一二级缓存等知识。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/mybatis/mybatis-basic)      
+Mybatis 的基础入门代码，包含了基础的crud，动态sql语句，级联查询，调用存储过程，一二级缓存等知识。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Mybatis/mybatis-basic)      
 博客地址：http://blog.csdn.net/qq_19558705/article/details/78513215
 
 ***
