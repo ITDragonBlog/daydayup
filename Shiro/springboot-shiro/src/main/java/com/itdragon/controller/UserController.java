@@ -2,6 +2,9 @@ package com.itdragon.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
@@ -31,22 +34,23 @@ public class UserController {
 			@RequestParam("password") String password) {
 		ItdragonResult result = new ItdragonResult();
 		try {
-			System.out.println("username : " + username);
-			System.out.println("password : " + password);
+			System.out.println("`````````username : " + username);
+			System.out.println("`````````password : " + password);
 			Subject currentUser = SecurityUtils.getSubject();
 			if (!currentUser.isAuthenticated()) {
 	            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 //	            token.setRememberMe(true);
 	            try {
-	            	// 执行登录. 
-	                currentUser.login(token);
+	                currentUser.login(token);	// 执行登录
 	                result.setStatus(200);
-	            }  catch (AuthenticationException ae) {
+	            } catch (AuthenticationException ae) {
 	            	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 登录失败: " + ae.getMessage());
+	            	ae.printStackTrace();
 	            	result.setStatus(500);
 	            	result.setMsg("账号密码不匹配");
 	            }
 	        }
+			result.setStatus(200);
 			return result;
 		} catch (Exception e) {
 			e.printStackTrace();

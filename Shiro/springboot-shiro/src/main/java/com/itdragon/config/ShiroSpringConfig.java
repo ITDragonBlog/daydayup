@@ -3,14 +3,13 @@ package com.itdragon.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.itdragon.config.beans.ITDragonShiroRealm;
 
 @Configuration
 public class ShiroSpringConfig {
@@ -41,17 +40,26 @@ public class ShiroSpringConfig {
 		filterChainDefinitionMap.put("/index", "anon");		// 欢迎页面匿名访问
 		filterChainDefinitionMap.put("/login", "anon");		// 登录页面匿名访问
 		filterChainDefinitionMap.put("/logout", "logout");	// 用户退出，只需配置logout即可实现该功能
-		filterChainDefinitionMap.put("/**", "authc");		// 其他路径均需要身份认证，一般位于最下面，优先级最低
+		filterChainDefinitionMap.put("/**", "anon");		// 其他路径均需要身份认证，一般位于最下面，优先级最低
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		shiroFilterFactoryBean.setLoginUrl("/login");		// 登录的路径
-		shiroFilterFactoryBean.setSuccessUrl("/index");		// 登录成功后跳转的路径
+		shiroFilterFactoryBean.setSuccessUrl("/dashboard");	// 登录成功后跳转的路径
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");	// 验证失败后跳转的路径
 		return shiroFilterFactoryBean;
+	}
+	
+	@Bean
+	public HashedCredentialsMatcher hashedCredentialsMatcher() {
+		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+		hashedCredentialsMatcher.setHashAlgorithmName("MD5");// 散列算法:这里使用MD5算法;
+		hashedCredentialsMatcher.setHashIterations(1024);// 散列的次数，比如散列两次，相当于 md5(md5(""));
+		return hashedCredentialsMatcher;
 	}
 
 	@Bean
 	public ITDragonShiroRealm itDragonShiroRealm() {
 		ITDragonShiroRealm itDragonShiroRealm = new ITDragonShiroRealm();
+		itDragonShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
 		return itDragonShiroRealm;
 	}
 

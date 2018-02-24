@@ -33,8 +33,8 @@ public class ItdragonUtils {
 	}
 	
 	public static void main(String[] args) {
-		Object credentials = "12345678";
-		Object salt = ByteSource.Util.bytes("YzljNDQyNmYtNmFjNS00YTA2LTk0MDgtZTNkZTIxZGJhZDBi");
+		String credentials = "12345678";
+		Object salt = ByteSource.Util.bytes("1");
 		System.out.println("salt : " + salt);
 //		6c70205f6b62bb9c306783588052a416
 		Object result = new SimpleHash(ALGORITHM_NAME, credentials, salt, HASH_ITERATIONS);

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="zh">
 	<head>
@@ -17,7 +16,7 @@
 				<h1>Welcome</h1>
 				<form method="post" action="/user/login" class="form">
 					<input type="text" value="itdragon" name="username" placeholder="Account"/>
-					<input type="password" value="123456789" name="password" placeholder="Password"/>
+					<input type="password" value="12345678" name="password" placeholder="Password"/>
 					<button type="button" id="login-button">Login</button>
 				</form>
 			</div>
@@ -41,7 +40,7 @@
 				$.post("/login", $(".form").serialize(),function(data){
 					if (data.status == 200) {
 						if (redirectUrl == "") {
-							location.href = "http://localhost:8081/index";
+							location.href = "http://localhost:8081/dashboard";
 						} else {
 							location.href = redirectUrl;
 						}
