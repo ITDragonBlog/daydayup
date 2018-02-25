@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class WebConfig {
 
-	@Bean	// siteMesh3
+	@Bean	// 配置siteMesh3
 	public FilterRegistrationBean siteMeshFilter(){
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 		WebSiteMeshFilter siteMeshFilter = new WebSiteMeshFilter();

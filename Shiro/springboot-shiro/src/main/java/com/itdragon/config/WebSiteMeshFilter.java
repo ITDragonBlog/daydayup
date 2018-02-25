@@ -4,7 +4,7 @@ import org.sitemesh.builder.SiteMeshFilterBuilder;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
 
 /**
- * 配置拦截器FIlter
+ * 配置SiteMesh拦截器FIlter，指定装饰页面和不需要拦截的路径
  * @author itdragon
  *
  */

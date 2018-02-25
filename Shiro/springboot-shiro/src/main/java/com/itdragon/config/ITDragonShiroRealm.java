@@ -1,5 +1,7 @@
 package com.itdragon.config;
 
+import java.util.Date;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itdragon.pojo.SysRole;
 import com.itdragon.pojo.User;
 import com.itdragon.service.UserService;
 
@@ -29,14 +32,18 @@ public class ITDragonShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
     	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 配置当前用户权限");
-		User user = (User) principals.getPrimaryPrincipal();
+    	String username = (String) principals.getPrimaryPrincipal();
+    	User user = userService.findByAccount(username);
+        if(null == user){
+            return null;
+        }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-//		for (SysRole role : user.getRoleList()) {
-//			authorizationInfo.addRole(role.getRole());
+		for (SysRole role : user.getRoleList()) {
+			authorizationInfo.addRole(role.getRole());
 //			for (SysPermission p : role.getPermissions()) {
 //				authorizationInfo.addStringPermission(p.getPermission());
 //			}
-//		}
+		}
         return authorizationInfo;
     }
 

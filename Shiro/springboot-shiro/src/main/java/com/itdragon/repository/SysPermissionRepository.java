@@ -8,6 +8,6 @@ import com.itdragon.pojo.SysPermission;
 public interface SysPermissionRepository extends PagingAndSortingRepository<SysPermission, Integer>, 
 	JpaSpecificationExecutor<SysPermission>{
 	
-	SysPermission findByName();
+	SysPermission findByName(String name);
 	
 }

@@ -16,7 +16,7 @@
 <div class="pages pull-right">
 	<ul class="pagination">
 		<%
-			if (page.hasPreviousPage()) {
+			if (page.hasPrevious()) {
 		%>
 		<li><a href="?page=1&sortType=${sortType}&${searchParams}">&lt;&lt;</a></li>
 		<li><a href="?page=${current-1}&sortType=${sortType}&${searchParams}">&lt;</a></li>
@@ -41,7 +41,7 @@
 		</c:forEach>
 	
 		<%
-			if (page.hasNextPage()) {
+			if (page.hasNext()) {
 		%>
 		<li><a href="?page=${current+1}&sortType=${sortType}&${searchParams}">&gt;</a></li>
 		<li><a href="?page=${page.totalPages}&sortType=${sortType}&${searchParams}">&gt;&gt;</a></li>

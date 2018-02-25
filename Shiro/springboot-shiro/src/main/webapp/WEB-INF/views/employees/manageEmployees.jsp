@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +17,11 @@
 			<!-- Page Heading -->
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Tables</h1>
+					<h1 class="page-header">Employees</h1>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 						</li>
-						<li class="active"><i class="fa fa-table"></i> Tables</li>
+						<li class="active"><i class="fa fa-table"></i> Employees</li>
 					</ol>
 				</div>
 			</div>
@@ -43,18 +44,21 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${employees.content}" var="employee">
 								<tr>
-									<td>/index.html</td>
-									<td>1265</td>
-									<td>32.3%</td>
-									<td>$321.33</td>
-									<td>1265</td>
-									<td>32.3%</td>
-									<td>$321.33</td>
-									<td></td>
+									<td><a href="${ctx}/task/update/${employee.account}">${employee.account}</a></td>
+									<td>${employee.userName}</td>
+									<td>${employee.iphone}</td>
+									<td>${employee.email}</td>
+									<td>${employee.platform}</td>
+									<td>${employee.createdDate}</td>
+									<td>${employee.updatedDate}</td>
+									<td><a href="${ctx}/task/delete/${employee.id}">DELETE</a></td>
 								</tr>
+							</c:forEach>
 							</tbody>
 						</table>
+						<tags:pagination page="${employees}" paginationSize="10"/>
 					</div>
 				</div>
 			</div>

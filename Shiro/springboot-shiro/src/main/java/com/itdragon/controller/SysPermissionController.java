@@ -1,6 +1,7 @@
 package com.itdragon.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -25,11 +26,17 @@ import com.itdragon.service.SysPermissionService;
 public class SysPermissionController {
 	
 	private static final String PAGE_SIZE = "10";
+	private static Map<String, String> sortTypes = new LinkedHashMap<>();
+	static {
+		sortTypes.put("auto", "自动");
+		sortTypes.put("title", "标题");
+		sortTypes.put("createdDate", "创建时间");
+	}
 
 	@Autowired
 	private SysPermissionService sysPermissionService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="list", method = RequestMethod.GET)
 	public String getSysPermissions(@RequestParam(value = "page", defaultValue = "1") Integer pageNumber,
 			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) Integer pageSize,
 			@RequestParam(value = "sortType", defaultValue = "auto") String sortType, Model model,
@@ -38,6 +45,7 @@ public class SysPermissionController {
 		Page<SysPermission> sysPermissions = sysPermissionService.getSysPermission(searchParams, pageNumber, pageSize, sortType);
 		model.addAttribute("sysPermissions", sysPermissions);
 		model.addAttribute("sortType", sortType);
+		model.addAttribute("sortTypes", sortTypes);
 		
 		return "sysPermission/manageSysPermission";
 	}

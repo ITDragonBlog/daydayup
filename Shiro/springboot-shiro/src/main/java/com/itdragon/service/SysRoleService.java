@@ -18,8 +18,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.itdragon.pojo.SysPermission;
-import com.itdragon.repository.SysPermissionRepository;
+import com.itdragon.pojo.SysRole;
+import com.itdragon.repository.SysRoleRepository;
 
 /**
  * 用户权限管理
@@ -28,32 +28,32 @@ import com.itdragon.repository.SysPermissionRepository;
  */
 @Service
 @Transactional
-public class SysPermissionService {
+public class SysRoleService {
 	
 	@Autowired
-	private SysPermissionRepository sysPermissionRepository;
+	private SysRoleRepository sysRoleRepository;
 	
-	public SysPermission getSysPermission(Integer id) {
-		return sysPermissionRepository.findOne(id);
+	public SysRole getSysRole(Integer id) {
+		return sysRoleRepository.findOne(id);
 	}
 	
-	public List<SysPermission> findAllSysPermissions(){
-		return (List<SysPermission>) sysPermissionRepository.findAll();
+	public List<SysRole> findAllSysRoles(){
+		return (List<SysRole>) sysRoleRepository.findAll();
 	}
 	
-	public void saveSysPermissions(SysPermission sysPermission) {
-		sysPermissionRepository.save(sysPermission);
+	public void saveSysRoles(SysRole SysRole) {
+		sysRoleRepository.save(SysRole);
 	}
 	
-	public void deleteSysPermissions(Integer id) {
-		sysPermissionRepository.delete(id);
+	public void deleteSysRoles(Integer id) {
+		sysRoleRepository.delete(id);
 	}
 	
-	public Page<SysPermission> getSysPermission(Map<String, Object> searchParams, int pageNumber, int pageSize,  
+	public Page<SysRole> getSysRole(Map<String, Object> searchParams, int pageNumber, int pageSize,  
             String sortType) {  
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);  
-        Specification<SysPermission> spec = buildSpecification(searchParams);  
-        return sysPermissionRepository.findAll(spec, pageRequest);  
+        Specification<SysRole> spec = buildSpecification(searchParams);  
+        return sysRoleRepository.findAll(spec, pageRequest);  
     }  
   
     private PageRequest buildPageRequest(int pageNumber, int pagzSize, String sortType) {  
@@ -61,10 +61,10 @@ public class SysPermissionService {
         return new PageRequest(pageNumber - 1, pagzSize, sort);  
     }  
     
-	private Specification<SysPermission> buildSpecification(Map<String, Object> searchParams) {
-		return new Specification<SysPermission>() {
+	private Specification<SysRole> buildSpecification(Map<String, Object> searchParams) {
+		return new Specification<SysRole>() {
 			@Override
-			public Predicate toPredicate(Root<SysPermission> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<SysRole> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				if (searchParams.get("name") != null && !searchParams.get("name").equals("")) {
 				}
 				Path<String> exp = root.get("name");

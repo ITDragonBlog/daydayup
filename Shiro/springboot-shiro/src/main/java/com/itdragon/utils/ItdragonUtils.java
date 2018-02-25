@@ -25,10 +25,10 @@ public class ItdragonUtils {
 	 * 加盐加密的策略非常多,根据实际业务来
 	 */
 	public static void entryptPassword(User user) {
-		ByteSource salt = ByteSource.Util.bytes(UUID.randomUUID().toString());
+		String salt = UUID.randomUUID().toString();
 		String temPassword = user.getPlainPassword();
-		Object md5Password = new SimpleHash(ALGORITHM_NAME, temPassword, salt, HASH_ITERATIONS);
-		user.setSalt(salt.toString());
+		Object md5Password = new SimpleHash(ALGORITHM_NAME, temPassword, ByteSource.Util.bytes(salt), HASH_ITERATIONS);
+		user.setSalt(salt);
 		user.setPassword(md5Password.toString());
 	}
 	

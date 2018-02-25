@@ -3,6 +3,7 @@ package com.itdragon.pojo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +36,7 @@ public class User {
 	private String platform;				// 用户来自的平台
 	private String createdDate;				// 用户注册时间
 	private String updatedDate;				// 用户最后一次登录时间
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns ={@JoinColumn(name = "roleId") })
     private List<SysRole> roleList;			// 一个用户拥有多个角色
 	

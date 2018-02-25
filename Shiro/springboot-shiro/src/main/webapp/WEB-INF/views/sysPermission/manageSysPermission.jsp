@@ -17,11 +17,11 @@
 			<!-- Page Heading -->
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Tables</h1>
+					<h1 class="page-header">Permissions</h1>
 					<ol class="breadcrumb">
 						<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
 						</li>
-						<li class="active"><i class="fa fa-table"></i> Tables</li>
+						<li class="active"><i class="fa fa-table"></i> Permissions</li>
 					</ol>
 				</div>
 			</div>
@@ -39,12 +39,18 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h2>权限配置表</h2>
+					<div class="row">  
+			            <form class="form-search" action="#">  
+			                <label>权限名称：</label> <input type="text" name="search_LIKE_name" class="input-medium" value="${param.search_LIKE_name}">   
+			                <button type="submit" class="btn" id="search_btn">Search</button>  
+			            </form>  
+						<a class="btn" href="${ctx}/task/create">创建权限</a>
+				    </div> 
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover table-striped">
 							<thead>
 								<tr>
 									<th>权限名称</th>
-									<th>权限类型</th>
 									<th>资源路径</th>
 									<th>操作权限</th>
 									<th>是否可用</th>
@@ -55,7 +61,6 @@
 							<c:forEach items="${sysPermissions.content}" var="sysPermission">
 								<tr>
 									<td><a href="${ctx}/task/update/${sysPermission.name}">${sysPermission.name}</a></td>
-									<td>${sysPermission.resourceType}</td>
 									<td>${sysPermission.url}</td>
 									<td>${sysPermission.permission}</td>
 									<td>${sysPermission.available}</td>
@@ -64,8 +69,7 @@
 							</c:forEach>
 							</tbody>
 						</table>
-						<tags:pagination page="${sysPermissions}" paginationSize="5"/>
-						<div><a class="btn" href="${ctx}/task/create">创建权限</a></div>
+						<tags:pagination page="${sysPermissions}" paginationSize="10"/>
 					</div>
 				</div>
 			</div>

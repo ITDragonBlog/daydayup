@@ -3,6 +3,7 @@ package com.itdragon.pojo;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,7 @@ public class SysRole {
     private Boolean available = Boolean.FALSE; // 默认不可用
 
     //角色 -- 权限关系：多对多关系; 取出这条数据时，把它关联的数据也同时取出放入内存中
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="roleId")},inverseJoinColumns={@JoinColumn(name="permissionId")})
     private List<SysPermission> permissions;
 

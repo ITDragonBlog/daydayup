@@ -59,7 +59,7 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ITDragon <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <shiro:principal/> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
@@ -69,7 +69,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
                 </ul>
             </li>
@@ -83,12 +83,14 @@
                 <li>
                     <a href="/employees"><i class="fa fa-fw fa-bar-chart-o"></i> Employees</a>
                 </li>
+                <shiro:hasAnyRoles name="admin,mananger">
                 <li>
-                    <a href="/permissions"><i class="fa fa-fw fa-table"></i> Permissions</a>
+                    <a href="/permission/list"><i class="fa fa-fw fa-table"></i> Permissions</a>
                 </li>
                 <li>
                     <a href="/userSetting"><i class="fa fa-fw fa-file"></i> User Settings</a>
                 </li>
+                </shiro:hasAnyRoles>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

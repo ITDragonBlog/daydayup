@@ -14,7 +14,7 @@
 		<div class="wrapper">
 			<div class="container">
 				<h1>Welcome</h1>
-				<form method="post" action="/user/login" class="form">
+				<form method="post" class="form">
 					<input type="text" value="itdragon" name="username" placeholder="Account"/>
 					<input type="password" value="12345678" name="password" placeholder="Password"/>
 					<button type="button" id="login-button">Login</button>
@@ -35,14 +35,13 @@
 		</div>
 		<script type="text/javascript" src="static/js/jquery-1.10.1.min.js" ></script>
 		<script type="text/javascript">
-			var redirectUrl = "${redirect}"; // 浏览器中回显的URL
 			function doLogin() {
 				$.post("/login", $(".form").serialize(),function(data){
 					if (data.status == 200) {
-						if (redirectUrl == "") {
+						if (data.data == "") {
 							location.href = "http://localhost:8081/dashboard";
 						} else {
-							location.href = redirectUrl;
+							location.href = data.data;
 						}
 					} else {
 						alert("登录失败，原因是：" + data.msg);

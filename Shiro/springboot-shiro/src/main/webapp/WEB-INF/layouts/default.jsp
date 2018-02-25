@@ -20,7 +20,6 @@
 			<div class='mainBody'>
 		      <sitemesh:write property='body'/>
 		    </div>
-			<%-- <%@ include file="/WEB-INF/layouts/footer.jsp"%> --%>
 		</div>
 	    <script src="${ctx}/static/sb-admin-1.0.4/js/jquery.js"></script>
 	    <script src="${ctx}/static/sb-admin-1.0.4/js/bootstrap.min.js"></script>
