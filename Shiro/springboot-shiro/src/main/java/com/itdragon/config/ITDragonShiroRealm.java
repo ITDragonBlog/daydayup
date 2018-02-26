@@ -1,13 +1,9 @@
 package com.itdragon.config;
 
-import java.util.Date;
-
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -18,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.itdragon.pojo.SysPermission;
 import com.itdragon.pojo.SysRole;
 import com.itdragon.pojo.User;
 import com.itdragon.service.UserService;
@@ -34,15 +31,15 @@ public class ITDragonShiroRealm extends AuthorizingRealm {
     	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 配置当前用户权限");
     	String username = (String) principals.getPrimaryPrincipal();
     	User user = userService.findByAccount(username);
-        if(null == user){
+    	if(null == user){
             return null;
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		for (SysRole role : user.getRoleList()) {
 			authorizationInfo.addRole(role.getRole());
-//			for (SysPermission p : role.getPermissions()) {
-//				authorizationInfo.addStringPermission(p.getPermission());
-//			}
+			for (SysPermission permission : role.getPermissions()) {
+				authorizationInfo.addStringPermission(permission.getPermission());
+			}
 		}
         return authorizationInfo;
     }

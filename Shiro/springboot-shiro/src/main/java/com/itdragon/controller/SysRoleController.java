@@ -6,7 +6,6 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -18,71 +17,70 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.itdragon.pojo.SysPermission;
-import com.itdragon.service.SysPermissionService;
+import com.itdragon.pojo.SysRole;
+import com.itdragon.service.SysRoleService;
 
 @Controller
-@RequestMapping("/permission")
-public class SysPermissionController {
+@RequestMapping("/roles")
+public class SysRoleController {
 	
 	private static final String PAGE_SIZE = "10";
 
 	@Autowired
-	private SysPermissionService sysPermissionService;
+	private SysRoleService sysRoleService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getSysPermissions(@RequestParam(value = "page", defaultValue = "1") Integer pageNumber,
+	public String getSysRoles(@RequestParam(value = "page", defaultValue = "1") Integer pageNumber,
 			@RequestParam(value = "page.size", defaultValue = PAGE_SIZE) Integer pageSize,
 			@RequestParam(value = "sortType", defaultValue = "auto") String sortType, Model model,
 			ServletRequest request) {
 		Map<String, Object> searchParams = new HashMap<>();
-		Page<SysPermission> sysPermissions = sysPermissionService.getSysPermissions(searchParams, pageNumber, pageSize, sortType);
-		model.addAttribute("sysPermissions", sysPermissions);
+		Page<SysRole> sysRoles = sysRoleService.getSysRoles(searchParams, pageNumber, pageSize, sortType);
+		model.addAttribute("sysRoles", sysRoles);
 		model.addAttribute("sortType", sortType);
 		
-		return "sysPermission/manageSysPermission";
+		return "sysRole/manageSysRole";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createForm(Model model) {
-		model.addAttribute("sysPermission", new SysPermission());
+		model.addAttribute("sysRole", new SysRole());
 		model.addAttribute("action", "create");
-		return "sysPermission/editSysPermission";
+		return "sysRole/editSysRole";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
-	public String create(@Valid SysPermission sysPermission, RedirectAttributes redirectAttributes) {
-		sysPermissionService.saveSysPermission(sysPermission);
+	public String create(@Valid SysRole sysRole, RedirectAttributes redirectAttributes) {
+		sysRoleService.saveSysRole(sysRole);
 		redirectAttributes.addFlashAttribute("message", "创建任务成功");
-		return "redirect:/sysPermission/";
+		return "redirect:/sysRole/";
 	}
 
 	@RequestMapping(value = "update/{id}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("sysPermission", sysPermissionService.getSysPermission(id));
+		model.addAttribute("sysRole", sysRoleService.getSysRole(id));
 		model.addAttribute("action", "update");
-		return "sysPermission/editSysPermission";
+		return "sysRole/editSysRole";
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("sysPermission") SysPermission sysPermission, RedirectAttributes redirectAttributes) {
-		sysPermissionService.saveSysPermission(sysPermission);
+	public String update(@Valid @ModelAttribute("SysRole") SysRole SysRole, RedirectAttributes redirectAttributes) {
+		sysRoleService.saveSysRole(SysRole);
 		redirectAttributes.addFlashAttribute("message", "更新任务成功");
-		return "redirect:/sysPermission/";
+		return "redirect:/sysRole/";
 	}
 
 	@RequestMapping(value = "delete/{id}")
-	@RequiresPermissions(value={"user:delete"})
 	public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-		sysPermissionService.deleteSysPermission(id);
+		sysRoleService.deleteSysRole(id);
 		redirectAttributes.addFlashAttribute("message", "删除任务成功");
-		return "redirect:/sysPermission/";
+		return "redirect:/sysRole/";
 	}
 
 	@ModelAttribute
-	public void getSysPermission(@RequestParam(value = "id", defaultValue = "-1") Integer id, Model model) {
+	public void getSysRole(@RequestParam(value = "id", defaultValue = "-1") Integer id, Model model) {
 		if (id != -1) {
-			model.addAttribute("sysPermission", sysPermissionService.getSysPermission(id));
+			model.addAttribute("sysRole", sysRoleService.getSysRole(id));
 		}
 	}
 

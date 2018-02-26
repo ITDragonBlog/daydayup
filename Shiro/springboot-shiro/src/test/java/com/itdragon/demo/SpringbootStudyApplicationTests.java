@@ -41,21 +41,23 @@ public class SpringbootStudyApplicationTests {
 
 	@Test	// 测试注册，新增数据
 	public void registerUser() {
-		User user = new User();
-		user.setAccount("user");
-		user.setUserName("ITDragonStaff");
-		user.setEmail("itdragon@git.com");
-		user.setIphone("12349857777");
-		user.setPlainPassword("12345678");
-		user.setPlatform("weixin");
-		user.setCreatedDate(ItdragonUtils.getCurrentDateTime());
-		user.setUpdatedDate(ItdragonUtils.getCurrentDateTime());
-		ItdragonUtils.entryptPassword(user);
-		List<SysRole> roleList = new ArrayList<>();
-		roleList.add(sysRoleService.getSysRole(3));
-		user.setRoleList(roleList);
-		System.out.println(user);
-		userService.registerUser(user);
+		for (int i = 0; i < 17; i++) {
+			User user = new User();
+			user.setAccount("other-user-" + i);
+			user.setUserName("OtherStaff-" + i);
+			user.setEmail("itdragon@git.com");
+			user.setIphone(12349857777L - i + "");
+			user.setPlainPassword("12345678");
+			user.setPlatform("weixin");
+			user.setCreatedDate(ItdragonUtils.getCurrentDateTime());
+			user.setUpdatedDate(ItdragonUtils.getCurrentDateTime());
+			ItdragonUtils.entryptPassword(user);
+			List<SysRole> roleList = new ArrayList<>();
+			roleList.add(sysRoleService.getSysRole(3));
+			user.setRoleList(roleList);
+			System.out.println(user);
+			userService.registerUser(user);
+		}
 	}
 	
 	@Test
@@ -67,18 +69,20 @@ public class SpringbootStudyApplicationTests {
 		users.add(userService.findByAccount("user"));
 		sysRole.setUsers(users);
 		sysRole.setAvailable(true);
-		sysRoleService.saveSysRoles(sysRole);
+		sysRoleService.saveSysRole(sysRole);
 	}
 	
 	@Test
 	public void createSysPermission() {
 		SysPermission sysPermission = new SysPermission();
-		sysPermission.setName("预览权限配置页面");
-		sysPermission.setUrl("/permission/list");
+		sysPermission.setName("更新用户信息权限");
+		sysPermission.setUrl("/employees");
 		sysPermission.setAvailable(true);
-//		sysPermission.setRoles(roles);
-		sysPermission.setPermission("");
-		syspermissionService.saveSysPermissions(sysPermission);
+		List<SysRole> roles = new ArrayList<>();
+		roles.add(sysRoleService.getSysRole(2));
+		sysPermission.setRoles(roles);
+		sysPermission.setPermission("user:update");
+		syspermissionService.saveSysPermission(sysPermission);
 	}
 	
 }

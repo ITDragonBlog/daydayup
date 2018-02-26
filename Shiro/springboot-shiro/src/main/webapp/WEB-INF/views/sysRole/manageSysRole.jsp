@@ -9,7 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 	<meta http-equiv="X-UA-Compatible" content="IE=8" />
-	<title>权限管理</title>
+	<title>角色管理</title>
 </head>
 <body>
 	<div id="page-wrapper">
@@ -17,11 +17,11 @@
 			<!-- Page Heading -->
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Permissions</h1>
+					<h1 class="page-header">Roles</h1>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
+						<li><i class="fa fa-dashboard"></i> <a href="/dashboard">Dashboard</a>
 						</li>
-						<li class="active"><i class="fa fa-table"></i> Permissions</li>
+						<li class="active"><i class="fa fa-table"></i> Roles</li>
 					</ol>
 				</div>
 			</div>
@@ -38,31 +38,29 @@
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>权限配置表</h2>
+					<h2>角色管理表</h2>
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover table-striped">
 							<thead>
 								<tr>
-									<th>权限名称</th>
-									<th>资源路径</th>
-									<th>操作权限</th>
+									<th>用户级别</th>
+									<th>描述说明</th>
 									<th>是否可用</th>
 									<th>操作</th>
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach items="${sysPermissions.content}" var="sysPermission">
+							<c:forEach items="${sysRoles.content}" var="sysRole">
 								<tr>
-									<td><a href="${ctx}/permissions/update/${sysPermission.name}">${sysPermission.name}</a></td>
-									<td>${sysPermission.url}</td>
-									<td>${sysPermission.permission}</td>
-									<td>${sysPermission.available}</td>
-									<td><a href="${ctx}/permissions/delete/${sysPermission.id}">DELETE</a></td>
+									<td><a href="${ctx}/roles/update/${sysRole.role}">${sysRole.role}</a></td>
+									<td>${sysRole.description}</td>
+									<td>${sysRole.available}</td>
+									<td><a href="${ctx}/roles/delete/${sysRole.id}">DELETE</a></td>
 								</tr>
 							</c:forEach>
 							</tbody>
 						</table>
-						<tags:pagination page="${sysPermissions}" paginationSize="10"/>
+						<tags:pagination page="${sysRoles}" paginationSize="10"/>
 					</div>
 				</div>
 			</div>

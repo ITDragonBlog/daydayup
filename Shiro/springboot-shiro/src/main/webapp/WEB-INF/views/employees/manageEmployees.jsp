@@ -19,12 +19,22 @@
 				<div class="col-lg-12">
 					<h1 class="page-header">Employees</h1>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
+						<li><i class="fa fa-dashboard"></i> <a href="/dashboard">Dashboard</a>
 						</li>
 						<li class="active"><i class="fa fa-table"></i> Employees</li>
 					</ol>
 				</div>
 			</div>
+			<c:if test="${not empty message}">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="alert alert-info alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<i class="fa fa-info-circle"></i> <strong>${message}</strong>
+					</div>
+				</div>
+			</div>
+			</c:if>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
@@ -33,27 +43,37 @@
 						<table class="table table-bordered table-hover table-striped">
 							<thead>
 								<tr>
-									<th>Account</th>
-									<th>Nick Name</th>
-									<th>Iphone</th>
-									<th>Email</th>
-									<th>Platform</th>
-									<th>CreatedDate</th>
-									<th>UpdatedDate</th>
+									<th>登录账号</th>
+									<th>账号昵称</th>
+									<th>手机号码</th>
+									<th>邮箱号码</th>
+									<th>来源平台</th>
+									<th>账号级别</th>
+									<th>账号权限</th>
 									<th>Operate</th>
 								</tr>
 							</thead>
 							<tbody>
 							<c:forEach items="${employees.content}" var="employee">
 								<tr>
-									<td><a href="${ctx}/task/update/${employee.account}">${employee.account}</a></td>
+									<td><a href="${ctx}/employees/update/${employee.account}">${employee.account}</a></td>
 									<td>${employee.userName}</td>
 									<td>${employee.iphone}</td>
 									<td>${employee.email}</td>
 									<td>${employee.platform}</td>
-									<td>${employee.createdDate}</td>
-									<td>${employee.updatedDate}</td>
-									<td><a href="${ctx}/task/delete/${employee.id}">DELETE</a></td>
+									<td>
+									<%-- <c:forEach items="${employees.roleList}" var="role">
+										<label>{role.role} ; </label>
+									</c:forEach> --%>
+									</td>
+									<td>
+									<%-- <c:forEach items="${employees.roleList}" var="role">
+										<c:forEach items="${role.permissions}" var="permission">
+											<label>{permission.name} ; </label>
+										</c:forEach>
+									</c:forEach> --%>
+									</td>
+									<td><a href="${ctx}/employees/delete/${employee.id}">DELETE</a></td>
 								</tr>
 							</c:forEach>
 							</tbody>

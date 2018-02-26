@@ -36,7 +36,7 @@
 		<script type="text/javascript" src="static/js/jquery-1.10.1.min.js" ></script>
 		<script type="text/javascript">
 			function doLogin() {
-				$.post("/login", $(".form").serialize(),function(data){
+				$.post("/employees/login", $(".form").serialize(),function(data){
 					if (data.status == 200) {
 						if (data.data == "") {
 							location.href = "http://localhost:8081/dashboard";

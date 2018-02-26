@@ -41,15 +41,15 @@ public class SysPermissionService {
 		return (List<SysPermission>) sysPermissionRepository.findAll();
 	}
 	
-	public void saveSysPermissions(SysPermission sysPermission) {
+	public void saveSysPermission(SysPermission sysPermission) {
 		sysPermissionRepository.save(sysPermission);
 	}
 	
-	public void deleteSysPermissions(Integer id) {
+	public void deleteSysPermission(Integer id) {
 		sysPermissionRepository.delete(id);
 	}
 	
-	public Page<SysPermission> getSysPermission(Map<String, Object> searchParams, int pageNumber, int pageSize,  
+	public Page<SysPermission> getSysPermissions(Map<String, Object> searchParams, int pageNumber, int pageSize,  
             String sortType) {  
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);  
         Specification<SysPermission> spec = buildSpecification(searchParams);  
@@ -57,7 +57,7 @@ public class SysPermissionService {
     }  
   
     private PageRequest buildPageRequest(int pageNumber, int pagzSize, String sortType) {  
-        Sort sort = new Sort(Direction.DESC, "id");
+        Sort sort = new Sort(Direction.ASC, "id");
         return new PageRequest(pageNumber - 1, pagzSize, sort);  
     }  
     
@@ -66,9 +66,10 @@ public class SysPermissionService {
 			@Override
 			public Predicate toPredicate(Root<SysPermission> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				if (searchParams.get("name") != null && !searchParams.get("name").equals("")) {
+					Path<String> exp = root.get("name");
+					return cb.like(exp, "%name%");
 				}
-				Path<String> exp = root.get("name");
-				return cb.like(exp, "%name%");
+				return null;
 			}
 		};
 	}  

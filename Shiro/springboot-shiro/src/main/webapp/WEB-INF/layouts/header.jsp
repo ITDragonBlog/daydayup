@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">ITDragon 前端采用startbootstrap-sb-admin-1.0.4，学习使用</a>
+            <a class="navbar-brand" href="/dashboard">ITDragon-sb-admin-1</a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
@@ -69,6 +69,7 @@
                     </li>
                     <li class="divider"></li>
                     <li>
+                    	<!-- shiro 已经实现的功能，在ShiroSpringConfig类中配置拦截URL即可 -->
                         <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                     </li>
                 </ul>
@@ -76,19 +77,20 @@
         </ul>
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
+            <ul class="nav navbar-nav side-nav itdragon-nav">
                 <li class="active">
                     <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li>
                     <a href="/employees"><i class="fa fa-fw fa-bar-chart-o"></i> Employees</a>
                 </li>
-                <shiro:hasAnyRoles name="admin,mananger">
+                <!-- 只有角色为admin或manager的用户才有权限访问  -->
+                <shiro:hasAnyRoles name="admin,manager">
                 <li>
-                    <a href="/permission/list"><i class="fa fa-fw fa-table"></i> Permissions</a>
+                    <a href="/permission"><i class="fa fa-fw fa-table"></i> Permissions</a>
                 </li>
                 <li>
-                    <a href="/userSetting"><i class="fa fa-fw fa-file"></i> User Settings</a>
+                    <a href="/roles"><i class="fa fa-fw fa-file"></i> Roles</a>
                 </li>
                 </shiro:hasAnyRoles>
             </ul>

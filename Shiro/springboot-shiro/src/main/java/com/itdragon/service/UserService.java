@@ -37,12 +37,14 @@ public class UserService {
 		return (List<User>) userRepository.findAll();
 	}
 	
-	public void saveUsers(User User) {
-		userRepository.save(User);
+	public void saveUser(User user) {
+		userRepository.save(user);
 	}
 	
-	public void deleteUsers(Long id) {
-		userRepository.delete(id);
+	public void deleteUser(Long id) {
+		User user = userRepository.findOne(id);
+		user.setStatus(0);
+		userRepository.save(user);
 	}
 	
 	public Page<User> getUsers(Map<String, Object> searchParams, int pageNumber, int pageSize,  
@@ -52,21 +54,22 @@ public class UserService {
         return userRepository.findAll(spec, pageRequest);  
     }  
 	
+	// TODO 搜索查询，未完成。也可以用solr或者lucene
 	private Specification<User> buildSpecification(Map<String, Object> searchParams) {
 		return new Specification<User>() {
 			@Override
 			public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (searchParams.get("account") != null && !searchParams.get("account").equals("")) {
-					Path<String> exp = root.get("account");
-					return cb.like(exp, "%account%");
-				}
-				return null;
+				/*if (searchParams.get("account") != null && !searchParams.get("account").equals("")) {
+					// TODO .....
+				}*/
+				Path<String> exp = root.get("status");
+				return cb.notEqual(exp, 0);
 			}
 		};
 	} 
   
     private PageRequest buildPageRequest(int pageNumber, int pagzSize, String sortType) {  
-        Sort sort = new Sort(Direction.DESC, "id");
+        Sort sort = new Sort(Direction.ASC, "id");
         return new PageRequest(pageNumber - 1, pagzSize, sort);  
     }  
 	
@@ -74,6 +77,7 @@ public class UserService {
 		return userRepository.findByAccount(account);
 	}
 	
+	// TODO 待实现
     public ItdragonResult registerUser(User user) {
     	// 检查用户名是否注册，一般在前端验证的时候处理，因为注册不存在高并发的情况，这里再加一层查询是不影响性能的
     	if (null != userRepository.findByAccount(user.getAccount())) {

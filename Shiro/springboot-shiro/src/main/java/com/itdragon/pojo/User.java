@@ -39,6 +39,7 @@ public class User {
 	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "uid") }, inverseJoinColumns ={@JoinColumn(name = "roleId") })
     private List<SysRole> roleList;			// 一个用户拥有多个角色
+	private Integer status;					// 用户状态，0表示用户已删除
 	
 	public Long getId() {
 		return id;
@@ -111,5 +112,11 @@ public class User {
 	}
 	public void setRoleList(List<SysRole> roleList) {
 		this.roleList = roleList;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 }

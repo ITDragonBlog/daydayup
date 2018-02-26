@@ -22,7 +22,7 @@ import com.itdragon.pojo.SysRole;
 import com.itdragon.repository.SysRoleRepository;
 
 /**
- * 用户权限管理
+ * 用户角色管理
  * @author itdragon
  *
  */
@@ -41,15 +41,15 @@ public class SysRoleService {
 		return (List<SysRole>) sysRoleRepository.findAll();
 	}
 	
-	public void saveSysRoles(SysRole SysRole) {
+	public void saveSysRole(SysRole SysRole) {
 		sysRoleRepository.save(SysRole);
 	}
 	
-	public void deleteSysRoles(Integer id) {
+	public void deleteSysRole(Integer id) {
 		sysRoleRepository.delete(id);
 	}
 	
-	public Page<SysRole> getSysRole(Map<String, Object> searchParams, int pageNumber, int pageSize,  
+	public Page<SysRole> getSysRoles(Map<String, Object> searchParams, int pageNumber, int pageSize,  
             String sortType) {  
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);  
         Specification<SysRole> spec = buildSpecification(searchParams);  
@@ -57,7 +57,7 @@ public class SysRoleService {
     }  
   
     private PageRequest buildPageRequest(int pageNumber, int pagzSize, String sortType) {  
-        Sort sort = new Sort(Direction.DESC, "id");
+        Sort sort = new Sort(Direction.ASC, "id");
         return new PageRequest(pageNumber - 1, pagzSize, sort);  
     }  
     
@@ -65,10 +65,11 @@ public class SysRoleService {
 		return new Specification<SysRole>() {
 			@Override
 			public Predicate toPredicate(Root<SysRole> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				if (searchParams.get("name") != null && !searchParams.get("name").equals("")) {
+				if (searchParams.get("role") != null && !searchParams.get("role").equals("")) {
+					Path<String> exp = root.get("role");
+					return cb.like(exp, "%role%");
 				}
-				Path<String> exp = root.get("name");
-				return cb.like(exp, "%name%");
+				return null;
 			}
 		};
 	}  
