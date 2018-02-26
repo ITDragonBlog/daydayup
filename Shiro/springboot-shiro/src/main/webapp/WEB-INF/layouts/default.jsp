@@ -13,6 +13,17 @@
 	    <link href="${ctx}/static/sb-admin-1.0.4/css/plugins/morris.css" rel="stylesheet">
 	    <link href="${ctx}/static/sb-admin-1.0.4/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 		<sitemesh:write property='head'/>
+		<script src="${ctx}/static/sb-admin-1.0.4/js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(".itdragon-nav").on('click', 'li', function() {
+					sessionStorage.setItem("nav-index", $(this).index());
+				});
+				if (null != sessionStorage.getItem("nav-index")) {
+					$(".itdragon-nav li").eq(sessionStorage.getItem("nav-index")).addClass("active").siblings().removeClass("active");
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<div id="wrapper">
@@ -22,19 +33,8 @@
 		    </div>
 		</div>
 	</body>
-	<script src="${ctx}/static/sb-admin-1.0.4/js/jquery.js"></script>
 	<script src="${ctx}/static/sb-admin-1.0.4/js/bootstrap.min.js"></script>
 	<script src="${ctx}/static/sb-admin-1.0.4/js/plugins/morris/raphael.min.js"></script>
 	<script src="${ctx}/static/sb-admin-1.0.4/js/plugins/morris/morris.min.js"></script>
 	<script src="${ctx}/static/sb-admin-1.0.4/js/plugins/morris/morris-data.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$(".itdragon-nav").on('click','li',function(){
-				sessionStorage.setItem("nav-index", $(this).index());
-			});
-			if (null != sessionStorage.getItem("nav-index")) {
-				$(".itdragon-nav li").eq(sessionStorage.getItem("nav-index")).addClass("active").siblings().removeClass("active");
-			}
-		});
-	</script>
 </html>
