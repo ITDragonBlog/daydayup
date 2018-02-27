@@ -15,12 +15,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+/**
+ * Shiro 配置，重点
+ * @author itdragon
+ *
+ */
 @Configuration
 public class ShiroSpringConfig {
 
 	private static final transient Logger log = LoggerFactory.getLogger(ShiroSpringConfig.class);
 
 	/*
+	 * 配置拦截器
+	 *  
 	 * 定义拦截URL权限，优先级从上到下 
 	 * 1). anon  : 匿名访问，无需登录 
 	 * 2). authc : 登录后才能访问 
@@ -52,17 +59,15 @@ public class ShiroSpringConfig {
 	}
 	
 	/**
-     * Shiro生命周期处理器
-     * @return
+     * 配置Shiro生命周期处理器
      */
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor(){
         return new LifecycleBeanPostProcessor();
     }
+    
     /**
-     * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
-     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
-     * @return
+     * 自动创建代理类，如不添加，Shiro的注解可能不会生效。
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
@@ -71,6 +76,10 @@ public class ShiroSpringConfig {
         advisorAutoProxyCreator.setProxyTargetClass(true);
         return advisorAutoProxyCreator;
     }
+    
+    /**
+     * 开启Shiro的注解
+     */
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(){
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
@@ -78,6 +87,9 @@ public class ShiroSpringConfig {
         return authorizationAttributeSourceAdvisor;
     }
 	
+    /**
+     * 配置加密匹配，使用MD5的方式，进行1024次加密
+     */
 	@Bean
 	public HashedCredentialsMatcher hashedCredentialsMatcher() {
 		HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -86,6 +98,9 @@ public class ShiroSpringConfig {
 		return hashedCredentialsMatcher;
 	}
 
+	/**
+	 * 自定义Realm，可以多个
+	 */
 	@Bean
 	public ITDragonShiroRealm itDragonShiroRealm() {
 		ITDragonShiroRealm itDragonShiroRealm = new ITDragonShiroRealm();
@@ -93,6 +108,9 @@ public class ShiroSpringConfig {
 		return itDragonShiroRealm;
 	}
 
+	/**
+	 * SecurityManager 安全管理器；Shiro的核心
+	 */
 	@Bean
 	public DefaultWebSecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();

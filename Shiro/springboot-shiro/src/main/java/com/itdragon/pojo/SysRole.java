@@ -11,6 +11,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * 角色表
+ * @author itdragon
+ *
+ */
 @Table(name="itdragon_sysrole")
 @Entity
 public class SysRole {

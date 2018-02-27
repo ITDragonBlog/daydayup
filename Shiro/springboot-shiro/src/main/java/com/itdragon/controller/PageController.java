@@ -4,6 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * 开发阶段页面跳转
+ * @author itdragon
+ *
+ */
 @Controller
 public class PageController {
 

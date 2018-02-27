@@ -62,6 +62,7 @@
 									<td>${employee.email}</td>
 									<td>${employee.platform}</td>
 									<td>
+									${employee.roleList}
 									<%-- <c:forEach items="${employees.roleList}" var="role">
 										<label>{role.role} ; </label>
 									</c:forEach> --%>

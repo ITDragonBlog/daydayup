@@ -35,9 +35,13 @@
 		</div>
 		<script type="text/javascript" src="static/js/jquery-1.10.1.min.js" ></script>
 		<script type="text/javascript">
+			$(function () {
+				sessionStorage.removeItem("nav-index"); // 页面或窗口关闭后才失效，用户登出不失效 
+			});
 			function doLogin() {
 				$.post("/employees/login", $(".form").serialize(),function(data){
 					if (data.status == 200) {
+						alert(data.data);
 						if (data.data == "") {
 							location.href = "http://localhost:8081/dashboard";
 						} else {

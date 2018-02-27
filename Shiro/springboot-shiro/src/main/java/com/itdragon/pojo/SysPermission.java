@@ -10,6 +10,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * 权限表
+ * @author itdragon
+ *
+ */
 @Table(name = "itdragon_syspermission")
 @Entity
 public class SysPermission {

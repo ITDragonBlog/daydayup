@@ -4,7 +4,6 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -19,6 +18,11 @@ import com.itdragon.pojo.SysRole;
 import com.itdragon.pojo.User;
 import com.itdragon.service.UserService;
 
+/**
+ * 自定义安全数据Realm，重点
+ * @author itdragon
+ *
+ */
 public class ITDragonShiroRealm extends AuthorizingRealm {
 	
 	private static final transient Logger log = LoggerFactory.getLogger(ITDragonShiroRealm.class);
@@ -26,6 +30,9 @@ public class ITDragonShiroRealm extends AuthorizingRealm {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 授权
+	 */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
     	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 配置当前用户权限");
@@ -36,24 +43,23 @@ public class ITDragonShiroRealm extends AuthorizingRealm {
         }
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		for (SysRole role : user.getRoleList()) {
-			authorizationInfo.addRole(role.getRole());
+			authorizationInfo.addRole(role.getRole());	// 添加角色
 			for (SysPermission permission : role.getPermissions()) {
-				authorizationInfo.addStringPermission(permission.getPermission());
+				authorizationInfo.addStringPermission(permission.getPermission());	// 添加具体权限
 			}
 		}
         return authorizationInfo;
     }
 
+    /**
+     * 身份认证
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token)
             throws AuthenticationException {
     	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 认证用户身份信息");
-    	// 1. 把 AuthenticationToken 转换为 UsernamePasswordToken 
-		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
-		// 2. 从 UsernamePasswordToken 中来获取 username , 或者直接使用 token.getPrincipal() 方法获取username
-		String username = upToken.getUsername();
-		// 3. 从数据库中查询 username 对应的用户记录，如：加密密码和盐值
-		User userInfo = userService.findByAccount(username);
+		String username = (String) token.getPrincipal(); // 获取用户登录账号
+		User userInfo = userService.findByAccount(username); // 通过账号查加密后的密码和盐，这里一般从缓存读取
         if(null == userInfo){
             return null;
         }

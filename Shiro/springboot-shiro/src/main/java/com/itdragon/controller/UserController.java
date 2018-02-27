@@ -30,6 +30,11 @@ import com.itdragon.pojo.ItdragonResult;
 import com.itdragon.pojo.User;
 import com.itdragon.service.UserService;
 
+/**
+ * 用户页面的增删改查，分页，搜索
+ * @author itdragon
+ *
+ */
 @Controller
 @RequestMapping("/employees")
 public class UserController {
@@ -65,13 +70,13 @@ public class UserController {
 //	            token.setRememberMe(true);
 	            try {
 	                currentUser.login(token);	// 执行登录
-	                SavedRequest savedRequest = WebUtils.getSavedRequest(request);
 	                // 获取登录前的最后一个页面
+	                SavedRequest savedRequest = WebUtils.getSavedRequest(request);
 	    			String url = null != savedRequest ?
 	    					(null != savedRequest.getRequestUrl()?savedRequest.getRequestUrl():""):"";
+	    			url = "favicon.ico".equals(url) ? "" : url;
 	                result.setStatus(200);
 	                result.setData(url);
-	                System.out.println("result : " + result.getData());
 	            } catch (AuthenticationException ae) {
 	            	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 登录失败: " + ae.getMessage());
 	            	ae.printStackTrace();
@@ -90,14 +95,14 @@ public class UserController {
 	/**
 	 * 删除用户功能，拥有employees:delete权限的用户才能删除
 	 * @param id : 需要删除的数据ID
-	 * @param redirectAttributes : SpringMVC重定向参数
+	 * @param redirectAttributes : SpringMVC重定向参数 http://blog.csdn.net/z69183787/article/details/52596987
 	 * @return
 	 */
 	@RequestMapping(value = "delete/{id}")
 	@RequiresPermissions(value={"employees:delete"})
 	public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-//		userService.deleteUser(id);
-		redirectAttributes.addFlashAttribute("message", "删除用户成功"); // http://blog.csdn.net/z69183787/article/details/52596987
+		userService.deleteUser(id);
+		redirectAttributes.addFlashAttribute("message", "删除用户成功");
 		return "redirect:/employees";
 	}
 	

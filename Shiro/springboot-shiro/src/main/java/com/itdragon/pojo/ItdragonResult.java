@@ -5,6 +5,11 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 暂未用到
+ * @author itdragon
+ *
+ */
 public class ItdragonResult {
 	
     private static final ObjectMapper MAPPER = new ObjectMapper();	// 定义jackson对象

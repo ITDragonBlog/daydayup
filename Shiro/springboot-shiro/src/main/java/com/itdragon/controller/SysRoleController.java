@@ -20,6 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itdragon.pojo.SysRole;
 import com.itdragon.service.SysRoleService;
 
+/**
+ * 角色页面的增删改查，分页，搜索
+ * @author itdragon
+ *
+ */
 @Controller
 @RequestMapping("/roles")
 public class SysRoleController {

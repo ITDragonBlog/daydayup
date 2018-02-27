@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 统一处理异常
+ * 异常统一处理
+ * 
+ * Spring @ControllerAdvice 使用方法介绍： http://blog.csdn.net/jackfrued/article/details/76710885
  * @author itdragon
- * Spring @ControllerAdvice 使用方法介绍：
- * http://blog.csdn.net/jackfrued/article/details/76710885
  */
 @ControllerAdvice
 public class ExceptionController {

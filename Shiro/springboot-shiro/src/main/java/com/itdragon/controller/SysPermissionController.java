@@ -21,6 +21,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.itdragon.pojo.SysPermission;
 import com.itdragon.service.SysPermissionService;
 
+/**
+ * 权限页面的增删改查，分页，搜索
+ * @author itdragon
+ *
+ */
 @Controller
 @RequestMapping("/permission")
 public class SysPermissionController {
