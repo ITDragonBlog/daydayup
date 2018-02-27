@@ -71,12 +71,11 @@ public class UserController {
 	            try {
 	                currentUser.login(token);	// 执行登录
 	                // 获取登录前的最后一个页面
-	                SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-	    			String url = null != savedRequest ?
-	    					(null != savedRequest.getRequestUrl()?savedRequest.getRequestUrl():""):"";
-	    			url = "favicon.ico".equals(url) ? "" : url;
+//	                SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+//	    			String url = null != savedRequest ?
+//	    					(null != savedRequest.getRequestUrl()?savedRequest.getRequestUrl():""):"";
 	                result.setStatus(200);
-	                result.setData(url);
+	                result.setData("");
 	            } catch (AuthenticationException ae) {
 	            	log.info("^^^^^^^^^^^^^^^^^^^^ ITDragon 登录失败: " + ae.getMessage());
 	            	ae.printStackTrace();

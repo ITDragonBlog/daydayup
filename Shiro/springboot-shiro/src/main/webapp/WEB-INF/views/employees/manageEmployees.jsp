@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,17 +63,21 @@
 									<td>${employee.email}</td>
 									<td>${employee.platform}</td>
 									<td>
-									${employee.roleList}
-									<%-- <c:forEach items="${employees.roleList}" var="role">
-										<label>{role.role} ; </label>
-									</c:forEach> --%>
+									<!-- 非常不喜欢这样写 -->
+									<c:forEach begin="0" end="${fn:length(employee.roleList)}" var="i">
+										<c:if test="${not empty employee.roleList[i].role}">
+										<label>${employee.roleList[i].role}; </label>
+										</c:if>
+									</c:forEach>
 									</td>
 									<td>
-									<%-- <c:forEach items="${employees.roleList}" var="role">
-										<c:forEach items="${role.permissions}" var="permission">
-											<label>{permission.name} ; </label>
+									<c:forEach begin="0" end="${fn:length(employee.roleList)}" var="i">
+										<c:forEach begin="0" end="${fn:length(employee.roleList[i].permissions)}" var="i">
+											<c:if test="${not empty employee.roleList[i].permissions[i].name}">
+											<label>${employee.roleList[i].permissions[i].name}; </label>
+											</c:if>
 										</c:forEach>
-									</c:forEach> --%>
+									</c:forEach>
 									</td>
 									<td><a href="${ctx}/employees/delete/${employee.id}">DELETE</a></td>
 								</tr>

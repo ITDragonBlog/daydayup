@@ -89,10 +89,12 @@
                 <li>
                     <a href="/permission"><i class="fa fa-fw fa-table"></i> Permissions</a>
                 </li>
+                </shiro:hasAnyRoles>
+                <shiro:hasRole name="admin">
                 <li>
                     <a href="/roles"><i class="fa fa-fw fa-file"></i> Roles</a>
                 </li>
-                </shiro:hasAnyRoles>
+                </shiro:hasRole>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -41,7 +41,6 @@
 			function doLogin() {
 				$.post("/employees/login", $(".form").serialize(),function(data){
 					if (data.status == 200) {
-						alert(data.data);
 						if (data.data == "") {
 							location.href = "http://localhost:8081/dashboard";
 						} else {
