@@ -32,15 +32,6 @@ public class ItdragonUtils {
 		user.setPassword(md5Password.toString());
 	}
 	
-	public static void main(String[] args) {
-		String credentials = "12345678";
-		Object salt = ByteSource.Util.bytes("1");
-		System.out.println("salt : " + salt);
-//		6c70205f6b62bb9c306783588052a416
-		Object result = new SimpleHash(ALGORITHM_NAME, credentials, salt, HASH_ITERATIONS);
-		System.out.println(result);
-	}
-	
 	public static String getCurrentDateTime() {
 		TimeZone zone = TimeZone.getTimeZone("Asia/Shanghai");
 		TimeZone.setDefault(zone);

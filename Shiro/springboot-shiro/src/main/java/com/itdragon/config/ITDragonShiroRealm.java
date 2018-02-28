@@ -67,7 +67,7 @@ public class ITDragonShiroRealm extends AuthorizingRealm {
 		Object principal = username;
 		// 2). credentials: 加密后的密码. 
 		Object credentials = userInfo.getPassword();
-		// 3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法
+		// 3). realmName: 当前 realm 对象的唯一名字. 调用父类的 getName() 方法
 		String realmName = getName();
 		// 4). credentialsSalt: 盐值. 注意类型是ByteSource
 		ByteSource credentialsSalt = ByteSource.Util.bytes(userInfo.getSalt());

@@ -20,7 +20,7 @@ public class ExceptionController {
     public String handleException(RedirectAttributes redirectAttributes, Exception exception, HttpServletRequest request) {
         redirectAttributes.addFlashAttribute("message", "抱歉！您没有权限执行这个操作，请联系管理员！");
 		String url = WebUtils.getRequestUri(request);
-		return "redirect:/" + url.split("/")[1];
+		return "redirect:/" + url.split("/")[1];	// 请求的规则 : /page/operate
     }
 	
 }

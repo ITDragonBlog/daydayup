@@ -90,6 +90,7 @@
                     <a href="/permission"><i class="fa fa-fw fa-table"></i> Permissions</a>
                 </li>
                 </shiro:hasAnyRoles>
+                <!-- 只有角色为admin的用户才有权限访问  -->
                 <shiro:hasRole name="admin">
                 <li>
                     <a href="/roles"><i class="fa fa-fw fa-file"></i> Roles</a>

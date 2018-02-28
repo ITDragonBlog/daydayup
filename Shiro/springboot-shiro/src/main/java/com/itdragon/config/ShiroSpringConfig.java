@@ -25,7 +25,7 @@ public class ShiroSpringConfig {
 
 	private static final transient Logger log = LoggerFactory.getLogger(ShiroSpringConfig.class);
 
-	/*
+	/**
 	 * 配置拦截器
 	 *  
 	 * 定义拦截URL权限，优先级从上到下 
@@ -67,7 +67,7 @@ public class ShiroSpringConfig {
     }
     
     /**
-     * 自动创建代理类，如不添加，Shiro的注解可能不会生效。
+     * 自动创建代理类，若不添加，Shiro的注解可能不会生效。
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})

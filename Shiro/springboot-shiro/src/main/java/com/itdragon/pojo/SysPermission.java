@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * 权限表
+ * 权限表，决定用户的具体操作
  * @author itdragon
  *
  */
@@ -22,9 +22,9 @@ public class SysPermission {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	private String name; // 名称
-	private String url; // 资源路径
-	private String permission; // 权限字符串,role:create,role:update,role:delete,role:view
+	private String name; 		// 名称
+	private String url; 		// 资源路径
+	private String permission; 	// 权限字符串 如：employees:create,employees:update,employees:delete
 	private Boolean available = Boolean.FALSE; // 默认不可用
 	@ManyToMany
 	@JoinTable(name = "SysRolePermission", joinColumns = { @JoinColumn(name = "permissionId") }, inverseJoinColumns = {@JoinColumn(name = "roleId") })

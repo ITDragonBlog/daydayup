@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
- * 角色表
+ * 角色表，决定用户可以访问的页面
  * @author itdragon
  *
  */
@@ -23,7 +23,7 @@ public class SysRole {
     @Id
     @GeneratedValue
     private Integer id; 
-    private String role; 		// 角色 : admin/guest
+    private String role; 		// 角色
     private String description; // 角色描述
     private Boolean available = Boolean.FALSE; // 默认不可用
 
