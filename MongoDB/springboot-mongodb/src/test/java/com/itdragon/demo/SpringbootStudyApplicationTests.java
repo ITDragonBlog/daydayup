@@ -35,7 +35,7 @@ import com.mongodb.DBObject;
 public class SpringbootStudyApplicationTests {
 	
 	@Autowired
-	private ITDragonMongoHelper mongoHelper;
+	private ITDragonMongoHelper userMongoHelper;
 	
 	@Autowired
 	private MongoTemplate mongoTemplate;
@@ -60,7 +60,7 @@ public class SpringbootStudyApplicationTests {
 			ArrayList<String> ability = new ArrayList<>();
 			ability.add("Java");
 			user.setAbility(ability);
-			mongoTemplate.save(user);
+			userMongoHelper.saveOrUpdate(user);
 			System.out.println("user : " + user.toString());
 		}
 	}
