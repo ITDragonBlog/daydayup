@@ -7,14 +7,14 @@ import com.itdragon.pojo.User;
 import com.itdragon.repository.ITDragonMongoHelper;
 
 /**
- * 
+ * ITDragonMongoHelper的bean配置管理类 
  * @author itdragon
  *
  */
 @Configuration
 public class MongodbBeansConfig {
 	
-	@Bean
+	@Bean // 该方法名很重要
 	public ITDragonMongoHelper userMongoHelper() {
 		return new ITDragonMongoHelper(User.class);
 	}

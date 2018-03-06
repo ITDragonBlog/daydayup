@@ -22,11 +22,11 @@ import com.mongodb.DBObject;
 public class ITDragonMongoHelper {
 	
 	@Autowired(required = false)
-	private MongoTemplate mongoTemplate; // Spring Data 提供支持MongoDB的方法
-	private Class entityClass;
-	private String collectionName;
-	private String orderAscField;
-	private String orderDescField;
+	private MongoTemplate mongoTemplate; // Spring Data提供支持MongoDB的方法
+	private Class entityClass;		// 实体类
+	private String collectionName;	// 数据库表名
+	private String orderAscField;	// 升序字段
+	private String orderDescField;	// 降序字段
 	
 	private static final String ID = "id";
 	private static final String MONGODB_ID = "_id";
@@ -42,14 +42,6 @@ public class ITDragonMongoHelper {
 	public ITDragonMongoHelper(Class entityClass, String collectionName) {
 		this.entityClass = entityClass;
 		this.collectionName = collectionName;
-	}
-	
-	// 获取Mongodb数据库中的表明，若表明不是实体类首字母小写，则影响后续操作
-	private String _getCollectionName() {
-		String className = this.entityClass.getName();
-		Integer lastIndex = Integer.valueOf(className.lastIndexOf("."));
-		className = className.substring(lastIndex.intValue() + 1);
-		return StringUtils.uncapitalize(className);
 	}
 	
 	/**
@@ -91,8 +83,8 @@ public class ITDragonMongoHelper {
 	
 	/**
 	 * @Title update
-	 * @Description 通过Map更新实体类具体字段，可以减少更新出错字段，销率更高
-	 * @param requestArgs Map，需自带ID， 形如：{id: idValue, 需要更新的属性: 属性值, ....}
+	 * @Description 通过Map更新实体类具体字段，可以减少更新出错字段，执行的销率更高，需严格要求数据结构的正确性
+	 * @param requestArgs Map，需自带ID， 形如：{id: idValue, name: nameValue, ....}
 	 * @return
 	 */
 	public Boolean update(Map<String, Object> requestArgs) {
@@ -190,7 +182,7 @@ public class ITDragonMongoHelper {
 		String sequence_field = "seq";
 		DBCollection seq = this.mongoTemplate.getCollection(sequence_collection);
 		DBObject query = new BasicDBObject();
-		query.put("_id", seq_name);
+		query.put(MONGODB_ID, seq_name);
 		DBObject change = new BasicDBObject(sequence_field, Integer.valueOf(1));
 		DBObject update = new BasicDBObject("$inc", change);
 		DBObject res = seq.findAndModify(query, new BasicDBObject(), new BasicDBObject(), false, update, true, true);
@@ -218,6 +210,14 @@ public class ITDragonMongoHelper {
 				query.with(new Sort(Sort.Direction.DESC, new String[] { field }));
 			}
 		}
+	}
+	
+	// 获取Mongodb数据库中的表名，若表名不是实体类首字母小写，则会影响后续操作
+	private String _getCollectionName() {
+		String className = this.entityClass.getName();
+		Integer lastIndex = Integer.valueOf(className.lastIndexOf("."));
+		className = className.substring(lastIndex.intValue() + 1);
+		return StringUtils.uncapitalize(className);
 	}
 	
 	public Class getEntityClass() {

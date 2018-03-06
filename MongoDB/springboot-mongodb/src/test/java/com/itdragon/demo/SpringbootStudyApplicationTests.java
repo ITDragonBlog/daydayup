@@ -9,19 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.itdragon.StartApplication;
 import com.itdragon.pojo.Address;
 import com.itdragon.pojo.User;
 import com.itdragon.repository.ITDragonMongoHelper;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
-import com.mongodb.DBObject;
 
 /**
  * @RunWith	它是一个运行器
@@ -36,7 +30,7 @@ import com.mongodb.DBObject;
 public class SpringbootStudyApplicationTests {
 	
 	@Autowired
-	private ITDragonMongoHelper userMongoHelper; // 
+	private ITDragonMongoHelper userMongoHelper; // 命名规则：需和MongodbBeansConfig配置Bean的方法名一致
 	
 	@Test
 	public void createUser() {
@@ -118,8 +112,8 @@ public class SpringbootStudyApplicationTests {
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^^findUserPage");
 		userMongoHelper.setOrderAscField("age"); // 排序
 		Integer pageSize = 5; // 每页页数
-		Integer pageNumber = 3; // 当前页
-		List<User> users = userMongoHelper.find(new Criteria(), pageSize, pageNumber);
+		Integer pageNumber = 1; // 当前页
+		List<User> users = userMongoHelper.find(Criteria.where("age").gt(25), pageSize, pageNumber); // 查询age大于25的数据
 		for (User user : users) {
 			System.out.println("user : " + user.toString());
 		}
