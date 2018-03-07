@@ -53,11 +53,6 @@ public class SpringbootStudyApplicationTests {
 		}
 	}
 	
-	/**
-	 * 更新方法注意事项介绍：
-	 * 1. 根据MongoDB的特性，即便传入的Map参数结构和实体类不匹配，依然会更新成功，这会导致查询该实体类时报错
-	 * 1. 更新参数传值为Map，
-	 */
 	@Test
 	public void updateUserName() {
 		System.out.println("^^^^^^^^^^^^^^^^^^^^^^updateUserName");
@@ -116,6 +111,24 @@ public class SpringbootStudyApplicationTests {
 		List<User> users = userMongoHelper.find(Criteria.where("age").gt(25), pageSize, pageNumber); // 查询age大于25的数据
 		for (User user : users) {
 			System.out.println("user : " + user.toString());
+		}
+	}
+	
+	@Test
+	public void errorUpdateScene() {
+		
+		// 一天，公司来了一位新同事，错误地更新数据
+		Map<String, Object> updateMap = new HashMap<>();
+		updateMap.put("id", 35);
+		updateMap.put("ability", "MongoDB");
+		userMongoHelper.update(updateMap);
+		
+		// 假设这是很早之前写的逻辑
+		User user = (User) userMongoHelper.findOne(Criteria.where("name").is("itdragon-5"));
+		ArrayList<String> abilitys = user.getAbility();
+		for (String ability : abilitys) {
+			// 模拟一些操作
+			System.out.println("ablity : " + ability);
 		}
 	}
 
