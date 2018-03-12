@@ -1,8 +1,13 @@
 package com.itdragon.mq;
 
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.stereotype.Service;
+import javax.jms.Connection;  
+import javax.jms.ConnectionFactory;  
+import javax.jms.Destination;  
+import javax.jms.MessageConsumer;  
+import javax.jms.Session;  
+import javax.jms.TextMessage;  
+import org.apache.activemq.ActiveMQConnection;  
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 import com.itdragon.utils.ITDragonUtil;
 
@@ -11,27 +16,45 @@ import com.itdragon.utils.ITDragonUtil;
  * @author itdragon
  *
  */
-@Service
 public class ITDragonConsumer {
 	
-	// 1. 监听名字为"queue.name"的点对点队列
-    @JmsListener(destination = "queue.name")
-    public void receiveQueue(String text) {  
-        System.out.println("Queue Receiver : " + text + " \t 处理结果 : " + ITDragonUtil.cal(text));  
-    }  
+	private static final String QUEUE_NAME = "ITDragon.Queue"; // 要和Sender一致  
     
-    // 2. 监听名字为"topic.name"的发布订阅队列
-    @JmsListener(destination = "topic.name")
-    public void receiveTopic(String text) {  
-    	System.out.println("Topic Receiver : " + text + " \t 处理结果 : " + ITDragonUtil.cal(text));  
+    public static void main(String[] args) {  
+        ConnectionFactory connectionFactory = null;  
+        Connection connection = null;  
+        Session session = null;  
+        Destination destination = null;  
+        // MessageConsumer: 信息消费者  
+        MessageConsumer consumer = null;  
+        try {  
+            connectionFactory = new ActiveMQConnectionFactory(ActiveMQConnection.DEFAULT_USER,  
+                    ActiveMQConnection.DEFAULT_PASSWORD, ActiveMQConnection.DEFAULT_BROKER_URL);  
+            connection = connectionFactory.createConnection();  
+            connection.start();  
+            session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);  
+            destination = session.createQueue(QUEUE_NAME);  
+            consumer = session.createConsumer(destination);  
+            // 具体的业务逻辑，不断的接收信息，直到没有为止  
+            while (true) {  
+                TextMessage message = (TextMessage) consumer.receive();  
+                if (null != message) {  
+                    System.out.print(message.getText());  
+                } else {  
+                    break;  
+                }  
+            }  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        } finally {  
+            try {  
+                if (null != connection) {  
+                    connection.close();  
+                }  
+            } catch (Exception e) {  
+                e.printStackTrace();  
+            }  
+        }  
     }  
-    
-    // 3. 监听名字为"response.name"的接收应答(双向)队列
-    @JmsListener(destination = "response.name")
-    @SendTo("out.queue")
-    public String receiveResponse(String text) {
-    	System.out.println("Response Receiver : " + text + " \t 正在返回数据......");  
-    	return ITDragonUtil.cal(text).toString();
-    }
 
 }
