@@ -39,7 +39,7 @@ public class ITDragonConsumer {
             while (true) {  
                 TextMessage message = (TextMessage) consumer.receive();  
                 if (null != message) {  
-                    System.out.print(message.getText());  
+                    System.out.print(ITDragonUtil.cal(message.getText()));  
                 } else {  
                     break;  
                 }  

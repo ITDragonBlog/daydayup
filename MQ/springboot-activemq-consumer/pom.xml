@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.itdragon</groupId>
-	<artifactId>springboot-activemq-producer</artifactId>
+	<artifactId>springboot-activemq-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>SpringbootActiveMQProducer</name>
+	<name>SpringbootActiveMQConsumer</name>
 	<description>SpringBoot整合ActiveMQ案例</description>
 
 	<!-- 

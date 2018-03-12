@@ -1,18 +1,17 @@
 package com.itdragon.mq;
 
-import java.util.ArrayList;  
-import java.util.List;  
-import javax.jms.Connection;  
-import javax.jms.ConnectionFactory;  
-import javax.jms.DeliveryMode;  
-import javax.jms.Destination;  
-import javax.jms.MessageProducer;  
-import javax.jms.Session;  
-import javax.jms.TextMessage;  
-import org.apache.activemq.ActiveMQConnection;  
-import org.apache.activemq.ActiveMQConnectionFactory;
+import java.util.Random;
 
-import com.itdragon.utils.ITDragonUtil;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
+import javax.jms.Destination;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+
+import org.apache.activemq.ActiveMQConnection;
+import org.apache.activemq.ActiveMQConnectionFactory;
 /**
  * 消息队列生产者
  * @author itdragon
@@ -73,19 +72,16 @@ public class ITDragonProducer {
     }  
   
     // 具体的业务逻辑处理  
-    public static void sendMessage(Session session, MessageProducer producer)  
-            throws Exception {  
-        List<String> texts = new ArrayList<String>();  
-        texts.add("ActiveMq");  
-        texts.add(" - ");  
-        texts.add("快速入门");  
-        texts.add(" - ");  
-        texts.add("ITDragon");  
-        for (String text : texts) {  
-            TextMessage message = session.createTextMessage(text);  
+    public static void sendMessage(Session session, MessageProducer producer) throws Exception {  
+    	for(int i = 0; i < 5; i++) {
+			String []operators = {"+","-","*","/"};
+			Random random = new Random(System.currentTimeMillis());  
+			String expression = random.nextInt(10)+operators[random.nextInt(4)]+(random.nextInt(10)+1);
+			TextMessage message = session.createTextMessage(expression);  
             // 发送消息到目的地方  
             producer.send(message);  
-        }  
+			System.out.println("Queue Sender ---------> " + expression);
+		}
     }  
 
 }
