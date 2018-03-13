@@ -35,7 +35,7 @@ public class ITDragonConsumer {
             session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);  
             destination = session.createQueue(QUEUE_NAME);  
             consumer = session.createConsumer(destination);  
-            // 具体的业务逻辑，不断的接收信息，直到没有为止  
+            // 不断地接收信息，直到没有为止  
             while (true) {  
                 TextMessage message = (TextMessage) consumer.receive();  
                 if (null != message) {  

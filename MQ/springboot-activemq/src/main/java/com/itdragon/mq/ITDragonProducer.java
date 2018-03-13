@@ -24,9 +24,9 @@ public class ITDragonProducer {
     public static void main(String[] args) {  
         // ConnectionFactory: 连接工厂,JMS 用它创建连接  
         ConnectionFactory connectionFactory = null;  
-        // Connection: JMS 客户端到 JMS Provider 的连接  
+        // Connection: 客户端和JMS系统之间建立的链接
         Connection connection = null;  
-        // Session: 一个发送或接收消息的线程  
+        // Session: 一个发送或接收消息的线程 ,操作消息的接口
         Session session = null;  
         // Destination: 消息的目的地,消息发送给谁  
         Destination destination = null;  
@@ -44,16 +44,16 @@ public class ITDragonProducer {
             /** 
              * 第一个参数：是否设置事务 true or false。 如果设置了true，第二个参数忽略，并且需要commit()才执行 
              * 第二个参数：acknowledge模式 
-             * AUTO_ACKNOWLEDGE：为自动确认，客户端发送和接收消息不需要做额外的工作。不管消息是否被正常处理。 
-             * CLIENT_ACKNOWLEDGE：为客户端确认。客户端接收到消息后，必须调用acknowledge方法。jms服务器才会删除消息，如果消息处理抛出异常，我们可以不调用acknowledge方法。 
-             * DUPS_OK_ACKNOWLEDGE：允许副本的确认模式。一旦接收方应用程序的方法调用从处理消息处返回，会话对象就会确认消息的接收；而且允许重复确认。在需要考虑资源使用时，这种模式非常有效。 
+             * AUTO_ACKNOWLEDGE：自动确认，客户端发送和接收消息不需要做额外的工作。不管消息是否被正常处理。 默认
+             * CLIENT_ACKNOWLEDGE：客户端确认。客户端接收到消息后，必须手动调用acknowledge方法，jms服务器才会删除消息。
+             * DUPS_OK_ACKNOWLEDGE：允许重复的确认模式。
              */  
             session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);  
             // step5 创建一个队列到目的地  
             destination = session.createQueue(QUEUE_NAME);  
             // step6 在目的地创建一个生产者  
             producer = session.createProducer(destination);  
-            // step7 生产者设置不持久化，实际根据项目决定  
+            // step7 生产者设置不持久化，若要设置持久化则使用 PERSISTENT
             producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);  
             // step8 生产者发送信息，具体的业务逻辑  
             sendMessage(session, producer);  
