@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * ITDragonMongoHelper的bean配置管理类 
+ * bean配置管理类 
  * @author itdragon
  *
  */
@@ -26,7 +26,7 @@ public class ActiveMQBeansConfig {
 		return new ActiveMQTopic("topic.name");
 	}
 	
-	@Bean	// 定义一个名字为queue.name的点对点列队
+	@Bean	// 定义一个名字为response.name的双向应答队列
 	public Queue responseQueue() {
 		return new ActiveMQQueue("response.name");
 	}

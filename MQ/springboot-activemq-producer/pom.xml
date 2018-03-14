@@ -29,11 +29,11 @@
 	</properties>
 
 	<dependencies>
-		<dependency>  <!--  -->
+		<dependency>  <!-- 支持ActiveMQ依赖 -->
             <groupId>org.springframework.boot</groupId>  
             <artifactId>spring-boot-starter-activemq</artifactId>  
         </dependency> 
-        <dependency>  <!-- 使用连接池 -->
+        <dependency>  <!-- 支持使用mq连接池 -->
             <groupId>org.apache.activemq</groupId>  
             <artifactId>activemq-pool</artifactId>  
         </dependency>  

@@ -1,7 +1,5 @@
 package com.itdragon.config;
 
-import java.util.concurrent.Executors;
-
 import javax.jms.ConnectionFactory;
 
 import org.springframework.context.annotation.Bean;
@@ -25,7 +23,7 @@ public class JmsConfig {
     @Bean  // JMS默认开启P2P模式
     public JmsListenerContainerFactory<?> queueListenerFactory(ConnectionFactory connectionFactory) {  
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();  
-        factory.setPubSubDomain(false);  
+        factory.setPubSubDomain(false); 
         factory.setConnectionFactory(connectionFactory);  
         return factory;  
     }  
