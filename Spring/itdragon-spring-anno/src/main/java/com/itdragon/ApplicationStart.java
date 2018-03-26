@@ -14,8 +14,17 @@ import com.itdragon.entity.ITDragonEntity;
 public class ApplicationStart {
 	
 	public static void main(String[] args) {
-		beanAndComponentScan();
+//		beanAndComponentScan();
 //		scopeAndLazy();
+		lifeCycle();
+	}
+	
+	/**
+	 * 自定义Bean生命周期中的初始化方法和销毁方法
+	 */
+	private static void lifeCycle() {
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfig.class);
+		annoApplicationContext.close();
 	}
 	
 	/**
