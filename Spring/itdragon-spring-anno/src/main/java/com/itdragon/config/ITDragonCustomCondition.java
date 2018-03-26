@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
 /**
- * 
+ * 自定义的条件判断组件注入
  * @author itdragon
  *
  */

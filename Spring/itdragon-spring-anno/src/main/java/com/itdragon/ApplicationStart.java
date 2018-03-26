@@ -6,6 +6,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.itdragon.config.ITDragonConfig;
 import com.itdragon.entity.ITDragonEntity;
 
+/**
+ * 测试类
+ * @author itdragon
+ *
+ */
 public class ApplicationStart {
 	
 	public static void main(String[] args) {

@@ -13,6 +13,7 @@ import com.itdragon.entity.ITDragonEntity;
 import com.itdragon.server.ITDragonServer;
 
 /**
+ * 组件注入知识配置类
  * 被注解@Configuration修饰的类表示配置类，类似spring的applicationContext.xml
  * @author itdragon
  */
@@ -73,7 +74,7 @@ public class ITDragonConfig {
 	
 	/**
 	 * 知识点六：Conditional条件判断
-	 * 满足条件才会注册bean，可以修饰在类上，使用时请注意。
+	 * 满足条件才会注册bean，可以修饰在类上，管理整个类下的组件注入。
 	 */
 	@Bean
 	@Conditional({ITDragonCustomCondition.class})
@@ -83,7 +84,7 @@ public class ITDragonConfig {
 	
 	/**
 	 * 知识点七：FactoryBean工厂Bean
-	 * 
+	 * FactoryBean默认通过调用getObject创建的对象，通过调用isSingleton设置单实例和多实例。
 	 */
 	@Bean
 	public ITDragonFactoryBean itdragonFactoryBean() {
