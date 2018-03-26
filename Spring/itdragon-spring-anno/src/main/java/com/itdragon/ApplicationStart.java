@@ -4,7 +4,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.itdragon.config.ITDragonConfig;
+import com.itdragon.config.ITDragonConfigAutowired;
+import com.itdragon.config.ITDragonConfigLifeCycle;
+import com.itdragon.dao.ITDragonDao;
 import com.itdragon.entity.ITDragonEntity;
+import com.itdragon.server.ITDragonServer;
 
 /**
  * 测试类
@@ -16,14 +20,28 @@ public class ApplicationStart {
 	public static void main(String[] args) {
 //		beanAndComponentScan();
 //		scopeAndLazy();
-		lifeCycle();
+//		lifeCycle();
+		autowired();
 	}
+	
+	/**
+	 * expected single matching bean but found 2: ITDragonDao,itdragonDao2
+	 */
+	private static void autowired() {
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigAutowired.class);
+		ITDragonServer itdragonServer = annoApplicationContext.getBean(ITDragonServer.class);
+		System.out.println(itdragonServer.toString());
+		ITDragonDao itdragonDao = (ITDragonDao) annoApplicationContext.getBean("itdragonDao");
+		System.out.println(itdragonDao.toString());
+		annoApplicationContext.close();
+	}
+	
 	
 	/**
 	 * 自定义Bean生命周期中的初始化方法和销毁方法
 	 */
 	private static void lifeCycle() {
-		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfig.class);
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigLifeCycle.class);
 		annoApplicationContext.close();
 	}
 	
