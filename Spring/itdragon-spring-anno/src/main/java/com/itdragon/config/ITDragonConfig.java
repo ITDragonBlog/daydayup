@@ -24,7 +24,7 @@ import com.itdragon.server.ITDragonServer;
  * 二、注解ComponentScan的excludeFilters值设置扫描排除的规则
  * 	1)、通过注解@Filter设置排除的类型,type=ANNOTATION表示按照注解包含排除。classes是具体的注解，如Controller,Server,Repository
  * 三、注解ComponentScan的includeFilters值设置扫描加入的规则
- *  1)、通过设置useDefaultFilters=false关闭Spring默认扫描全部的功能，激活includeFilters作用。
+ *  1)、通过设置useDefaultFilters=false关闭Spring默认扫描全部的功能，使includeFilters生效
  *  
  * 知识点三：@Filter常用的拦截类型
  * 一、FilterType.ANNOTATION：按照注解
@@ -45,7 +45,6 @@ public class ITDragonConfig {
 	 * 知识点一：配置bean
 	 * 一、注解Bean的value值表示bean的id
 	 * 二、注解Bean的value值未设置，则方法名表示bean的id
-	 * @return
 	 */
 	@Bean(value="itdragonBean")
 	public ITDragonEntity itdragonEntity() { //方法名很重要，类似xml的id名，也可以通过@bean的value值重定义

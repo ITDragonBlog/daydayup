@@ -8,7 +8,7 @@ import com.itdragon.dao.ITDragonDao;
 @Service
 public class ITDragonServer {
 	
-	@Autowired
+	@Autowired(required=false)
 	private ITDragonDao itdragonDao;
 
 	@Override

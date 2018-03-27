@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.itdragon.config.ITDragonConfig;
 import com.itdragon.config.ITDragonConfigAutowired;
 import com.itdragon.config.ITDragonConfigLifeCycle;
+import com.itdragon.config.ITDragonConfigValue;
 import com.itdragon.dao.ITDragonDao;
 import com.itdragon.entity.ITDragonEntity;
 import com.itdragon.server.ITDragonServer;
@@ -21,7 +22,10 @@ public class ApplicationStart {
 //		beanAndComponentScan();
 //		scopeAndLazy();
 //		lifeCycle();
-		autowired();
+//		autowired();
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigValue.class);
+		ITDragonEntity itdragon = (ITDragonEntity) annoApplicationContext.getBean("valueBean");
+		System.out.println(itdragon);
 	}
 	
 	/**
