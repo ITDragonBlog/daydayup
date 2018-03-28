@@ -3,6 +3,7 @@ package com.itdragon;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.itdragon.config.ApplicationContextConfig;
 import com.itdragon.config.ITDragonConfig;
 import com.itdragon.config.ITDragonConfigAutowired;
 import com.itdragon.config.ITDragonConfigLifeCycle;
@@ -23,9 +24,12 @@ public class ApplicationStart {
 //		scopeAndLazy();
 //		lifeCycle();
 //		autowired();
-		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigValue.class);
-		ITDragonEntity itdragon = (ITDragonEntity) annoApplicationContext.getBean("valueBean");
-		System.out.println(itdragon);
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+		ITDragonServer itDragonServer = annoApplicationContext.getBean(ITDragonServer.class);
+		itDragonServer.findAll();
+//		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigValue.class);
+//		ITDragonEntity itdragon = (ITDragonEntity) annoApplicationContext.getBean("valueBean");
+//		System.out.println(itdragon);
 	}
 	
 	/**
