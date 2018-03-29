@@ -13,7 +13,7 @@ import com.itdragon.entity.ITDragonEntity;
 import com.itdragon.server.ITDragonServer;
 
 /**
- * 测试类
+ * 知识点测试类
  * @author itdragon
  *
  */
@@ -24,15 +24,32 @@ public class ApplicationStart {
 //		scopeAndLazy();
 //		lifeCycle();
 //		autowired();
-		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
-		ITDragonServer itDragonServer = annoApplicationContext.getBean(ITDragonServer.class);
-		itDragonServer.findAll();
-//		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigValue.class);
-//		ITDragonEntity itdragon = (ITDragonEntity) annoApplicationContext.getBean("valueBean");
-//		System.out.println(itdragon);
+//		value();
+		transactionalUpdateUser();
 	}
 	
 	/**
+	 * 配置数据源，事务管理
+	 */
+	private static void transactionalUpdateUser() {
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+		ITDragonServer itDragonServer = annoApplicationContext.getBean(ITDragonServer.class);
+		System.out.println(itDragonServer.findAll());
+		itDragonServer.updateNameById("ITDragonGit-3", 5L);
+		annoApplicationContext.close();
+	}
+	
+	/**
+	 * @PropertySource 和 @Value 注解的常用语法
+	 */
+	private static void value() {
+		AnnotationConfigApplicationContext annoApplicationContext = new AnnotationConfigApplicationContext(ITDragonConfigValue.class);
+		ITDragonEntity itdragon = (ITDragonEntity) annoApplicationContext.getBean("valueBean");
+		System.out.println(itdragon);
+	}
+	
+	/**
+	 * 请忽略
 	 * expected single matching bean but found 2: ITDragonDao,itdragonDao2
 	 */
 	private static void autowired() {

@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * Spring 配置类
+ * Spring 实战配置类
  * 配置数据源，事务管理，bean，自动扫描包
  * @author itdragon
  *
@@ -38,7 +38,7 @@ public class ApplicationContextConfig {
 	@Value("${DATA_JDBC_URL}")
 	private String DATA_JDBC_URL;
 	
-	@Bean
+	@Bean // 数据源
 	public DataSource dataSource() throws Exception{
 		ComboPooledDataSource dataSource = new ComboPooledDataSource();
 		dataSource.setUser(DATA_USER);
@@ -48,13 +48,13 @@ public class ApplicationContextConfig {
 		return dataSource;
 	}
 	
-	@Bean
+	@Bean // jdbc模板
 	public JdbcTemplate jdbcTemplate() throws Exception{
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
 		return jdbcTemplate;
 	}
 	
-	@Bean
+	@Bean // 事务管理
 	public PlatformTransactionManager transactionManager() throws Exception{
 		return new DataSourceTransactionManager(dataSource());
 	}

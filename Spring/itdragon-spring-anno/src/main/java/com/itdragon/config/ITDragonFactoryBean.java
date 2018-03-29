@@ -5,7 +5,7 @@ import org.springframework.beans.factory.FactoryBean;
 import com.itdragon.entity.ITDragonEntity;
 
 /**
- * 定义Spring的FactoryBean
+ * 自定义Bean的工厂类
  * @author itdragon
  *
  */
