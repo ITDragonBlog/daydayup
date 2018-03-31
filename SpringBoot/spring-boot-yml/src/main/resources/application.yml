@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+
+yaml:
+  str: 字符串可以\n不加引号
+  specialStr: "双引号直接输出\n特殊字符"
+  specialStr2: '单引号可以转义\n特殊字符'
+  flag: false
+  num: 666
+  Dnum: 88.88
+  list:
+    - one
+    - two
+    - two
+  set: [1,2,2,3]
+  map: {k1: v1, k2: v2}
+  positions:
+    - name: ITDragon
+      salary: 15000.00
+    - name: ITDragonBlog
+      salary: 18888.88
+
+
+
+userinfo:
+  account: itdragon
+  age: 25
+  active: true
+  createdDate: 2018/03/31 15:27:30
+  map: {k1: v1}
+  list:
+    - one
+    - two
+  position:
+    name: Java高级工程师
+    salary: 15000.00
+  dog:
+    test: 123;

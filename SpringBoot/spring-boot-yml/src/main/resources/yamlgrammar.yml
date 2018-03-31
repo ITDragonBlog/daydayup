@@ -1,0 +1,13 @@
+
+userinfo:
+  account: itdragon
+  age: 25
+  active: true
+  createdDate: 2018/03/31 15:27:30
+  map: {k1: v1}
+  list:
+    - one
+    - two
+  position:
+    name: Java高级工程师
+    salary: 15000.00
