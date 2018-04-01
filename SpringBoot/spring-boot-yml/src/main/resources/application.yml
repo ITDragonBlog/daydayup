@@ -21,7 +21,21 @@ yaml:
     - name: ITDragonBlog
       salary: 18888.88
 
+---
+itdragon:
+  nick-name: ITDragonBlog
+  email: 1234567890@qq.com
+  iphone: 1234567890
+  abilities: [java, sql, html]
+  created_date: 2018/03/31 15:27:30
 
+ran:  # 这里的prefix不能是random，
+  ran-value: ${random.value}
+  ran-int: ${random.int}
+  ran-long: ${random.long}
+  ran-int-num: ${random.int(10)}
+  ran-int-range: ${random.int[10,20]}
+  ran-placeholder: placeholder_${ran.ran-value:此处不能有空格，且key为完整路径}
 
 userinfo:
   account: itdragon

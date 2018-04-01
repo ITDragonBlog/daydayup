@@ -21,8 +21,8 @@ public class YamlEntity {
 
     // 字面值，字符串，布尔，数值
     private String str; // 普通字符串
-    private String specialStr; // 转义特殊字符串
-    private String specialStr2;// 输出特殊字符串
+    private String specialStr; // 输出特殊字符串
+    private String specialStr2;// 转义特殊字符串
     private Boolean flag;   // 布尔类型
     private Integer num;    // 整数
     private Double dNum;    // 小数
