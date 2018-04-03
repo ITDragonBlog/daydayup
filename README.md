@@ -1,6 +1,10 @@
 # daydayup
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
+## MongoDB
+MongoDB 是最接近关系性数据库的非关系型数据库，值得我们去学习。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/MongoDB)  
+系列博客：http://www.cnblogs.com/itdragon/category/1173591.html
+
 ## Shiro
 Shiro 是Java的安全框架，使用简单，功能强大 [点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Shiro)  
 系列博客：http://www.cnblogs.com/itdragon/category/1169223.html
