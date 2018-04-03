@@ -1,6 +1,10 @@
 # daydayup
 > 每天都在进步，每周都在总结，这些来源于工作和学习中的小知识。如果觉得不错可以点下star
 
+## Shiro
+Shiro 是Java的安全框架，使用简单，功能强大 [点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Shiro)  
+系列博客：http://www.cnblogs.com/itdragon/category/1169223.html
+
 ## Netty
 Netty 服务启动流程分析，拆包粘包，编解码技术，数据通信，心跳监测，BIO，NIO，AIO区别，常见面试题。[点击进入...](https://github.com/ITDragonBlog/daydayup/tree/master/Netty)    
 系列博客：http://www.cnblogs.com/itdragon/category/1153257.html
