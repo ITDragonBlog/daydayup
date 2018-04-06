@@ -20,7 +20,9 @@ public class ThymeleafController {
     public String thymeleaf(ModelMap map) {
         map.put("thText", "th:text 设置文本内容 <b>加粗</b>");
         map.put("thUText", "th:utext 设置文本内容 <b>加粗</b>");
+        map.put("thValue", "thValue.....");
         map.put("thEach", Arrays.asList("th:each", "遍历列表"));
-        return "thymeleaf";
+        map.put("msg", "msg is not null");
+        return "grammar/thymeleaf";
     }
 }
