@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{commons/default::common-head}">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8" />
+	<title>员工列表</title>
+</head>
+<body>
+<div id="wrapper">
+	<header th:replace="~{commons/header::common-header}"></header>
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<!-- Page Heading -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Employees</h1>
+					<ol class="breadcrumb">
+						<li><i class="fa fa-dashboard"></i> <a href="/dashboard">Dashboard</a>
+						</li>
+						<li class="active"><i class="fa fa-table"></i> Employees</li>
+					</ol>
+				</div>
+			</div>
+			<div class="row" th:if="${not #strings.isEmpty(message)}">
+				<div class="col-lg-12">
+					<div class="alert alert-info alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<i class="fa fa-info-circle"></i> <strong th:text="${message}"></strong>
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h2>员工信息表</h2>
+					<div class="table-responsive">
+						<table class="table table-striped table-sm">
+							<thead>
+							<tr>
+								<th>#</th>
+								<th>lastName</th>
+								<th>email</th>
+								<th>gender</th>
+								<th>department</th>
+								<th>birth</th>
+								<th>操作</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="emp:${emps}">
+								<td th:text="${emp.id}"></td>
+								<td>[[${emp.lastName}]]</td>
+								<td th:text="${emp.email}"></td>
+								<td th:text="${emp.gender}==0?'女':'男'"></td>
+								<td th:text="${emp.department.departmentName}"></td>
+								<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></td>
+								<td>
+									<a class="btn btn-sm btn-primary" th:href="@{/emp/}+${emp.id}">编辑</a>
+									<button th:attr="del_uri=@{/emp/}+${emp.id}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+						<!--<table class="table table-bordered table-hover table-striped">
+							<thead>
+								<tr>
+									<th>登录账号</th>
+									<th>账号昵称</th>
+									<th>手机号码</th>
+									<th>邮箱号码</th>
+									<th>来源平台</th>
+									<th>账号级别</th>
+									<th>账号权限</th>
+									<th>Operate</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="employee : ${employees.content}">
+									<td >[[employee.account]]</td>
+									<td>[[employee.userName]]</td>
+									<td>[[employee.iphone]]</td>
+									<td>[[employee.email]]</td>
+									<td>[[employee.platform]]</td>
+									<td>
+									</td>
+									<td><a th:href="@{/employees/delete/${employee.id}">DELETE</a></td>
+								</tr>
+							</tbody>
+						</table>-->
+						<!--<tags:pagination page="${employees}" paginationSize="10"/>-->
+					</div>
+				</div>
+			</div>
+			<!-- /.row -->
+		</div>
+	</div>
+</div>
+</body>
+</html>

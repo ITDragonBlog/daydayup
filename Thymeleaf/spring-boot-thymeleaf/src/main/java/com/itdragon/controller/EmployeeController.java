@@ -19,7 +19,7 @@ public class EmployeeController {
     @GetMapping("emps")
     public String findAll(ModelMap map){
         map.put("emps", employeeDao.getAll());
-        return "emp/list";
+        return "employees/manageEmployees";
     }
 
 }
