@@ -16,10 +16,10 @@ public class EmployeeController {
     @Autowired
     private EmployeeDao employeeDao;
 
-    @GetMapping("emps")
+    @GetMapping("employees")
     public String findAll(ModelMap map){
-        map.put("emps", employeeDao.getAll());
-        return "employees/manageEmployees";
+        map.put("employees", employeeDao.getAll());
+        return "employees/list";
     }
 
 }

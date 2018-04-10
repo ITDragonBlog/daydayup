@@ -2,16 +2,17 @@ package com.itdragon.entities;
 
 import java.util.Date;
 
+/**
+ * 员工实体类
+ */
 public class Employee {
 
-	private Integer id;
-    private String lastName;
-
-    private String email;
-    //1 male, 0 female
-    private Integer gender;
-    private Department department;
-    private Date birth;
+	private Integer id;     // 员工编号
+    private String lastName;// 员工昵称
+    private String email;   // 内部邮箱
+    private Integer gender; // 性别：1 表示男性，0表示女性
+    private Department department; // 员工所在部门
+    private Date birth;     // 员工生日
 
     public Integer getId() {
         return id;

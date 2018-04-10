@@ -1,5 +1,8 @@
 package com.itdragon.entities;
 
+/**
+ * 用于测试th:object属性实体类
+ */
 public class ThObject {
 
     private Long id;

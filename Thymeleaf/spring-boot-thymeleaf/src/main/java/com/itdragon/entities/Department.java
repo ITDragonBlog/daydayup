@@ -1,16 +1,21 @@
 package com.itdragon.entities;
 
+/**
+ * 部门实体类
+ */
 public class Department {
 
-	private Integer id;
-	private String departmentName;
+	private Integer id;	// 部门编号
+	private String departmentName; // 部门名称
+	private String position;	// 部门职位
 
 	public Department() {
 	}
 	
-	public Department(int i, String string) {
+	public Department(int i, String departmentName, String position) {
 		this.id = i;
-		this.departmentName = string;
+		this.departmentName = departmentName;
+		this.position = position;
 	}
 
 	public Integer getId() {
@@ -29,9 +34,19 @@ public class Department {
 		this.departmentName = departmentName;
 	}
 
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", departmentName=" + departmentName + "]";
+		return "Department{" +
+				"id=" + id +
+				", departmentName='" + departmentName + '\'' +
+				", position='" + position + '\'' +
+				'}';
 	}
-	
 }

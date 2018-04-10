@@ -19,12 +19,11 @@ public class EmployeeDao {
 
 	static{
 		employees = new HashMap<Integer, Employee>();
-
-		employees.put(1001, new Employee(1001, "E-AA", "aa@163.com", 1, new Department(101, "D-AA")));
-		employees.put(1002, new Employee(1002, "E-BB", "bb@163.com", 1, new Department(102, "D-BB")));
-		employees.put(1003, new Employee(1003, "E-CC", "cc@163.com", 0, new Department(103, "D-CC")));
-		employees.put(1004, new Employee(1004, "E-DD", "dd@163.com", 0, new Department(104, "D-DD")));
-		employees.put(1005, new Employee(1005, "E-EE", "ee@163.com", 1, new Department(105, "D-EE")));
+		employees.put(1001, new Employee(1001, "E-itdragon", "1234567891@163.com", 1, new Department(101, "D-JAVA", "Java工程师")));
+		employees.put(1002, new Employee(1002, "E-ITDragon", "1234567892@163.com", 1, new Department(102, "D-Python", "Python工程师")));
+		employees.put(1003, new Employee(1003, "E-ITDragonBlog", "1234567893@163.com", 0, new Department(103, "D-PHP", "Php工程师")));
+		employees.put(1004, new Employee(1004, "E-CNBlog", "1234567894@163.com", 0, new Department(104, "D-GO", "Go工程师")));
+		employees.put(1005, new Employee(1005, "E-CSDN", "1234567895@163.com", 1, new Department(105, "D-Data", "大数据分析师")));
 	}
 	
 	private static Integer initId = 1006;
@@ -34,7 +33,7 @@ public class EmployeeDao {
 			employee.setId(initId++);
 		}
 		
-		employee.setDepartment(departmentDao.getDepartment(employee.getDepartment().getId()));
+		employee.setDepartment(departmentDao.getDepartmentById(employee.getDepartment().getId()));
 		employees.put(employee.getId(), employee);
 	}
 	
@@ -42,11 +41,11 @@ public class EmployeeDao {
 		return employees.values();
 	}
 	
-	public Employee get(Integer id){
+	public Employee getEmployeeById(Integer id){
 		return employees.get(id);
 	}
 	
-	public void delete(Integer id){
+	public void deleteEmployeeById(Integer id){
 		employees.remove(id);
 	}
 }
