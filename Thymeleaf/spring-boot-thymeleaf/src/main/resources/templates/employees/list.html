@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="wrapper">
-	<header th:replace="~{commons/header::common-header}"></header>
+	<header th:replace="~{commons/header::common-header(activeUrl='employees')}"></header>
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<!-- Page Heading -->
@@ -36,6 +36,7 @@
 				<div class="col-lg-12">
 					<h2 th:text="#{employees}"></h2>
 					<div class="table-responsive">
+						<a class="pull-right btn" th:href="@{/employee}" th:text="#{add.employees}"></a>
 						<table class="table table-striped table-sm">
 							<thead>
 							<tr>

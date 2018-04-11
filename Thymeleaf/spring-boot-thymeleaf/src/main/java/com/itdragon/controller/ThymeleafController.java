@@ -10,9 +10,9 @@ import java.util.*;
 @Controller
 public class ThymeleafController {
 
-    @RequestMapping("dashboard2")
-    public String login() {
-        return "dashboard2";
+    @RequestMapping("dashboard")
+    public String dashboard() {
+        return "dashboard";
     }
 
     @RequestMapping("thymeleaf")
