@@ -17,7 +17,7 @@
 				<div class="col-lg-12">
 					<h1 class="page-header" th:text="#{employees}"></h1>
 					<ol class="breadcrumb">
-						<li><i class="fa fa-dashboard"></i> <a href="/dashboard" th:text="#{dashboard}"></a>
+						<li><i class="fa fa-dashboard"></i> <a th:href="@{/dashboard}" th:text="#{dashboard}"></a>
 						</li>
 						<li class="active"><i class="fa fa-table"></i> <span th:text="#{employees}"></span></li>
 					</ol>
@@ -60,8 +60,8 @@
 								<td th:text="${emp.department.position}"></td>
 								<td th:text="${#dates.format(emp.birth, 'yyyy-MM-dd HH:mm')}"></td>
 								<td>
-									<a class="btn btn-sm btn-success" th:href="@{/emp/}+${emp.id}" th:text="#{edit}"></a>
-									<a class="btn btn-sm btn-danger deleteBtn" th:href="@{/emp/}+${emp.id}" th:text="#{delete}"></a>
+									<a class="btn btn-sm btn-success" th:href="@{/employee/}+${emp.id}" th:text="#{edit}"></a>
+									<a class="btn btn-sm btn-danger deleteBtn" th:href="@{/employee/}+${emp.id}" th:text="#{delete}"></a>
 								</td>
 							</tr>
 							</tbody>
