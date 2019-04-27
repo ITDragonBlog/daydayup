@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="~{commons/default::common-head}">
+		<meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<title>新增员工</title>
+	</head>
+
+	<body>
+	<div id="wrapper">
+		<header th:replace="~{commons/header::common-header(activeUrl='employees')}"></header>
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header" th:text="#{employees}"></h1>
+						<ol class="breadcrumb">
+							<li><i class="fa fa-dashboard"></i> <a href="/dashboard" th:text="#{dashboard}"></a>
+							</li>
+							<li class="active"><i class="fa fa-table"></i> <span th:text="#{employees}"></span></li>
+						</ol>
+					</div>
+				</div>
+				<div class="row" th:if="${not #strings.isEmpty(message)}">
+					<div class="col-lg-12">
+						<div class="alert alert-info alert-dismissable">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<i class="fa fa-info-circle"></i> <strong th:text="${message}"></strong>
+						</div>
+					</div>
+				</div>
+				<div class="row col-lg-10">
+					<form th:action="@{/employee}" method="post">
+						<!--发送put请求修改员工数据-->
+						<!--
+						1、SpringMVC中配置HiddenHttpMethodFilter;（SpringBoot自动配置好的）
+						2、页面创建一个post表单
+						3、创建一个input项，name="_method";值就是我们指定的请求方式
+						-->
+						<input type="hidden" name="_method" value="put" th:if="${employee!=null}"/>
+						<input type="hidden" name="id" th:if="${employee!=null}" th:value="${employee.id}">
+						<div class="form-group">
+							<label th:text="#{last.name}"></label>
+							<input name="lastName" type="text" class="form-control" placeholder="itdragon" th:value="${employee!=null}?${employee.lastName}">
+						</div>
+						<div class="form-group">
+							<label th:text="#{email}"></label>
+							<input name="email" type="email" class="form-control" placeholder="itdragon@163.com" th:value="${employee!=null}?${employee.email}">
+						</div>
+						<div class="form-group">
+							<label th:text="#{gender}"></label>
+							<div class="form-check form-check-inline">
+								<input class="form-check-input" type="radio" name="gender" value="1" th:checked="${employee!=null}?${employee.gender==1}">
+								<label class="form-check-label" th:text="#{male}"></label>
+								<input class="form-check-input" type="radio" name="gender" value="0" th:checked="${employee!=null}?${employee.gender==0}">
+								<label class="form-check-label" th:text="#{female}"></label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label th:text="#{department}"></label>
+							<!--提交的是部门的id-->
+							<select class="form-control" name="department.id">
+								<option th:selected="${employee!=null}?${department.id == employee.department.id}" th:value="${department.id}" th:each="department:${departments}" th:text="${department.departmentName}">1</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label th:text="#{birth}"></label>
+							<input name="birth" type="text" class="form-control" placeholder="2018/04/11 11:22:33" th:value="${employee!=null}?${#dates.format(employee.birth, 'yyyy-MM-dd HH:mm')}">
+						</div>
+						<button type="submit" class="btn btn-primary" th:text="${employee!=null}?'#{edit}':'#{add}'"></button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

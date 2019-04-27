@@ -15,6 +15,8 @@ public class UserInfo {
 
     // step2 JVM读取到方法区中的main方法，开始执行它的指令
     public static void main(String [] args) {
+        System.out.println(Math.round(11.5));
+        System.out.println(Math.round(-11.5));
         // step3 user为局部变量，存放在栈中。
         UserInfo user = new UserInfo(); // step4 实例化UserInfo对象，存放在堆中，并赋值给user
         user.id = 1L;   // step5 属性赋值

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf 语法</title>
+</head>
+<body>
+    <h2>ITDragon Thymeleaf 语法</h2>
+    <!--th:text 设置当前元素的文本内容，常用，优先级不高-->
+    <p th:text="${thText}" />
+    <p th:utext="${thUText}" />
+
+    <!--th:value 设置当前元素的value值，常用，优先级仅比th:text高-->
+    <input type="text" th:value="${thValue}" />
+
+    <!--th:each 遍历列表，常用，优先级很高，仅此于代码块的插入-->
+    <!--th:each 修饰在div上，则div层重复出现，若只想p标签遍历，则修饰在p标签上-->
+    <div th:each="message : ${thEach}"> <!-- 遍历整个div-p，不推荐-->
+        <p th:text="${message}" />
+    </div>
+    <div> <!--只遍历p，推荐使用-->
+        <p th:text="${message}" th:each="message : ${thEach}" />
+    </div>
+
+    <!--th:if 条件判断，类似的有th:switch，th:case，优先级仅次于th:each, 其中#strings是变量表达式的内置方法-->
+    <p th:text="${thIf}" th:if="${not #strings.isEmpty(thIf)}"></p>
+
+    <!--th:insert 把代码块插入当前div中，优先级最高，类似的有th:replace，th:include，~{} ：代码块表达式 -->
+    <div th:insert="~{grammar/common::thCommon}"></div>
+
+    <!--th:object 声明变量，和*{} 一起使用-->
+    <div th:object="${thObject}">
+        <p>ID: <span th:text="*{id}" /></p><!--th:text="${thObject.id}"-->
+        <p>TH: <span th:text="*{thName}" /></p><!--${thObject.thName}-->
+        <p>DE: <span th:text="*{desc}" /></p><!--${thObject.desc}-->
+    </div>
+
+</body>
+</html>
