@@ -13,7 +13,15 @@ enum class Lang{
     }
 }
 
+infix fun Int.extensionFun(i: Int): Int {
+    return this + i
+}
+
 fun main(args: Array<String>) {
+    println(10 extensionFun 20)
+    println(10.extensionFun(20))
+    val c = { x: Int, y: Int -> x + y }
+    println(c(1,2))
     println("Hello Kotlin")
     var name = "itdragon"
     println(name)
