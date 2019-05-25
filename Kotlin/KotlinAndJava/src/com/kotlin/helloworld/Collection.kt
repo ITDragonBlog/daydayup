@@ -12,6 +12,43 @@ fun main(args: Array<String>) {
     isumCollectionElement()
 }
 
+/* 伪代码
+fun demo() {
+    @Transactional
+    fun modifyEquipmentEnergyValue(equipmentEnergyValues: List<EquipmentEnergyValue>): OperateStatus {
+        // 通过上下文获取当前登录的用户，从而获取其权限
+        val currentUser = ContextUtils.getCurrentUser()
+        // 一个用户关联多个角色，一个角色绑定多个权限，所有一定会有重复的权限存在
+        // 通过flatMap 方法获取所有权限，在通过.toSet()方法去重
+        val authorities = currentUser.roles?.flatMap { it.authorities.orEmpty() }.toSet()
+        // 先判断是否针对所有设备都有权限，避免没必要的事务回滚
+        // 通过find 方法找出没有权限设备
+        equipmentEnergyValues.find { !authorities.contains(it.equipment.id) }?.let {
+            throw AuthenticationException("您没有权限$it设备能耗，请联系工程人员")
+        }
+        // 先判断是否存在重复数据或者不合理数据，避免没必要的事务回滚
+        // 设备名称不能重复，用map映射出一个新集合，原集合不受影响
+        val equipmenNameSize = equipmentEnergyValues.map { it.equipment.name }.toSet().size
+        if (equipmenNameSize != equipmentEnergyValues.size) {
+            throw IllegalArgumentException("设备不能重复修改")
+        }
+        // 通过 maxBy 方法找出值最大的一项
+        if (equipmentEnergyValues.maxBy { it.value }.value >= 1000) {
+            throw IllegalArgumentException("设备能耗值不符合规范")
+        }
+        // 旧数据和新数据求差集，找出需要清空的数据（或者设为零）
+        val oldEquipmentEnergyValues = equipmentRepository.findByLocationAndDate(xxx,xxx)
+        oldEquipmentEnergyValues.subtract(equipmentEnergyValues).forEach {
+            // 删除
+        }
+        // 更新数据时考虑null值覆盖的问题
+        equipmentEnergyValues.forEach {
+            // 通过id判断是更新还是创建，用BeanUtils.copyProperties做复制时需要注意null的问题
+        }
+        return OperateStatus()
+    }
+}*/
+
 fun getCollectionElement() {
     val list: MutableList<Int> = mutableListOf(1,2,3,4,5)
     println("getOrElse : ${list.getOrElse(10,{ 20 })}")
@@ -65,6 +102,8 @@ fun summaryCollectionElement() {
 fun mapCollectionElement() {
     val list = listOf(-3,-2,1,3,5,3,7,2,10,9)
     list.map { it + 1 }.forEach { print("$it \t") }
+    println()
+    list.forEach { print("$it \t") }
     list.mapIndexedNotNull { index, value ->
         if (index % 2 == 0) value else null
     }.forEach { print("$it \t") }
