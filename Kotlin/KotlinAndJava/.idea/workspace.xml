@@ -4,7 +4,6 @@
     <list default="true" id="ac112728-1d39-42c0-82ff-d6434af3f8d3" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../../Java/itdragon-jvm/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Java/itdragon-jvm/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,10 +19,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="50">
               <caret line="2" selection-start-line="2" selection-end-line="2" />
-              <folding>
-                <element signature="e#202#203#0" expanded="true" />
-                <element signature="e#251#252#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -37,11 +32,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+            <state relative-caret-position="175">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/CalendarD.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Apps/Java/jdk1.8.0_212/src.zip!/java/util/TimeZone.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14175">
+              <caret line="623" column="27" selection-start-line="623" selection-start-column="27" selection-end-line="623" selection-end-column="27" />
+              <folding>
+                <element signature="e#23369#23370#0" expanded="true" />
+                <element signature="e#23426#23427#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -51,8 +71,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Kotlin File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -63,6 +83,7 @@
       <find>allocationSpinLock</find>
       <find>notEmpty</find>
       <find>offer</find>
+      <find>getInstance</find>
     </findStrings>
     <replaceStrings>
       <replace>var</replace>
@@ -80,6 +101,8 @@
         <option value="$PROJECT_DIR$/src/com/java/helloworld/Message.java" />
         <option value="$PROJECT_DIR$/src/com/java/helloworld/HelloWorld.java" />
         <option value="$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt" />
+        <option value="$PROJECT_DIR$/src/com/java/helloworld/Calendar.java" />
+        <option value="$PROJECT_DIR$/src/com/java/helloworld/CalendarD.java" />
       </list>
     </option>
   </component>
@@ -140,7 +163,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558760134828" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558797402281" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -158,7 +181,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.com.kotlin.helloworld.CollectionKt">
+  <component name="RunManager" selected="Application.CalendarD">
+    <configuration name="CalendarD" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.java.helloworld.CalendarD" />
+      <module name="KotlinAndJava" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.java.helloworld.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HelloWorld" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.java.helloworld.HelloWorld" />
       <module name="KotlinAndJava" />
@@ -236,12 +273,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.HelloWorld" />
+      <item itemvalue="Application.CalendarD" />
       <item itemvalue="Kotlin.com.kotlin.helloworld.VariableKt" />
       <item itemvalue="Kotlin.com.kotlin.helloworld.HelloWorldKt" />
       <item itemvalue="Kotlin.com.kotlin.helloworld.CollectionKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.CalendarD" />
         <item itemvalue="Kotlin.com.kotlin.helloworld.CollectionKt" />
         <item itemvalue="Application.HelloWorld" />
         <item itemvalue="Kotlin.com.kotlin.helloworld.VariableKt" />
@@ -264,18 +303,19 @@
       <workItem from="1556347692727" duration="4129000" />
       <workItem from="1557840424088" duration="1861000" />
       <workItem from="1557928417169" duration="5021000" />
-      <workItem from="1558751265465" duration="5537000" />
+      <workItem from="1558751265465" duration="10056000" />
+      <workItem from="1558919906750" duration="332000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21103000" />
+    <option name="totallyTimeSpent" value="25954000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24962178" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
@@ -286,7 +326,7 @@
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
-      <window_info anchor="bottom" id="Run" order="4" visible="true" weight="0.3295082" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -306,6 +346,38 @@
       <window_info anchor="right" id="Theme Preview" order="8" />
       <window_info anchor="right" id="Maven Projects" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="1" />
+      <window_info anchor="bottom" id="Message" order="2" />
+      <window_info anchor="bottom" id="Find" order="3" />
+      <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3295082" />
+      <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3295082" />
+      <window_info anchor="right" id="Maven" order="0" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -342,14 +414,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/Message.java">
+    <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/Message.java" />
+    <entry file="jar://C:/Apps/Java/jdk1.8.0_212/src.zip!/java/util/Calendar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-          <folding>
-            <element signature="e#198#199#0" expanded="true" />
-            <element signature="e#225#226#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="624">
+          <caret line="378" column="28" selection-start-line="378" selection-start-column="28" selection-end-line="378" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/HelloWorld.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
@@ -360,21 +436,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/HelloWorld.java">
+    <entry file="file://$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="175">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Apps/Java/jdk1.8.0_212/src.zip!/java/util/TimeZone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14175">
+          <caret line="623" column="27" selection-start-line="623" selection-start-column="27" selection-end-line="623" selection-end-column="27" />
           <folding>
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#251#252#0" expanded="true" />
+            <element signature="e#23369#23370#0" expanded="true" />
+            <element signature="e#23426#23427#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/kotlin/helloworld/Collection.kt">
+    <entry file="file://$PROJECT_DIR$/src/com/java/helloworld/CalendarD.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        <state relative-caret-position="25">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
