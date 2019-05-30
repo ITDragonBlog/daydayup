@@ -29,8 +29,8 @@ public class LocalTimeD {
         System.out.println("过去一秒钟: " + time.minusSeconds(1));
 
         /*-- 时间设置 --*/
-        System.out.println("修改年份: " + time.withHour(18));
-        System.out.println("修改月份: " + time.withMinute(59));
+        System.out.println("修改小时: " + time.withHour(18));
+        System.out.println("修改分钟: " + time.withMinute(59));
 
         /*-- 解析时间 --*/
         System.out.println("HH:mm 格式: " + LocalTime.parse("13:14"));
