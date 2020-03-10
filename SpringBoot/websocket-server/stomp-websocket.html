@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>WebSocket 发布订阅</title>
+<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/antd/3.23.6/antd.min.css">
+<script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<h2 id="connStatus"></h2>
+    <div style="padding-left:20px;">
+        <p>/topic/subscribeTopic 订阅广播通道；/sendToServer 向服务端推送消息；/sendToTopic 将消息广播出去</p>
+        <div>
+            <label>订阅通道: </label> <input type="text" id="subscribeChannel" value="/topic/subscribeTopic"/><br>
+            <label>推送通道: </label> <input type="text" id="sendChannel" value="/sendToServer"/><br>
+			<button id="subscribe" onclick="subscribe()">订阅</button>
+			<button id="connect" onclick="connect()">连接</button>
+            <button id="disconnect"  onclick="disconnect();">断开连接</button>
+        </div>
+		<br>
+        <div>
+            <label>用户名称: </label> <input type="text" id="name"/><br>
+            <label>输入消息: </label> <input type="text" id="message"/><br>
+            <button id="send" onclick="sendMsg();">发送</button>
+            <p id="response"></p>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        var stompClient = null;
+        var host="http://localhost:8809";
+		function subscribe() {
+			$.get(host+'/subscribeTopic');
+		}
+		
+        function connect() {
+            var socket = new SockJS(host+'/socket');
+            stompClient = Stomp.over(socket);
+            stompClient.connect({}, function(frame) {
+				$('#connStatus').html('Connected:' + frame)
+                stompClient.subscribe($('#subscribeChannel').val(), function(response) {
+					$('#response').html(response.body);
+                });
+            },function(err){
+				console.log(err)
+			});
+        }
+		
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+			$('#connStatus').html('Disconnected')
+        }
+		
+        function sendMsg() {
+            var message = $('#message').val();
+            stompClient.send($('#sendChannel').val(), {}, message);
+        }
+    </script>
+</body>
+</html>

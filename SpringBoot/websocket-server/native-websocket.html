@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>WebSocket 简单通讯</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/antd/3.23.6/antd.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+</head>
+<body>
+<div>
+    <label>订阅通道: </label> <input type="text" id="clientId" value=""/><br>
+    <label>推送消息: </label> <input type="text" id="message" value=""/><br>
+    <button id="subscribe" onclick="openSocket()">开启socket</button>
+    <button id="connect" onclick="sendMessage()">发送消息</button>
+    <button id="disconnect"  onclick="closeSocket();">关闭socket</button>
+</div>
+<script>
+    var socket;
+    function openSocket() {
+        if(typeof(WebSocket) == "undefined") {
+            console.log("您的浏览器不支持WebSocket");
+        }else{
+            console.log("您的浏览器支持WebSocket");
+            var socketUrl="ws://localhost:8809/nativeSocket/"+$("#clientId").val();
+            if(socket!=null){
+                socket.close();
+                socket=null;
+            }
+            socket = new WebSocket(socketUrl);
+            socket.onopen = function() {
+                console.log("websocket已打开");
+            };
+            socket.onmessage = function(msg) {
+                console.log(msg.data);
+            };
+            socket.onclose = function() {
+                console.log("websocket已关闭");
+            };
+            socket.onerror = function() {
+                console.log("websocket发生了错误");
+            }
+        }
+    }
+    function sendMessage() {
+        if(socket!=null){
+            socket.send($("#message").val());
+        }
+    }
+    function closeSocket() {
+        socket.close();
+    }
+</script>
+</body>
+</html>
