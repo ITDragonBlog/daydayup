@@ -1,0 +1,79 @@
+﻿{
+  "_id" : ObjectId("5a9bbefa2f3fdfdf540a1be7"),
+  "name" : "ITDragon",
+  "age" : 25.0,
+  "address" : {
+    "province" : "广东省",
+    "city" : "深圳"
+  },
+  "ability" : ["JAVA", "HTML", "MONGODB"]
+}
+{
+  "_id" : ObjectId("5a9bbfd02f3fdfdf540a1be8"),
+  "name" : "ITDragon",
+  "age" : 25.0,
+  "address" : {
+    "province" : "广东",
+    "city" : "深圳"
+  },
+  "ability" : ["JAVA", "HTML"]
+}
+{
+  "_id" : ObjectId("5a9bed5e2f3fdfdf540a1be9"),
+  "name" : "ITDragonCnblogs",
+  "age" : 26.0,
+  "address" : {
+    "province" : "广东",
+    "city" : "深圳"
+  },
+  "ability" : ["JAVA", "NGINX"]
+}
+{
+  "_id" : ObjectId("5a9beda12f3fdfdf540a1bea"),
+  "name" : "ITDragonWeiXin",
+  "age" : 28.0,
+  "address" : {
+    "province" : "广东",
+    "city" : "深圳"
+  },
+  "ability" : ["JAVA", "NGINX"]
+}
+{
+  "_id" : ObjectId("5a9beda12f3fdfdf540a1beb"),
+  "name" : "ITDragonCSDN",
+  "age" : 27.0,
+  "address" : {
+    "province" : "湖北",
+    "city" : "武汉"
+  },
+  "ability" : ["APACHE", "SHIRO"]
+}
+
+
+db.itdragonuser.find({"name":/ITDragon/});
+
+db.itdragonuser.find({"age":{$gt:25}});
+
+db.itdragonuser.find({"name":/WeiXin$/});
+
+db.itdragonuser.count({"name":/ITDragon/});
+
+db.itdragonuser.distinct("name");
+
+db.itdragonuser.find().sort({"age":1}).skip(2).limit(3);
+
+db.itdragonuser.find({},{_id:0,name:1,address:1,aliblity:1});
+
+db.itdragonuser.find({$or:[{"address.province":"湖北"},{"address.province":"湖南"}]});
+
+db.itdragonuser.find({"ability":{$nin:["JAVA","HTML"]}});
+
+db.itdragontable.update({"name":"itdragon"}, {$set:{"describe":"update a describe3444"}}, {multi:true});
+
+
+db.itdragonuser.insert([
+{"name":"ITDragonWeiXin","age":28,"address":{"province":"广东","city":"深圳"},"ability":["JAVA","NGINX"]},
+{"name":"ITDragonCSDN","age":27,"address":{"province":"湖北","city":"武汉"},"ability":["APACHE","SHIRO"]}
+])
+
+db.itdragonuser.updateMany({"name":"ITDragon"},{$set:{"age":25}});
