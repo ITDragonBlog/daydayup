@@ -3,7 +3,7 @@
 | 项目名                 | 说明                  | 博客地址                                                     |
 | ---------------------- | --------------------- | ------------------------------------------------------------ |
 | spring-boot-activemq   | 消息中间件activemq    | [教程](http://www.cnblogs.com/itdragon/category/1173591.html) |
-| spring-boot-mongodb    | 非关系型数据库mongodb | [教程](http://www.cnblogs.com/itdragon/category/1169223.html) |
+| spring-boot-mongodb    | 非关系型数据库mongodb | [教程](https://www.cnblogs.com/itdragon/category/1173591.html) |
 | spring-boot-mqtt       | 物联网消息中间件MQTT  | [教程](https://www.cnblogs.com/itdragon/p/12463050.html)     |
 | spring-boot-shiro      | 安全框架shiro         | [教程](https://www.cnblogs.com/itdragon/p/8466972.html)      |
 | spring-boot-springdata | Spring data jpa 框架  | [教程](https://www.cnblogs.com/itdragon/p/8047132.html)      |
