@@ -1,0 +1,190 @@
+{
+  "definitions" : {
+    "创建用户模型" : {
+      "type" : "object",
+      "required" : [ "nikename" ],
+      "properties" : {
+        "nikename" : {
+          "type" : "string"
+        },
+        "username" : {
+          "description" : "用户账号,登录账号",
+          "type" : "string"
+        }
+      }
+    }
+  },
+  "host" : "www.cnblogs.com/itdragon",
+  "info" : {
+    "contact" : {
+      "email" : "itdragon@qq.com",
+      "name" : "ITDragon",
+      "url" : "https://www.cnblogs.com/itdragon/"
+    },
+    "description" : "API Document Description",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "title" : "ITDragon Swagger2 API Document",
+    "version" : "0.1"
+  },
+  "paths" : {
+    "/itdragon/ApiImplicitParams/info" : {
+      "get" : {
+        "description" : "通过ApiImplicitParams注解修饰参数，对参数做详细介绍。若不适用，",
+        "operationId" : "getITDragonApiImplicitParamsInfo",
+        "parameters" : [ {
+          "name" : "deviceIds",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "deviceIds",
+          "in" : "query",
+          "description" : "设备ID集合，用逗号区分",
+          "required" : true,
+          "type" : "String"
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "description" : "查询字段",
+          "in" : "body",
+          "name" : "search",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "responseSchema" : {
+              "type" : "boolean"
+            },
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        },
+        "summary" : "参数说明",
+        "tags" : [ "SwaggerDemo" ]
+      }
+    },
+    "/itdragon/ApiModel/info" : {
+      "post" : {
+        "description" : "",
+        "operationId" : "postITDragonApiModelInfo",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/创建用户模型",
+            "originalRef" : "创建用户模型"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "responseSchema" : {
+              "$ref" : "#/definitions/创建用户模型",
+              "originalRef" : "#/definitions/创建用户模型"
+            },
+            "schema" : {
+              "$ref" : "#/definitions/创建用户模型",
+              "originalRef" : "#/definitions/创建用户模型"
+            }
+          }
+        },
+        "summary" : "对象参数说明",
+        "tags" : [ "SwaggerDemo" ]
+      }
+    },
+    "/itdragon/ApiOperation/info" : {
+      "get" : {
+        "description" : "通过ApiOperation注解修饰方法，对方法做详细介绍。若不使用，Swagger会以函数名作为描述。",
+        "operationId" : "getITDragonApiOperationInfo",
+        "parameters" : [ {
+          "name" : "ids",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "responseSchema" : {
+              "type" : "boolean"
+            },
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        },
+        "summary" : "方法说明",
+        "tags" : [ "SwaggerDemo" ]
+      }
+    },
+    "/itdragon/Native/info" : {
+      "get" : {
+        "operationId" : "getITDragonNativeInfo",
+        "parameters" : [ {
+          "name" : "active",
+          "in" : "query",
+          "required" : false,
+          "type" : "boolean"
+        }, {
+          "name" : "endTime",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
+        }, {
+          "name" : "page",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "search",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "required" : false,
+          "type" : "integer",
+          "format" : "int32"
+        }, {
+          "name" : "startTime",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "responseSchema" : {
+              "type" : "boolean"
+            },
+            "schema" : {
+              "type" : "boolean"
+            }
+          }
+        },
+        "tags" : [ "SwaggerDemo" ]
+      }
+    }
+  },
+  "schemes" : [ "http", "https" ],
+  "swagger" : "2.0",
+  "tags" : [ {
+    "name" : "SwaggerDemo"
+  } ]
+}

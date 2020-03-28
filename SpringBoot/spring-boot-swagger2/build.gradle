@@ -1,23 +1,24 @@
 buildscript {
-	ext {
-		kotlinVersion = '1.2.51'
-		springBootVersion = '2.0.6.RELEASE'
-		swaggerVersion = '2.6.1'
-	}
-	repositories {
-		mavenCentral()
-	}
-	repositories {
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
-		classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
-	}
+    ext {
+        kotlinVersion = '1.2.51'
+        springBootVersion = '2.0.6.RELEASE'
+        swaggerVersion = '2.6.1'
+    }
+    repositories {
+        mavenCentral()
+    }
+    repositories {
+        maven {
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-noarg:${kotlinVersion}")
+        classpath("com.benjaminsproule:swagger-gradle-plugin:1.0.7")
+    }
 }
 
 apply plugin: 'kotlin'
@@ -26,40 +27,68 @@ apply plugin: 'kotlin-noarg'
 apply plugin: 'kotlin-allopen'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.benjaminsproule.swagger'
 
 group = 'com.itdragon.server'
 version = '0.0.1'
 sourceCompatibility = 1.8
 compileKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = "1.8"
-	}
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
 }
 compileTestKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ["-Xjsr305=strict"]
-		jvmTarget = "1.8"
-	}
+    kotlinOptions {
+        freeCompilerArgs = ["-Xjsr305=strict"]
+        jvmTarget = "1.8"
+    }
 }
 
 repositories {
-	mavenCentral()
-	jcenter()
+    mavenCentral()
+    jcenter()
+}
+
+swagger {
+    apiSource {
+        springmvc = true
+        locations = ["com.itdragon.server.api.rest"]
+        schemes = ["http", "https"]
+        host = "www.cnblogs.com/itdragon"
+        info {
+            title = "ITDragon Swagger2 API Document"
+            version = "0.1"
+            description = "API Document Description"
+            contact {
+                email = "itdragon@qq.com"
+                name = "ITDragon"
+                url = "https://www.cnblogs.com/itdragon/"
+            }
+            license {
+                url = "http://www.apache.org/licenses/LICENSE-2.0.html"
+                name = "Apache 2.0"
+            }
+        }
+        outputPath = "${project.rootDir}/generated/document.html"
+        swaggerDirectory = "${project.rootDir}/generated/swagger-ui"
+        attachSwaggerArtifact = true
+    }
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-quartz')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-integration')
-	compile('org.springframework.boot:spring-boot-starter-aop')
-	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
-	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	compile("org.jetbrains.kotlin:kotlin-reflect")
-	/* swagger */
-	compile("io.swagger:swagger-annotations:1.5.21")
-	compile("io.springfox:springfox-swagger2:${swaggerVersion}")
-	compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
-	compile("io.springfox:springfox-staticdocs:${swaggerVersion}")
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-quartz')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-integration')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('com.fasterxml.jackson.module:jackson-module-kotlin')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    compile("org.jetbrains.kotlin:kotlin-reflect")
+    /* swagger */
+    compile("io.swagger:swagger-annotations:1.5.21")
+    compile("io.springfox:springfox-swagger2:${swaggerVersion}")
+    compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+    compile("io.springfox:springfox-staticdocs:${swaggerVersion}")
+    testCompile('org.springframework.restdocs:spring-restdocs-mockmvc:2.0.2.RELEASE')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
