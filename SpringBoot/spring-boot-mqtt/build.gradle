@@ -50,8 +50,11 @@ repositories {
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-quartz')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-websocket')
 	compile('org.springframework.boot:spring-boot-starter-integration')
+	compile("org.springframework.integration:spring-integration-mqtt") {
+		exclude group: "org.eclipse.paho" , module: "org.eclipse.paho.client.mqttv3"
+	}
+	compile("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.2")
 	compile('org.springframework.boot:spring-boot-starter-aop')
 	compile('com.fasterxml.jackson.module:jackson-module-kotlin')
 	compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
