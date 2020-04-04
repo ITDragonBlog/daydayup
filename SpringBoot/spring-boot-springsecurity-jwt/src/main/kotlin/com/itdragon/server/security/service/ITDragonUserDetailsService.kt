@@ -25,7 +25,7 @@ class ITDragonUserDetailsService : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {
         logger.info("用户登录: $username")
-        // todo ...
+        // todo ... something
         return JwtUser(userService.findByUsername(username))
     }
 

@@ -2,14 +2,15 @@ package com.itdragon.server.config
 
 import com.itdragon.server.security.service.ITDragonJwtAuthenticationEntryPoint
 import com.itdragon.server.security.service.ITDragonJwtAuthenticationTokenFilter
+import com.itdragon.server.security.service.ITDragonLogoutSuccessHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
+import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
@@ -24,7 +25,9 @@ class ITDragonWebSecurityConfig: WebSecurityConfigurerAdapter() {
     @Autowired
     lateinit var jwtAuthenticationTokenFilter: ITDragonJwtAuthenticationTokenFilter
     @Autowired
-    lateinit var jwtAuthenticationEntryPoint: ITDragonJwtAuthenticationEntryPoint
+    lateinit var authenticationEntryPoint: ITDragonJwtAuthenticationEntryPoint
+    @Autowired
+    lateinit var logoutSuccessHandler: ITDragonLogoutSuccessHandler
 
     /**
      * 配置密码编码器
@@ -34,9 +37,14 @@ class ITDragonWebSecurityConfig: WebSecurityConfigurerAdapter() {
         return BCryptPasswordEncoder()
     }
 
+    @Bean
+    fun itdragonAuthenticationManager(): AuthenticationManager {
+        return authenticationManager()
+    }
+
     /**
      * 第一步：将JWT拦截器添加到默认的账号密码拦截器之前，表示token验证成功后无需登录
-     * 第二步：配置异常处理器
+     * 第二步：配置异常处理器和登出处理器
      * 第三步：开启权限拦截，对所有请求进行拦截
      * 第四步：开放不需要拦截的请求，比如用户注册、OPTIONS请求和静态资源等
      * 第五步：允许OPTIONS请求，为跨域配置做准备
@@ -46,7 +54,10 @@ class ITDragonWebSecurityConfig: WebSecurityConfigurerAdapter() {
         // 添加jwt拦截器
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter::class.java)
                 // 配置异常处理器
-                .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                // 配置登出逻辑
+                .and().logout()
+                .logoutSuccessHandler(logoutSuccessHandler)
                 // 开启权限拦截
                 .and().authorizeRequests()
                 // 开放不需要拦截的请求
@@ -66,6 +77,8 @@ class ITDragonWebSecurityConfig: WebSecurityConfigurerAdapter() {
                 .antMatchers("/itdragon/api/v1/**").authenticated()
                 // 先暂时关闭跨站请求伪造，它限制除了get以外的大多数方法。
                 .and().csrf().disable()
+                // 允许跨域请求
+                .cors().disable()
 
     }
 

@@ -8,12 +8,13 @@ import java.util.*
 import javax.persistence.*
 
 @Entity
-class ITDragonUser : BaseModel(){
+class ITDragonUser : BaseModel() {
     var username: String = ""
     var password: String = ""
     var email: String? = ""
     var nickName: String? = ""
     var active: Boolean = false
+    var tokenInvalidDate: Date = Date()
 }
 
 
