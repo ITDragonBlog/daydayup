@@ -48,16 +48,15 @@ class ITDragonJwtAuthenticationTokenFilter: OncePerRequestFilter() {
                 return
             }
 
-            if (SecurityContextHolder.getContext().authentication == null) {
-                // 验证token是否有效
-                val userDetails = this.userDetailsService.loadUserByUsername(username)
-                if (jwtTokenUtil.validateToken(authToken, userDetails)) {
-                    // 将用户信息添加到SecurityContextHolder 的Context
-                    val authentication = UsernamePasswordAuthenticationToken(userDetails, userDetails.password, userDetails.authorities)
-                    authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
-                    SecurityContextHolder.getContext().authentication = authentication
-                }
+            // 验证token是否有效
+            val userDetails = this.userDetailsService.loadUserByUsername(username)
+            if (jwtTokenUtil.validateToken(authToken, userDetails)) {
+                // 将用户信息添加到SecurityContextHolder 的Context
+                val authentication = UsernamePasswordAuthenticationToken(userDetails, userDetails.password, userDetails.authorities)
+                authentication.details = WebAuthenticationDetailsSource().buildDetails(request)
+                SecurityContextHolder.getContext().authentication = authentication
             }
+
         }
 
         filterChain.doFilter(request, response)

@@ -25,13 +25,13 @@ class JwtTokenUtil {
      * 1. 建议使用唯一、可读性高的字段作为生成令牌的参数
      */
     fun generateToken(username: String): String {
-        try {
+        return try {
             val claims = HashMap<String, Any>()
             claims[CLAIM_KEY_USERNAME] = username
-            return generateJWT(claims)
+            generateJWT(claims)
         } catch (e: Exception) {
+            ""
         }
-        return ""
     }
 
     /**
