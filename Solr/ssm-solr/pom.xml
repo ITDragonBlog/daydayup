@@ -27,7 +27,7 @@
 		<pagehelper.version>3.4.2</pagehelper.version>
 		<jsqlparser.version>0.9.1</jsqlparser.version>
 		<solrj.version>7.1.0</solrj.version>
-		<collections.version>3.2.1</collections.version>
+		<collections.version>3.2.2</collections.version>
 	</properties>
 	<dependencies>
 		<!-- 时间操作组件 -->
