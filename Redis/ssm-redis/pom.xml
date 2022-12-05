@@ -23,7 +23,7 @@
 		<jsp-api.version>2.0</jsp-api.version>
 		<commons-lang3.version>3.3.2</commons-lang3.version>
 		<commons-io.version>1.3.2</commons-io.version>
-		<commons-net.version>3.3</commons-net.version>
+		<commons-net.version>3.9.0</commons-net.version>
 		<jsqlparser.version>0.9.1</jsqlparser.version>
 		<jedis.version>2.9.0</jedis.version>
 	</properties>
